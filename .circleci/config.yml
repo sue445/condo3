@@ -1,0 +1,72 @@
+version: 2.1
+
+orbs:
+  go-module: timakin/go-module@0.3.0
+
+executors:
+  golang:
+    docker:
+      - image: circleci/golang:1.12
+    working_directory: /home/circleci/app
+
+jobs:
+  test:
+    executor: golang
+
+    steps:
+      - &attach_workspace
+        attach_workspace:
+          at: /home/circleci/app
+      - &restore_cache
+        restore_cache:
+          key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
+      - run: make test
+      - run: make testrace
+
+  golint:
+    executor: golang
+
+    steps:
+      - *attach_workspace
+      - *restore_cache
+      - run: go get -u golang.org/x/lint/golint
+      - run: make lint
+
+  go-vet:
+    executor: golang
+
+    steps:
+      - *attach_workspace
+      - *restore_cache
+      - run: make vet
+
+  gofmt:
+    executor: golang
+
+    steps:
+      - *attach_workspace
+      - *restore_cache
+      - run: "! gofmt -d . | grep '^'"
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - go-module/download:
+          executor: golang
+          persist-to-workspace: true
+
+      - test:
+          requires:
+            - go-module/download
+
+      - golint:
+          requires:
+            - go-module/download
+
+      - go-vet:
+          requires:
+            - go-module/download
+
+      - gofmt:
+          requires:
+            - go-module/download
