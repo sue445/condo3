@@ -48,6 +48,17 @@ jobs:
       - *restore_cache
       - run: "! gofmt -d . | grep '^'"
 
+  deploy:
+    docker:
+      - image: google/cloud-sdk:alpine
+
+    steps:
+      - checkout
+      - run: gcloud --version
+      - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
+      - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
+      - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
+
 workflows:
   build-and-deploy:
     jobs:
@@ -70,3 +81,13 @@ workflows:
       - gofmt:
           requires:
             - go-module/download
+
+      - deploy:
+          requires:
+            - test
+            - golint
+            - go-vet
+            - gofmt
+          filters:
+            branches:
+              only: master
