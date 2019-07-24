@@ -17,6 +17,7 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -38,12 +39,12 @@ func TestIndexHandler(t *testing.T) {
 		)
 	}
 
-	expected := "Hello, World!"
-	if rr.Body.String() != expected {
+	expected := "It works"
+	if !strings.Contains(rr.Body.String(), expected) {
 		t.Errorf(
-			"unexpected body: got (%v) want (%v)",
+			"unexpected body: got (%v) contains (%v)",
 			rr.Body.String(),
-			"Hello, World!",
+			expected,
 		)
 	}
 }

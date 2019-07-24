@@ -12,26 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START gae_go111_app]
-
-// Sample helloworld is an App Engine app.
 package main
 
-// [START import]
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
-// [END import]
-// [START main_func]
+var (
+	indexTmpl = template.Must(
+		template.ParseFiles(filepath.Join("templates", "index.html")),
+	)
+)
 
 func main() {
 	http.HandleFunc("/", indexHandler)
 
-	// [START setting_port]
+	// Serve static files out of the public directory.
+	// By configuring a static handler in app.yaml, App Engine serves all the
+	// static content itself. As a result, the following two lines are in
+	// effect for development only.
+	public := http.StripPrefix("/public", http.FileServer(http.Dir("public")))
+	http.Handle("/public/", public)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
@@ -40,21 +47,17 @@ func main() {
 
 	log.Printf("Listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
-	// [END setting_port]
 }
 
-// [END main_func]
-
-// [START indexHandler]
-
-// indexHandler responds to requests with our greeting.
+// indexHandler uses a template to create an index.html.
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
-	fmt.Fprint(w, "Hello, World!")
-}
 
-// [END indexHandler]
-// [END gae_go111_app]
+	if err := indexTmpl.Execute(w, nil); err != nil {
+		log.Printf("Error executing template: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+	}
+}
