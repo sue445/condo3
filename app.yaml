@@ -13,3 +13,15 @@
 # limitations under the License.
 
 runtime: go112 # replace with go111 for Go 1.11
+api_version: go1
+
+handlers:
+  # Otherwise, find file in static directory
+  - url: /public
+    static_dir: public
+
+  # All URLs are handled by the Go application script
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: _go_app
