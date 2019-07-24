@@ -16,6 +16,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"html/template"
 	"log"
 	"net/http"
@@ -30,7 +31,10 @@ var (
 )
 
 func main() {
-	http.HandleFunc("/", indexHandler)
+	r := mux.NewRouter()
+	r.HandleFunc("/", indexHandler)
+	r.HandleFunc("/api/doorkeeper/{group}.{format}", apiDoorkeeperHandler)
+	http.Handle("/", r)
 
 	// Serve static files out of the public directory.
 	// By configuring a static handler in app.yaml, App Engine serves all the
