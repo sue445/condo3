@@ -41,11 +41,11 @@ END:VCALENDAR
 			name: "generate gocon ical",
 			fields: fields{
 				Title: "Go Conference - connpass",
-				URL: "https://gocon.connpass.com/",
+				URL:   "https://gocon.connpass.com/",
 				Events: []Event{
 					{
-						Title: "Go 1.13 Release Party in Tokyo",
-						URL: "https://gocon.connpass.com/event/139024/",
+						Title:     "Go 1.13 Release Party in Tokyo",
+						URL:       "https://gocon.connpass.com/event/139024/",
 						Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
 						StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, time.Local)),
 						EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, time.Local)),

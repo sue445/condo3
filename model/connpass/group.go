@@ -39,8 +39,8 @@ func getEvents(seriesID int) ([]model.Event, error) {
 
 	for _, resultEvent := range result.Events {
 		ev := model.Event{
-			Title: resultEvent.Title,
-			URL:   resultEvent.Url,
+			Title:   resultEvent.Title,
+			URL:     resultEvent.Url,
 			Address: resultEvent.Address,
 		}
 
