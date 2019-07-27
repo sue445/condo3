@@ -19,6 +19,8 @@ BEGIN:VEVENT
 UID:https://gocon.connpass.com/event/139024/
 DESCRIPTION:Go 1.13 Release Party in Tokyo
 URL:https://gocon.connpass.com/event/139024/
+LOCATION:東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F
+ )
 DTSTART:20190823T103000Z
 DTEND:20190823T130000Z
 END:VEVENT
@@ -44,6 +46,7 @@ END:VCALENDAR
 					{
 						Title: "Go 1.13 Release Party in Tokyo",
 						URL: "https://gocon.connpass.com/event/139024/",
+						Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
 						StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, time.Local)),
 						EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, time.Local)),
 					},

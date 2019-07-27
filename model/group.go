@@ -21,6 +21,7 @@ func (g *Group) ToIcal() string {
 
 		event.SetDescription(e.Title)
 		event.SetURL(e.URL)
+		event.SetLocation(e.Address)
 
 		if e.StartedAt != nil {
 			event.SetStartAt(*e.StartedAt)

@@ -41,6 +41,7 @@ func getEvents(seriesID int) ([]model.Event, error) {
 		ev := model.Event{
 			Title: resultEvent.Title,
 			URL:   resultEvent.Url,
+			Address: resultEvent.Address,
 		}
 
 		if resultEvent.Start != "" {
