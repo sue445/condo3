@@ -3,10 +3,11 @@ package connpass
 import (
 	"github.com/jarcoal/httpmock"
 	"github.com/sue445/condo3/testutil"
+	"reflect"
 	"testing"
 )
 
-func Test_fetchSeriesID(t *testing.T) {
+func Test_FetchGroupPage(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
@@ -25,7 +26,7 @@ func Test_fetchSeriesID(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    int
+		want    *Page
 		wantErr bool
 	}{
 		{
@@ -33,21 +34,29 @@ func Test_fetchSeriesID(t *testing.T) {
 			args: args{
 				groupName: "bpstudy",
 			},
-			want: 1,
+			want: &Page{
+				SeriesID: 1,
+				URL:      "https://bpstudy.connpass.com/",
+				Title:    "BPStudy - connpass",
+			},
 		},
 		{
 			name: "gocon",
 			args: args{
 				groupName: "gocon",
 			},
-			want: 312,
+			want: &Page{
+				SeriesID: 312,
+				URL:      "https://gocon.connpass.com/",
+				Title:    "Go Conference - connpass",
+			},
 		},
 		{
 			name: "NotFound",
 			args: args{
 				groupName: "not-found",
 			},
-			want:    0,
+			want:    nil,
 			wantErr: true,
 		},
 		{
@@ -55,19 +64,20 @@ func Test_fetchSeriesID(t *testing.T) {
 			args: args{
 				groupName: "without-series-id",
 			},
-			want:    0,
+			want:    nil,
 			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := fetchSeriesID(tt.args.groupName)
+			got, err := FetchGroupPage(tt.args.groupName)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("fetchSeriesID() error = %+v, wantErr %+v", err, tt.wantErr)
+				t.Errorf("FetchGroupPage() error = %+v, wantErr %+v", err, tt.wantErr)
 				return
 			}
-			if got != tt.want {
-				t.Errorf("fetchSeriesID() = %+v, want %+v", got, tt.want)
+
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("FetchGroupPage() = %+v, want %+v", got, tt.want)
 			}
 		})
 	}

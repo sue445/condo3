@@ -8,13 +8,13 @@ import (
 
 // GetGroupEvents returns group events
 func GetGroupEvents(groupName string) ([]model.Event, error) {
-	seriesID, err := fetchSeriesID(groupName)
+	page, err := FetchGroupPage(groupName)
 
 	if err != nil {
 		return []model.Event{}, err
 	}
 
-	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.START}
+	query := connpass.Query{SeriesId: []int{page.SeriesID}, Count: 100, Order: connpass.START}
 	result, err := query.Search()
 
 	if err != nil {
