@@ -2,6 +2,8 @@ github.com/arran4/golang-ical v0.0.0-20190711113309-f39a345f6c4e h1:xc9dJ3cA8GGX
 github.com/arran4/golang-ical v0.0.0-20190711113309-f39a345f6c4e/go.mod h1:iDFK01A1Yb5HiGn6YEaZ516fCow5FnEAjyMfOOIYMuo=
 github.com/gorilla/feeds v1.1.1 h1:HwKXxqzcRNg9to+BbvJog4+f3s/xzvtZXICcQGutYfY=
 github.com/gorilla/feeds v1.1.1/go.mod h1:Nk0jZrvPFZX1OBe5NPiddPw7CfwF6Q9eqzaBbaightA=
+github.com/gorilla/mux v1.7.3 h1:gnP5JzjVOuiZD07fKKToCAOjS0yOpj/qPETTXCCS6hw=
+github.com/gorilla/mux v1.7.3/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
 github.com/hkurokawa/go-connpass v0.0.0-20150328175040-7bac22e24e7b h1:xDvCuzBpAXr5XVirrAmQFCsSTOBwjCXQOeUaZ0mE9FA=
 github.com/hkurokawa/go-connpass v0.0.0-20150328175040-7bac22e24e7b/go.mod h1:n5Upv6nVeM/GG4JXC7JklS6xT32hm+r/GPVup01FWS8=
 github.com/jarcoal/httpmock v1.0.4 h1:jp+dy/+nonJE4g4xbVtl9QdrUNbn6/3hDT5R4nDIZnA=
