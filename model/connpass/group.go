@@ -6,15 +6,29 @@ import (
 	"time"
 )
 
-// GetGroupEvents returns group events
-func GetGroupEvents(groupName string) ([]model.Event, error) {
+// GetGroup returns group detail
+func GetGroup(groupName string) (*model.Group, error) {
 	page, err := FetchGroupPage(groupName)
 
 	if err != nil {
-		return []model.Event{}, err
+		return nil, err
 	}
 
-	query := connpass.Query{SeriesId: []int{page.SeriesID}, Count: 100, Order: connpass.START}
+	events, err := getEvents(page.SeriesID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.Group{
+		Title:  page.Title,
+		URL:    page.URL,
+		Events: events,
+	}, nil
+}
+
+func getEvents(seriesID int) ([]model.Event, error) {
+	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.START}
 	result, err := query.Search()
 
 	if err != nil {

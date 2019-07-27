@@ -13,7 +13,7 @@ func tp(t time.Time) *time.Time {
 	return &t
 }
 
-func TestGetGroupEvents(t *testing.T) {
+func TestGetGroup(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
@@ -31,6 +31,8 @@ func TestGetGroupEvents(t *testing.T) {
 		wantEventFirst model.Event
 		wantEventCount int
 		wantErr        bool
+		wantURL        string
+		wantTitle      string
 	}{
 		{
 			name: "successful",
@@ -44,20 +46,28 @@ func TestGetGroupEvents(t *testing.T) {
 				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, time.Local)),
 			},
 			wantEventCount: 27,
+			wantURL:        "https://gocon.connpass.com/",
+			wantTitle:      "Go Conference - connpass",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetGroupEvents(tt.args.groupName)
+			got, err := GetGroup(tt.args.groupName)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("GetGroupEvents() error = %+v, wantErr %+v", err, tt.wantErr)
+				t.Errorf("GetGroup() error = %+v, wantErr %+v", err, tt.wantErr)
 				return
 			}
-			if !reflect.DeepEqual(len(got), tt.wantEventCount) {
-				t.Errorf("GetGroupEvents() = %+v, want %+v", len(got), tt.wantEventCount)
+			if len(got.Events) != tt.wantEventCount {
+				t.Errorf("GetGroup().Events count = %+v, want %+v", len(got.Events), tt.wantEventCount)
 			}
-			if !reflect.DeepEqual(got[0], tt.wantEventFirst) {
-				t.Errorf("GetGroupEvents() = %+v, want %+v", got[0], tt.wantEventFirst)
+			if !reflect.DeepEqual(got.Events[0], tt.wantEventFirst) {
+				t.Errorf("GetGroup().Events[0] = %+v, want %+v", got.Events[0], tt.wantEventFirst)
+			}
+			if got.URL != tt.wantURL {
+				t.Errorf("GetGroup().URL = %+v, want %+v", got.URL, tt.wantURL)
+			}
+			if got.Title != tt.wantTitle {
+				t.Errorf("GetGroup().Title = %+v, want %+v", got.Title, tt.wantTitle)
 			}
 		})
 	}
