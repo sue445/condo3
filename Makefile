@@ -1,8 +1,14 @@
-MAIN_SRCS := $(shell find . -type f -name '*.go' -not -name '*_test.go')
+NAME := condo3
+SRCS := $(shell find . -type f -name '*.go')
 
-.PHONY: run
-run:
-	go run $(MAIN_SRCS)
+.DEFAULT_GOAL := bin/$(NAME)
+
+bin/$(NAME): $(SRCS)
+	go build -o bin/$(NAME)
+
+.PHONY: clean
+clean:
+	rm -rf bin/*
 
 .PHONY: test
 test:

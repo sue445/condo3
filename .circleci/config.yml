@@ -8,6 +8,8 @@ executors:
     docker:
       - image: circleci/golang:1.12
     working_directory: /home/circleci/app
+    environment:
+      TZ: Asia/Tokyo
 
 jobs:
   test:
