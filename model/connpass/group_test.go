@@ -2,7 +2,7 @@ package connpass
 
 import (
 	"github.com/jarcoal/httpmock"
-	"github.com/sue445/condo3/event"
+	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/testutil"
 	"reflect"
 	"testing"
@@ -28,7 +28,7 @@ func TestGetGroupEvents(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantEventFirst event.Event
+		wantEventFirst model.Event
 		wantEventCount int
 		wantErr        bool
 	}{
@@ -37,7 +37,7 @@ func TestGetGroupEvents(t *testing.T) {
 			args: args{
 				groupName: "gocon",
 			},
-			wantEventFirst: event.Event{
+			wantEventFirst: model.Event{
 				Title:     "Go 1.13 Release Party in Tokyo",
 				URL:       "https://gocon.connpass.com/event/139024/",
 				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, time.Local)),

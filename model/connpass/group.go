@@ -2,29 +2,29 @@ package connpass
 
 import (
 	"github.com/hkurokawa/go-connpass"
-	"github.com/sue445/condo3/event"
+	"github.com/sue445/condo3/model"
 	"time"
 )
 
 // GetGroupEvents returns group events
-func GetGroupEvents(groupName string) ([]event.Event, error) {
+func GetGroupEvents(groupName string) ([]model.Event, error) {
 	seriesID, err := fetchSeriesID(groupName)
 
 	if err != nil {
-		return []event.Event{}, err
+		return []model.Event{}, err
 	}
 
 	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.START}
 	result, err := query.Search()
 
 	if err != nil {
-		return []event.Event{}, err
+		return []model.Event{}, err
 	}
 
-	events := []event.Event{}
+	events := []model.Event{}
 
 	for _, resultEvent := range result.Events {
-		ev := event.Event{
+		ev := model.Event{
 			Title: resultEvent.Title,
 			URL:   resultEvent.Url,
 		}
@@ -33,7 +33,7 @@ func GetGroupEvents(groupName string) ([]event.Event, error) {
 			startedAt, err := time.Parse(time.RFC3339, resultEvent.Start)
 
 			if err != nil {
-				return []event.Event{}, err
+				return []model.Event{}, err
 			}
 
 			ev.StartedAt = &startedAt
@@ -43,7 +43,7 @@ func GetGroupEvents(groupName string) ([]event.Event, error) {
 			endedAt, err := time.Parse(time.RFC3339, resultEvent.End)
 
 			if err != nil {
-				return []event.Event{}, err
+				return []model.Event{}, err
 			}
 
 			ev.EndedAt = &endedAt
