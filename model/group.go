@@ -1,7 +1,9 @@
 package model
 
 import (
+	"fmt"
 	"github.com/arran4/golang-ical"
+	"github.com/gorilla/feeds"
 )
 
 // Group represents group info
@@ -32,4 +34,31 @@ func (g *Group) ToIcal() string {
 	}
 
 	return cal.Serialize()
+}
+
+// ToAtom return atom formatted group
+func (g *Group) ToAtom() (string, error) {
+	feed := &feeds.Feed{
+		Title: g.Title,
+		Link:  &feeds.Link{Href: g.URL},
+		Items: []*feeds.Item{},
+	}
+
+	for _, e := range g.Events {
+		item := feeds.Item{
+			Title:       e.Title,
+			Link:        &feeds.Link{Href: e.URL},
+			Description: fmt.Sprintf("開催日時：%s〜%s\n開催場所：%s", e.StartedAt.Format("2006/01/02 15:04"), e.EndedAt.Format("15:04"), e.Address),
+			Id:          e.URL,
+		}
+		feed.Items = append(feed.Items, &item)
+	}
+
+	atom, err := feed.ToAtom()
+
+	if err != nil {
+		return "", err
+	}
+
+	return atom, nil
 }
