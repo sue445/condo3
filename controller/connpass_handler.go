@@ -22,6 +22,7 @@ func ConnpassHandler(w http.ResponseWriter, r *http.Request) {
 	switch vars["format"] {
 	case "ics":
 		w.WriteHeader(http.StatusOK)
+		setContentType(w, contentTypeIcs)
 		fmt.Fprint(w, group.ToIcal())
 	case "atom":
 		atom, err := group.ToAtom()
@@ -32,6 +33,7 @@ func ConnpassHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		setContentType(w, contentTypeAtom)
 		fmt.Fprint(w, atom)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
