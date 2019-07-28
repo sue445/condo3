@@ -6,7 +6,8 @@ orbs:
 executors:
   golang:
     docker:
-      - image: circleci/golang:1.12
+      # FIXME: google-cloud-sdk-datastore-emulator requires openjdk-8-jdk, but only openjdk-11-jdk is available on buster
+      - image: circleci/golang:1.12-stretch
     working_directory: /home/circleci/app
     environment:
       TZ: Asia/Tokyo
@@ -22,6 +23,16 @@ jobs:
       - &restore_cache
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
+      - run:
+          name: Install google-cloud-sdk
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y lsb-release
+            export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+            echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+            curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+            sudo apt-get update
+            sudo apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-go google-cloud-sdk-datastore-emulator openjdk-8-jdk-headless
       - run: make test
       - run: make testrace
 
