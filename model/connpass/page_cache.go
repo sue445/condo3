@@ -9,7 +9,7 @@ import (
 
 const (
 	keyPrefix  = "PageCache-v1-"
-	expiration = time.Duration(24) * time.Hour
+	expiration = 24 * time.Hour // 1 day
 )
 
 // PageCache represents page cache
