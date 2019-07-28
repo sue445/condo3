@@ -2,8 +2,10 @@ package connpass
 
 import (
 	"github.com/jarcoal/httpmock"
+	"github.com/stretchr/testify/assert"
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/testutil"
+	"google.golang.org/appengine/aetest"
 	"reflect"
 	"testing"
 	"time"
@@ -14,6 +16,10 @@ func tp(t time.Time) *time.Time {
 }
 
 func TestGetGroup(t *testing.T) {
+	ctx, done, err := aetest.NewContext()
+	assert.NoError(t, err)
+	defer done()
+
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
@@ -54,7 +60,7 @@ func TestGetGroup(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetGroup(tt.args.groupName)
+			got, err := GetGroup(ctx, tt.args.groupName)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetGroup() error = %+v, wantErr %+v", err, tt.wantErr)
 				return

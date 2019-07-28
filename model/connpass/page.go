@@ -1,6 +1,7 @@
 package connpass
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -15,6 +16,27 @@ type Page struct {
 	SeriesID int
 	URL      string
 	Title    string
+}
+
+// FetchGroupPageWithCache returns group page with memcache
+func FetchGroupPageWithCache(ctx context.Context, groupName string) (*Page, error) {
+	cache := NewPageCache(ctx)
+
+	cached, _ := cache.Get(groupName)
+
+	if cached != nil {
+		return cached, nil
+	}
+
+	page, err := FetchGroupPage(groupName)
+
+	if err != nil {
+		return nil, err
+	}
+
+	cache.Set(groupName, page)
+
+	return page, nil
 }
 
 // FetchGroupPage fetch connpass group page

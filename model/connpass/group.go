@@ -1,14 +1,15 @@
 package connpass
 
 import (
+	"context"
 	"github.com/hkurokawa/go-connpass"
 	"github.com/sue445/condo3/model"
 	"time"
 )
 
 // GetGroup returns group detail
-func GetGroup(groupName string) (*model.Group, error) {
-	page, err := FetchGroupPage(groupName)
+func GetGroup(ctx context.Context, groupName string) (*model.Group, error) {
+	page, err := FetchGroupPageWithCache(ctx, groupName)
 
 	if err != nil {
 		return nil, err
