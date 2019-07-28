@@ -8,4 +8,7 @@ require (
 	github.com/gorilla/mux v1.7.3
 	github.com/hkurokawa/go-connpass v0.0.0-20150328175040-7bac22e24e7b
 	github.com/jarcoal/httpmock v1.0.4
+	github.com/kr/pretty v0.1.0 // indirect
+	github.com/stretchr/testify v1.3.0
+	google.golang.org/appengine v1.6.1
 )
