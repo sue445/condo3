@@ -19,23 +19,5 @@ func ConnpassHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	switch vars["format"] {
-	case "ics":
-		w.WriteHeader(http.StatusOK)
-		setContentType(w, contentTypeIcs)
-		fmt.Fprint(w, group.ToIcal())
-	case "atom":
-		atom, err := group.ToAtom()
-
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			fmt.Fprint(w, err)
-			return
-		}
-
-		setContentType(w, contentTypeAtom)
-		fmt.Fprint(w, atom)
-	default:
-		w.WriteHeader(http.StatusBadRequest)
-	}
+	renderGroup(w, group, vars["format"])
 }
