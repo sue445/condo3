@@ -8,11 +8,6 @@ import (
 	"strconv"
 )
 
-const (
-	contentTypeAtom = "application/atom+xml; charset=utf-8"
-	contentTypeIcs  = "text/calendar; charset=utf-8"
-)
-
 func errorStatusCode(err error) int {
 	re := regexp.MustCompile("^(\\d{3})")
 	matched := re.FindStringSubmatch(err.Error())
@@ -29,7 +24,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 	switch format {
 	case "ics":
 		w.WriteHeader(http.StatusOK)
-		setContentType(w, contentTypeIcs)
+		setContentType(w, "text/calendar; charset=utf-8")
 		fmt.Fprint(w, group.ToIcal())
 	case "atom":
 		atom, err := group.ToAtom()
@@ -40,7 +35,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 			return
 		}
 
-		setContentType(w, contentTypeAtom)
+		setContentType(w, "application/atom+xml; charset=utf-8")
 		fmt.Fprint(w, atom)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
