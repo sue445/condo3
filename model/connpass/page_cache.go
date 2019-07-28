@@ -45,7 +45,7 @@ func (p *PageCache) Get(key string) (*Page, error) {
 
 // Set sets value to memcache
 func (p *PageCache) Set(key string, data *Page) error {
-	byte, err := json.Marshal(data)
+	bytes, err := json.Marshal(data)
 
 	if err != nil {
 		return err
@@ -53,7 +53,7 @@ func (p *PageCache) Set(key string, data *Page) error {
 
 	item := &memcache.Item{
 		Key:        keyPrefix + key,
-		Value:      byte,
+		Value:      bytes,
 		Expiration: expiration,
 	}
 
