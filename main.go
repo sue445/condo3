@@ -17,7 +17,7 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/sue445/condo3/controller"
+	"github.com/sue445/condo3/api"
 	"html/template"
 	"log"
 	"net/http"
@@ -33,7 +33,7 @@ var (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/api/connpass/{group}.{format}", controller.ConnpassHandler)
+	r.HandleFunc("/api/connpass/{group}.{format}", api.ConnpassHandler)
 	r.HandleFunc("/", indexHandler)
 	http.Handle("/", r)
 
