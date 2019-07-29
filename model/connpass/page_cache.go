@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	keyPrefix  = "PageCache-v1-"
+	keyPrefix  = "connpass.PageCache-v1-"
 	expiration = 24 * time.Hour // 1 day
 )
 
