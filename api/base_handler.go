@@ -23,9 +23,8 @@ func errorStatusCode(err error) int {
 func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 	switch format {
 	case "ics":
-		w.WriteHeader(http.StatusOK)
 		setContentType(w, "text/calendar; charset=utf-8")
-		fmt.Fprint(w, group.ToIcal())
+		writeAPIResponse(w, group.ToIcal())
 	case "atom":
 		atom, err := group.ToAtom()
 
@@ -36,7 +35,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		}
 
 		setContentType(w, "application/atom+xml; charset=utf-8")
-		fmt.Fprint(w, atom)
+		writeAPIResponse(w, atom)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 	}
@@ -44,4 +43,17 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 
 func setContentType(w http.ResponseWriter, contentType string) {
 	w.Header().Set("Content-Type", contentType)
+}
+
+func writeAPIResponse(w http.ResponseWriter, body string) {
+	enableFrontendCache(w, len(body))
+	fmt.Fprint(w, body)
+}
+
+func enableFrontendCache(w http.ResponseWriter, contentLength int) {
+	expirationSeconds := 60 * 10 // 10 min
+
+	// c.f. https://cloud.google.com/cdn/docs/caching?hl=ja
+	w.Header().Set("Cache-Control", fmt.Sprintf("public, max-age=%d", expirationSeconds))
+	w.Header().Set("Content-Length", strconv.Itoa(contentLength))
 }
