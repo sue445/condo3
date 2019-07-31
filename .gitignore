@@ -13,3 +13,5 @@
 
 condo3
 bin/
+secrets.yaml
+.envrc

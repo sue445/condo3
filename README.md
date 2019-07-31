@@ -3,6 +3,12 @@
 
 ## Develop
 ### Setup
+```bash
+cp secrets.yaml.example secrets.yaml
+vi secrets.yaml
+cp .envrc.example .envrc
+vi .envrc
+```
 
 Mac
 

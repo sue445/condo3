@@ -37,7 +37,6 @@ func TestGetGroup(t *testing.T) {
 		wantEventCount int
 		wantURL        string
 		wantTitle      string
-		wantAddress    string
 	}{
 		{
 			name: "successful",
@@ -61,10 +60,14 @@ func TestGetGroup(t *testing.T) {
 			got, err := GetGroup(ctx, tt.args.groupName)
 
 			assert.NoError(t, err)
-			assert.Equal(t, tt.wantEventCount, len(got.Events))
-			assert.Equal(t, tt.wantEventFirst, got.Events[0])
-			assert.Equal(t, tt.wantURL, got.URL)
-			assert.Equal(t, tt.wantTitle, got.Title)
+			assert.NotNil(t, got)
+
+			if got != nil {
+				assert.Equal(t, tt.wantEventCount, len(got.Events))
+				assert.Equal(t, tt.wantEventFirst, got.Events[0])
+				assert.Equal(t, tt.wantURL, got.URL)
+				assert.Equal(t, tt.wantTitle, got.Title)
+			}
 		})
 	}
 }

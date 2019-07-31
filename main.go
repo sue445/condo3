@@ -34,6 +34,7 @@ var (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/connpass/{group}.{format}", api.ConnpassHandler)
+	r.HandleFunc("/api/doorkeeper/{group}.{format}", api.DoorkeeperHandler)
 	r.HandleFunc("/", indexHandler)
 	http.Handle("/", r)
 
