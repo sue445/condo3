@@ -69,6 +69,7 @@ jobs:
       - checkout
       - run: gcloud --version
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
+      - run: echo $BASE64_SECRETS_YAML | base64 -d > secrets.yaml
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
       - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
 
