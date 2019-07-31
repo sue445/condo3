@@ -23,7 +23,7 @@ func TestGetGroup(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("GET", "https://api.doorkeeper.jp/groups/trbmeetup/events?since=2015-03-03&sort=published_at&until=2015-08-30",
+	httpmock.RegisterResponder("GET", "https://api.doorkeeper.jp/groups/trbmeetup/events?since=2014-06-01&sort=published_at&until=2016-06-01",
 		func(req *http.Request) (*http.Response, error) {
 			resp := httpmock.NewStringResponse(200, testutil.ReadTestData(filepath.Join("testdata", "events.json")))
 			resp.Header.Set("X-Ratelimit", `{"name":"authenticated API","period":300,"limit":300,"remaining":299,"until":"2019-07-29T15:15:00Z"}`)
