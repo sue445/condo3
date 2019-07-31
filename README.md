@@ -3,6 +3,10 @@
 
 ## Develop
 ### Setup
+```bash
+cp secrets.yaml.example secrets.yaml
+vi secrets.yaml
+```
 
 Mac
 
