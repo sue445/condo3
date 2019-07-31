@@ -2,8 +2,8 @@ package connpass
 
 import (
 	"github.com/jarcoal/httpmock"
+	"github.com/stretchr/testify/assert"
 	"github.com/sue445/condo3/testutil"
-	"reflect"
 	"testing"
 )
 
@@ -71,14 +71,14 @@ func Test_FetchGroupPage(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := FetchGroupPage(tt.args.groupName)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("FetchGroupPage() error = %+v, wantErr %+v", err, tt.wantErr)
-				return
+
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
 			}
 
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("FetchGroupPage() = %+v, want %+v", got, tt.want)
-			}
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }

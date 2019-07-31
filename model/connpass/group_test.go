@@ -6,7 +6,6 @@ import (
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/testutil"
 	"google.golang.org/appengine/aetest"
-	"reflect"
 	"testing"
 	"time"
 )
@@ -36,7 +35,6 @@ func TestGetGroup(t *testing.T) {
 		args           args
 		wantEventFirst model.Event
 		wantEventCount int
-		wantErr        bool
 		wantURL        string
 		wantTitle      string
 		wantAddress    string
@@ -61,22 +59,12 @@ func TestGetGroup(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := GetGroup(ctx, tt.args.groupName)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("GetGroup() error = %+v, wantErr %+v", err, tt.wantErr)
-				return
-			}
-			if len(got.Events) != tt.wantEventCount {
-				t.Errorf("GetGroup().Events count = %+v, want %+v", len(got.Events), tt.wantEventCount)
-			}
-			if !reflect.DeepEqual(got.Events[0], tt.wantEventFirst) {
-				t.Errorf("GetGroup().Events[0] = %+v, want %+v", got.Events[0], tt.wantEventFirst)
-			}
-			if got.URL != tt.wantURL {
-				t.Errorf("GetGroup().URL = %+v, want %+v", got.URL, tt.wantURL)
-			}
-			if got.Title != tt.wantTitle {
-				t.Errorf("GetGroup().Title = %+v, want %+v", got.Title, tt.wantTitle)
-			}
+
+			assert.NoError(t, err)
+			assert.Equal(t, tt.wantEventCount, len(got.Events))
+			assert.Equal(t, tt.wantEventFirst, got.Events[0])
+			assert.Equal(t, tt.wantURL, got.URL)
+			assert.Equal(t, tt.wantTitle, got.Title)
 		})
 	}
 }
