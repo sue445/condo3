@@ -29,7 +29,7 @@ func GetGroup(ctx context.Context, groupName string) (*model.Group, error) {
 }
 
 func getEvents(seriesID int) ([]model.Event, error) {
-	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.START}
+	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.CREATE}
 	result, err := query.Search()
 
 	if err != nil {
