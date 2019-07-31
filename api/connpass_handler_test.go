@@ -16,7 +16,7 @@ func TestConpassHandler(t *testing.T) {
 
 	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/testdata/gocon.html")))
-	httpmock.RegisterResponder("GET", "http://connpass.com/api/v1/event/?count=100&order=2&series_id=312",
+	httpmock.RegisterResponder("GET", "http://connpass.com/api/v1/event/?count=100&order=3&series_id=312",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/testdata/gocon.json")))
 
 	req, err := http.NewRequest("GET", "/api/connpass/gocon.ics", nil)
