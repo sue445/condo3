@@ -15,9 +15,9 @@
 package main
 
 import (
+	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
 )
 
@@ -31,22 +31,8 @@ func TestIndexHandler(t *testing.T) {
 	handler := http.HandlerFunc(indexHandler)
 	handler.ServeHTTP(rr, req)
 
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf(
-			"unexpected status: got (%v) want (%v)",
-			status,
-			http.StatusOK,
-		)
-	}
-
-	expected := "It works"
-	if !strings.Contains(rr.Body.String(), expected) {
-		t.Errorf(
-			"unexpected body: got (%v) contains (%v)",
-			rr.Body.String(),
-			expected,
-		)
-	}
+	assert.Equal(t, http.StatusOK, rr.Code)
+	assert.Contains(t, rr.Body.String(), "It works")
 }
 
 func TestIndexHandlerNotFound(t *testing.T) {
@@ -59,11 +45,5 @@ func TestIndexHandlerNotFound(t *testing.T) {
 	handler := http.HandlerFunc(indexHandler)
 	handler.ServeHTTP(rr, req)
 
-	if status := rr.Code; status != http.StatusNotFound {
-		t.Errorf(
-			"unexpected status: got (%v) want (%v)",
-			status,
-			http.StatusNotFound,
-		)
-	}
+	assert.Equal(t, http.StatusNotFound, rr.Code)
 }

@@ -2,6 +2,7 @@ package api
 
 import (
 	"errors"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -31,9 +32,8 @@ func Test_errorStatusCode(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := errorStatusCode(tt.args.err); got != tt.want {
-				t.Errorf("errorStatusCode() = %v, want %v", got, tt.want)
-			}
+			got := errorStatusCode(tt.args.err)
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }

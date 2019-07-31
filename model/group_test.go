@@ -1,6 +1,7 @@
 package model
 
 import (
+	"github.com/stretchr/testify/assert"
 	"strings"
 	"testing"
 	"time"
@@ -62,9 +63,9 @@ END:VCALENDAR
 				URL:    tt.fields.URL,
 				Events: tt.fields.Events,
 			}
-			if got := g.ToIcal(); got != tt.want {
-				t.Errorf("Group.ToIcal() = %v, want %v", got, tt.want)
-			}
+
+			got := g.ToIcal()
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }
@@ -90,10 +91,9 @@ func TestGroup_ToAtom(t *testing.T) {
 		Events []Event
 	}
 	tests := []struct {
-		name    string
-		fields  fields
-		want    string
-		wantErr bool
+		name   string
+		fields fields
+		want   string
 	}{
 		{
 			name: "generate gocon atom",
@@ -121,13 +121,9 @@ func TestGroup_ToAtom(t *testing.T) {
 				Events: tt.fields.Events,
 			}
 			got, err := g.ToAtom()
-			if (err != nil) != tt.wantErr {
-				t.Errorf("Group.ToAtom() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if got != tt.want {
-				t.Errorf("Group.ToAtom() = %v, want %v", got, tt.want)
-			}
+
+			assert.NoError(t, err)
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }
