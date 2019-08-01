@@ -70,3 +70,19 @@ func getEvents(seriesID int) ([]model.Event, error) {
 
 	return events, nil
 }
+
+func getTerms(currentTime time.Time, beforeMonth int, afterMonth int) []connpass.Time {
+	currentMonth := time.Date(currentTime.Year(), currentTime.Month(), 1, 0, 0, 0, 0, time.UTC)
+	startMonth := currentMonth.AddDate(0, -beforeMonth, 0)
+
+	// NOTE: time1.Before(time2) = time1 < time2
+	endMonth := currentMonth.AddDate(0, afterMonth, 1)
+
+	var months []connpass.Time
+
+	for month := startMonth; month.Before(endMonth); month = month.AddDate(0, 1, 0) {
+		months = append(months, connpass.Time{Year: month.Year(), Month: int(month.Month())})
+	}
+
+	return months
+}

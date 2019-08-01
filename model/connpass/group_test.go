@@ -1,6 +1,7 @@
 package connpass
 
 import (
+	"github.com/hkurokawa/go-connpass"
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
 	"github.com/sue445/condo3/model"
@@ -68,6 +69,43 @@ func TestGetGroup(t *testing.T) {
 				assert.Equal(t, tt.wantURL, got.URL)
 				assert.Equal(t, tt.wantTitle, got.Title)
 			}
+		})
+	}
+}
+
+func Test_getTerms(t *testing.T) {
+	type args struct {
+		currentTime time.Time
+		beforeMonth int
+		afterMonth  int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []connpass.Time
+	}{
+		{
+			name: "successful",
+			args: args{
+				currentTime: time.Date(2019, 2, 2, 0, 0, 0, 0, time.UTC),
+				beforeMonth: 2,
+				afterMonth:  3,
+			},
+			want: []connpass.Time{
+				{Year: 2018, Month: 12, Date: 0},
+				{Year: 2019, Month: 1, Date: 0},
+				{Year: 2019, Month: 2, Date: 0},
+				{Year: 2019, Month: 3, Date: 0},
+				{Year: 2019, Month: 4, Date: 0},
+				{Year: 2019, Month: 5, Date: 0},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := getTerms(tt.args.currentTime, tt.args.beforeMonth, tt.args.afterMonth)
+
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }
