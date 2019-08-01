@@ -8,14 +8,14 @@ import (
 )
 
 // GetGroup returns group detail
-func GetGroup(ctx context.Context, groupName string) (*model.Group, error) {
+func GetGroup(ctx context.Context, groupName string, currentTime time.Time) (*model.Group, error) {
 	page, err := FetchGroupPageWithCache(ctx, groupName)
 
 	if err != nil {
 		return nil, err
 	}
 
-	events, err := getEvents(page.SeriesID)
+	events, err := getEvents(page.SeriesID, currentTime)
 
 	if err != nil {
 		return nil, err
@@ -28,8 +28,13 @@ func GetGroup(ctx context.Context, groupName string) (*model.Group, error) {
 	}, nil
 }
 
-func getEvents(seriesID int) ([]model.Event, error) {
-	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.CREATE}
+func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
+	query := connpass.Query{
+		SeriesId: []int{seriesID},
+		Count:    100,
+		Order:    connpass.CREATE,
+		Time:     getTerms(currentTime, 6, 6),
+	}
 	result, err := query.Search()
 
 	if err != nil {
@@ -69,4 +74,20 @@ func getEvents(seriesID int) ([]model.Event, error) {
 	}
 
 	return events, nil
+}
+
+func getTerms(currentTime time.Time, beforeMonth int, afterMonth int) []connpass.Time {
+	currentMonth := time.Date(currentTime.Year(), currentTime.Month(), 1, 0, 0, 0, 0, time.UTC)
+	startMonth := currentMonth.AddDate(0, -beforeMonth, 0)
+
+	// NOTE: time1.Before(time2) = time1 < time2
+	endMonth := currentMonth.AddDate(0, afterMonth, 1)
+
+	var months []connpass.Time
+
+	for month := startMonth; month.Before(endMonth); month = month.AddDate(0, 1, 0) {
+		months = append(months, connpass.Time{Year: month.Year(), Month: int(month.Month())})
+	}
+
+	return months
 }
