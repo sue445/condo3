@@ -23,13 +23,16 @@ func TestGetGroup(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
+	currentTime := time.Date(2019, 8, 2, 0, 0, 0, 0, time.UTC)
+
 	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/gocon.html")))
-	httpmock.RegisterResponder("GET", "http://connpass.com/api/v1/event/?count=100&order=3&series_id=312",
+	httpmock.RegisterResponder("GET", "http://connpass.com/api/v1/event/?count=100&order=3&series_id=312&ym=201902%2C201903%2C201904%2C201905%2C201906%2C201907%2C201908%2C201909%2C201910%2C201911%2C201912%2C202001%2C202002",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/gocon.json")))
 
 	type args struct {
-		groupName string
+		groupName   string
+		currentTime time.Time
 	}
 	tests := []struct {
 		name           string
@@ -42,7 +45,8 @@ func TestGetGroup(t *testing.T) {
 		{
 			name: "successful",
 			args: args{
-				groupName: "gocon",
+				groupName:   "gocon",
+				currentTime: currentTime,
 			},
 			wantEventFirst: model.Event{
 				Title:     "Go 1.13 Release Party in Tokyo",
@@ -58,7 +62,7 @@ func TestGetGroup(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetGroup(ctx, tt.args.groupName)
+			got, err := GetGroup(ctx, tt.args.groupName, tt.args.currentTime)
 
 			assert.NoError(t, err)
 			assert.NotNil(t, got)

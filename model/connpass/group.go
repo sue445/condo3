@@ -8,14 +8,14 @@ import (
 )
 
 // GetGroup returns group detail
-func GetGroup(ctx context.Context, groupName string) (*model.Group, error) {
+func GetGroup(ctx context.Context, groupName string, currentTime time.Time) (*model.Group, error) {
 	page, err := FetchGroupPageWithCache(ctx, groupName)
 
 	if err != nil {
 		return nil, err
 	}
 
-	events, err := getEvents(page.SeriesID)
+	events, err := getEvents(page.SeriesID, currentTime)
 
 	if err != nil {
 		return nil, err
@@ -28,8 +28,13 @@ func GetGroup(ctx context.Context, groupName string) (*model.Group, error) {
 	}, nil
 }
 
-func getEvents(seriesID int) ([]model.Event, error) {
-	query := connpass.Query{SeriesId: []int{seriesID}, Count: 100, Order: connpass.CREATE}
+func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
+	query := connpass.Query{
+		SeriesId: []int{seriesID},
+		Count:    100,
+		Order:    connpass.CREATE,
+		Time:     getTerms(currentTime, 6, 6),
+	}
 	result, err := query.Search()
 
 	if err != nil {
