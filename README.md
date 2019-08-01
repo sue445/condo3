@@ -4,6 +4,8 @@
 ## Available APIs
 * `https://condo3.appspot.com/api/connpass/{group}.{format}`
 * `https://condo3.appspot.com/api/doorkeeper/{group}.{format}`
+
+### Note
 * `format` supports either `ics` or `atom`
   * e.g. https://condo3.appspot.com/api/connpass/gocon.ics
 
