@@ -36,7 +36,7 @@ func GetGroup(groupName string, currentTime time.Time) (*model.Group, error) {
 		since := currentTime.AddDate(-1, 0, 0)
 		until := currentTime.AddDate(1, 0, 0)
 		params := doorkeeper.GetEventsParams{
-			Sort:  doorkeeper.SortByPublishedAt,
+			Sort:  doorkeeper.SortByPublishedAt(),
 			Since: &since,
 			Until: &until,
 		}
