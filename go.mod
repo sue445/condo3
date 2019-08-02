@@ -10,7 +10,7 @@ require (
 	github.com/jarcoal/httpmock v1.0.4
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/stretchr/testify v1.3.0
-	github.com/sue445/go-doorkeeper v0.1.3
+	github.com/sue445/go-doorkeeper v0.1.4
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
 	google.golang.org/appengine v1.6.1
 )
