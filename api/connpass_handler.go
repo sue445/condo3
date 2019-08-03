@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/model/connpass"
-	"google.golang.org/appengine"
 	"net/http"
 	"time"
 )
@@ -13,7 +12,7 @@ import (
 func ConnpassHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
-	ctx := appengine.NewContext(r)
+	ctx := r.Context()
 
 	group, err := connpass.GetGroup(ctx, vars["group"], time.Now())
 
