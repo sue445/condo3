@@ -15,12 +15,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/api"
-	"google.golang.org/appengine"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 )
 
@@ -44,7 +45,14 @@ func main() {
 	public := http.StripPrefix("/public", http.FileServer(http.Dir("public")))
 	http.Handle("/public/", public)
 
-	appengine.Main()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Printf("Defaulting to port %s", port)
+	}
+
+	log.Printf("Listening on port %s", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
 // indexHandler uses a template to create an index.html.
