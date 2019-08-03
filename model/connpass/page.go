@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -22,7 +23,11 @@ type Page struct {
 func FetchGroupPageWithCache(ctx context.Context, groupName string) (*Page, error) {
 	cache := NewPageCache(ctx)
 
-	cached, _ := cache.Get(groupName)
+	cached, err := cache.Get(groupName)
+
+	if err != nil {
+		log.Printf("[WARN] cache.Get is failed: groupName=%s, err=%+v\n", groupName, err)
+	}
 
 	if cached != nil {
 		return cached, nil
@@ -34,7 +39,11 @@ func FetchGroupPageWithCache(ctx context.Context, groupName string) (*Page, erro
 		return nil, err
 	}
 
-	cache.Set(groupName, page)
+	err = cache.Set(groupName, page)
+
+	if err != nil {
+		log.Printf("[WARN] cache.Set is failed: groupName=%s, err=%+v\n", groupName, err)
+	}
 
 	return page, nil
 }
