@@ -23,6 +23,12 @@ jobs:
       - &restore_cache
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
+
+      - run: go get -u golang.org/x/lint/golint
+      - run: make lint
+      - run: make vet
+      - run: "! gofmt -d . | grep '^'"
+
       - run:
           name: Install google-cloud-sdk
           command: |
@@ -36,30 +42,30 @@ jobs:
       - run: make test
       - run: make testrace
 
-  golint:
-    executor: golang
-
-    steps:
-      - *attach_workspace
-      - *restore_cache
-      - run: go get -u golang.org/x/lint/golint
-      - run: make lint
-
-  go-vet:
-    executor: golang
-
-    steps:
-      - *attach_workspace
-      - *restore_cache
-      - run: make vet
-
-  gofmt:
-    executor: golang
-
-    steps:
-      - *attach_workspace
-      - *restore_cache
-      - run: "! gofmt -d . | grep '^'"
+#   golint:
+#     executor: golang
+#
+#     steps:
+#       - *attach_workspace
+#       - *restore_cache
+#       - run: go get -u golang.org/x/lint/golint
+#       - run: make lint
+#
+#   go-vet:
+#     executor: golang
+#
+#     steps:
+#       - *attach_workspace
+#       - *restore_cache
+#       - run: make vet
+#
+#   gofmt:
+#     executor: golang
+#
+#     steps:
+#       - *attach_workspace
+#       - *restore_cache
+#       - run: "! gofmt -d . | grep '^'"
 
   deploy:
     docker:
@@ -84,24 +90,24 @@ workflows:
           requires:
             - go-module/download
 
-      - golint:
-          requires:
-            - go-module/download
-
-      - go-vet:
-          requires:
-            - go-module/download
-
-      - gofmt:
-          requires:
-            - go-module/download
+#       - golint:
+#           requires:
+#             - go-module/download
+#
+#       - go-vet:
+#           requires:
+#             - go-module/download
+#
+#       - gofmt:
+#           requires:
+#             - go-module/download
 
       - deploy:
           requires:
             - test
-            - golint
-            - go-vet
-            - gofmt
+            # - golint
+            # - go-vet
+            # - gofmt
           filters:
             branches:
               only: master
