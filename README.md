@@ -29,6 +29,9 @@ gcloud components install app-engine-go cloud-datastore-emulator
 * https://cloud.google.com/sdk/docs/
 
 ### Run local
+`app.yaml` の `runtime` を `go111` に変更後下記を実行
+
 ```bash
-make && ./bin/condo3
+pipenv shell
+dev_appserver.py app.yaml
 ```
