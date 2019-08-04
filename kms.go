@@ -9,6 +9,7 @@ import (
 	"google.golang.org/api/option"
 	kmspb "google.golang.org/genproto/googleapis/cloud/kms/v1"
 	"os"
+	"strings"
 )
 
 // c.f. https://godoc.org/google.golang.org/api/cloudkms/v1#pkg-constants
@@ -29,7 +30,7 @@ type Kms struct {
 // GetFromEnvOrKms returns value either env or KMS
 func (k *Kms) GetFromEnvOrKms(key string) (string, error) {
 	if os.Getenv(key) != "" {
-		return os.Getenv(key), nil
+		return strings.TrimSpace(os.Getenv(key)), nil
 	}
 
 	kmsKey := "KMS_" + key
@@ -41,7 +42,7 @@ func (k *Kms) GetFromEnvOrKms(key string) (string, error) {
 			return "", err
 		}
 
-		return value, nil
+		return strings.TrimSpace(value), nil
 	}
 
 	return "", fmt.Errorf("either %s or %s is required", key, kmsKey)
