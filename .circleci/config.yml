@@ -109,5 +109,4 @@ workflows:
             # - gofmt
           filters:
             branches:
-              # only: master
-              only: feature/kms
+              only: master
