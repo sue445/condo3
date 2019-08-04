@@ -11,6 +11,7 @@ import (
 // Handler manages API handler
 type Handler struct {
 	DoorkeeperAccessToken string
+	MemcachedConfig       *model.MemcachedConfig
 }
 
 func errorStatusCode(err error) int {

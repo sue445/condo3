@@ -8,6 +8,7 @@ executors:
     docker:
       # FIXME: google-cloud-sdk-datastore-emulator requires openjdk-8-jdk, but only openjdk-11-jdk is available on buster
       - image: circleci/golang:1.12-stretch
+      - image: memcached:1.5-alpine
     working_directory: /home/circleci/app
     environment:
       TZ: Asia/Tokyo

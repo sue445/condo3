@@ -1,63 +1,60 @@
 package connpass
 
 import (
-	"context"
 	"encoding/json"
-	"google.golang.org/appengine/memcache"
-	"time"
+	"github.com/memcachier/mc"
+	"github.com/sue445/condo3/model"
 )
 
 const (
-	keyPrefix  = "connpass.PageCache-v1-"
-	expiration = 24 * time.Hour // 1 day
+	keyPrefix = "connpass.PageCache-v1-"
 )
 
 // PageCache represents page cache
 type PageCache struct {
-	ctx context.Context
+	memcached *mc.Client
 }
 
+// Quit must be called when finalize
+type Quit func()
+
 // NewPageCache returns new PageCache instance
-func NewPageCache(ctx context.Context) *PageCache {
-	return &PageCache{ctx: ctx}
+func NewPageCache(memcachedConfig *model.MemcachedConfig) (*PageCache, Quit) {
+	memcached := mc.NewMC(memcachedConfig.Server, memcachedConfig.Username, memcachedConfig.Password)
+	return &PageCache{memcached: memcached}, memcached.Quit
 }
 
 // Get returns value from memcache
 func (p *PageCache) Get(key string) (*Page, error) {
-	item, err := memcache.Get(p.ctx, keyPrefix+key)
+	value, _, _, err := p.memcached.Get(keyPrefix + key)
 
 	if err != nil {
-		if err == memcache.ErrCacheMiss {
+		if err == mc.ErrNotFound {
 			return nil, nil
 		}
 		return nil, err
 	}
 
-	data := &Page{}
-	err = json.Unmarshal(item.Value, data)
+	var page Page
+	err = json.Unmarshal([]byte(value), &page)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return data, nil
+	return &page, nil
 }
 
 // Set sets value to memcache
-func (p *PageCache) Set(key string, data *Page) error {
-	bytes, err := json.Marshal(data)
+func (p *PageCache) Set(key string, page *Page) error {
+	bytes, err := json.Marshal(page)
 
 	if err != nil {
 		return err
 	}
 
-	item := &memcache.Item{
-		Key:        keyPrefix + key,
-		Value:      bytes,
-		Expiration: expiration,
-	}
-
-	err = memcache.Set(p.ctx, item)
+	expiration := 60 * 60 * 24 // 1 day
+	_, err = p.memcached.Set(keyPrefix+key, string(bytes), 0, uint32(expiration), 0)
 
 	if err != nil {
 		return err

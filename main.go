@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/api"
+	"github.com/sue445/condo3/model"
 	"html/template"
 	"log"
 	"net/http"
@@ -40,7 +41,29 @@ func main() {
 		panic(err)
 	}
 
-	a := api.Handler{DoorkeeperAccessToken: doorkeeperAccessToken}
+	memcachedServer, err := kms.GetFromEnvOrKms("MEMCACHED_SERVER")
+	if err != nil {
+		panic(err)
+	}
+
+	memcachedUsername, err := kms.GetFromEnvOrKms("MEMCACHED_USERNAME")
+	if err != nil {
+		panic(err)
+	}
+
+	memcachedPassword, err := kms.GetFromEnvOrKms("MEMCACHED_PASSWORD")
+	if err != nil {
+		panic(err)
+	}
+
+	a := api.Handler{
+		DoorkeeperAccessToken: doorkeeperAccessToken,
+		MemcachedConfig: &model.MemcachedConfig{
+			Server:   memcachedServer,
+			Username: memcachedUsername,
+			Password: memcachedPassword,
+		},
+	}
 
 	r := mux.NewRouter()
 	r.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
