@@ -2,27 +2,23 @@ package connpass
 
 import (
 	"github.com/stretchr/testify/assert"
-	"google.golang.org/appengine/aetest"
-	"google.golang.org/appengine/memcache"
+	"github.com/sue445/condo3/model"
 	"testing"
 )
 
 func TestPageCache_SetAndGet(t *testing.T) {
-	ctx, done, err := aetest.NewContext()
-	assert.NoError(t, err)
-	defer done()
-
-	memcache.Flush(ctx)
-
 	page := &Page{
 		SeriesID: 312,
 		URL:      "https://gocon.connpass.com/",
 		Title:    "Go Conference - connpass",
 	}
 
-	cache := NewPageCache(ctx)
+	cache, quit := NewPageCache(&model.MemcachedConfig{Server: "127.0.0.1:11211"})
+	defer quit()
 
-	err = cache.Set("gocon", page)
+	cache.memcached.Flush(0)
+
+	err := cache.Set("gocon", page)
 	assert.NoError(t, err)
 
 	actual, err := cache.Get("gocon")

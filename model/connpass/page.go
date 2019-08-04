@@ -1,9 +1,9 @@
 package connpass
 
 import (
-	"context"
 	"errors"
 	"fmt"
+	"github.com/sue445/condo3/model"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,14 +14,15 @@ import (
 
 // Page represents connpass group page
 type Page struct {
-	SeriesID int
-	URL      string
-	Title    string
+	SeriesID int    `json:"series_id"`
+	URL      string `json:"url"`
+	Title    string `json:"title"`
 }
 
 // FetchGroupPageWithCache returns group page with memcache
-func FetchGroupPageWithCache(ctx context.Context, groupName string) (*Page, error) {
-	cache := NewPageCache(ctx)
+func FetchGroupPageWithCache(memcachedConfig *model.MemcachedConfig, groupName string) (*Page, error) {
+	cache, quit := NewPageCache(memcachedConfig)
+	defer quit()
 
 	cached, err := cache.Get(groupName)
 

@@ -10,6 +10,7 @@ require (
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
 	github.com/jarcoal/httpmock v1.0.4
 	github.com/kr/pretty v0.1.0 // indirect
+	github.com/memcachier/mc v2.0.1+incompatible
 	github.com/stretchr/testify v1.3.0
 	github.com/sue445/go-doorkeeper v0.1.4
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45

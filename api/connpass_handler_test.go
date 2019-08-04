@@ -4,6 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
+	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/testutil"
 	"net/http"
 	"net/http/httptest"
@@ -22,7 +23,9 @@ func TestConpassHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/api/connpass/gocon.ics", nil)
 	assert.NoError(t, err)
 
-	a := Handler{}
+	memcachedConfig := model.MemcachedConfig{Server: "127.0.0.1:11211"}
+	a := Handler{MemcachedConfig: &memcachedConfig}
+
 	rr := httptest.NewRecorder()
 	router := mux.NewRouter()
 	router.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
