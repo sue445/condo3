@@ -38,7 +38,8 @@ func (g *Group) ToIcal() string {
 	for _, e := range g.Events {
 		event := cal.AddEvent(e.URL)
 
-		event.SetDescription(e.Title)
+		event.SetSummary(e.Title)
+		event.SetDescription(e.URL)
 		event.SetURL(e.URL)
 		event.SetLocation(e.Address)
 
