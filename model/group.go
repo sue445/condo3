@@ -16,7 +16,24 @@ type Group struct {
 // ToIcal return ical formatted group
 func (g *Group) ToIcal() string {
 	cal := ics.NewCalendar()
+	cal.SetProductId("-//sue445//condo3.appspot.com//JA")
 	cal.SetMethod(ics.MethodPublish)
+
+	cal.CalendarProperties = append(cal.CalendarProperties,
+		ics.CalendarProperty{
+			BaseProperty: ics.BaseProperty{
+				IANAToken: string(ics.PropertyCalscale),
+				Value:     "GREGORIAN",
+			},
+		},
+		ics.CalendarProperty{
+			BaseProperty: ics.BaseProperty{
+				IANAToken:      "X-WR-CALNAME",
+				Value:          g.Title,
+				ICalParameters: map[string][]string{"VALUE": []string{"TEXT"}},
+			},
+		},
+	)
 
 	for _, e := range g.Events {
 		event := cal.AddEvent(e.URL)
