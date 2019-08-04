@@ -17,10 +17,13 @@ VERSION:2.0
 PRODID:-//sue445//condo3.appspot.com//JA
 METHOD:PUBLISH
 CALSCALE:GREGORIAN
-X-WR-CALNAME;VALUE=TEXT:Go Conference - connpass
+X-WR-CALDESC:Go Conference - connpass
+X-WR-CALNAME:Go Conference - connpass
+X-WR-TIMEZONE:UTC
 BEGIN:VEVENT
 UID:https://gocon.connpass.com/event/139024/
-DESCRIPTION:Go 1.13 Release Party in Tokyo
+SUMMARY:Go 1.13 Release Party in Tokyo
+DESCRIPTION:https://gocon.connpass.com/event/139024/
 URL:https://gocon.connpass.com/event/139024/
 LOCATION:東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F
  )
