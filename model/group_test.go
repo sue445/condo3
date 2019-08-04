@@ -18,7 +18,7 @@ PRODID:-//sue445//condo3.appspot.com//JA
 METHOD:PUBLISH
 CALSCALE:GREGORIAN
 X-WR-CALDESC:Go Conference - connpass
-X-WR-CALNAME;VALUE=TEXT:Go Conference - connpass
+X-WR-CALNAME:Go Conference - connpass
 X-WR-TIMEZONE:UTC
 BEGIN:VEVENT
 UID:https://gocon.connpass.com/event/139024/

@@ -34,9 +34,8 @@ func (g *Group) ToIcal() string {
 		},
 		ics.CalendarProperty{
 			BaseProperty: ics.BaseProperty{
-				IANAToken:      "X-WR-CALNAME",
-				Value:          g.Title,
-				ICalParameters: map[string][]string{"VALUE": []string{"TEXT"}},
+				IANAToken: "X-WR-CALNAME",
+				Value:     g.Title,
 			},
 		},
 		ics.CalendarProperty{
