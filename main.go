@@ -32,9 +32,19 @@ var (
 )
 
 func main() {
+	// Load variables
+	kms := &Kms{KeyringKeyName: os.Getenv("KMS_KEYRING_KEY_NAME")}
+
+	doorkeeperAccessToken, err := kms.GetFromEnvOrKms("DOORKEEPER_ACCESS_TOKEN")
+	if err != nil {
+		panic(err)
+	}
+
+	a := api.Handler{DoorkeeperAccessToken: doorkeeperAccessToken}
+
 	r := mux.NewRouter()
-	r.HandleFunc("/api/connpass/{group}.{format}", api.ConnpassHandler)
-	r.HandleFunc("/api/doorkeeper/{group}.{format}", api.DoorkeeperHandler)
+	r.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
+	r.HandleFunc("/api/doorkeeper/{group}.{format}", a.DoorkeeperHandler)
 	r.HandleFunc("/", indexHandler)
 	http.Handle("/", r)
 

@@ -33,9 +33,11 @@ func TestDoorkeeperHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/api/doorkeeper/trbmeetup.ics", nil)
 	assert.NoError(t, err)
 
+	a := Handler{}
+
 	rr := httptest.NewRecorder()
 	router := mux.NewRouter()
-	router.HandleFunc("/api/doorkeeper/{group}.{format}", DoorkeeperHandler)
+	router.HandleFunc("/api/doorkeeper/{group}.{format}", a.DoorkeeperHandler)
 	router.ServeHTTP(rr, req)
 
 	assert.Equal(t, http.StatusOK, rr.Code)

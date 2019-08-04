@@ -22,9 +22,10 @@ func TestConpassHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/api/connpass/gocon.ics", nil)
 	assert.NoError(t, err)
 
+	a := Handler{}
 	rr := httptest.NewRecorder()
 	router := mux.NewRouter()
-	router.HandleFunc("/api/connpass/{group}.{format}", ConnpassHandler)
+	router.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
 	router.ServeHTTP(rr, req)
 
 	assert.Equal(t, http.StatusOK, rr.Code)

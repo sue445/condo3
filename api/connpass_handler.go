@@ -9,7 +9,7 @@ import (
 )
 
 // ConnpassHandler returns handler of /api/conpass
-func ConnpassHandler(w http.ResponseWriter, r *http.Request) {
+func (a *Handler) ConnpassHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	ctx := r.Context()

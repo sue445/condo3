@@ -39,6 +39,7 @@ func TestGetGroup(t *testing.T) {
 	)
 
 	type args struct {
+		accessToken string
 		groupName   string
 		currentTime time.Time
 	}
@@ -53,6 +54,7 @@ func TestGetGroup(t *testing.T) {
 		{
 			name: "successful",
 			args: args{
+				accessToken: "xxxxxxxxx",
 				groupName:   "trbmeetup",
 				currentTime: time.Date(2015, 6, 1, 0, 0, 0, 0, time.UTC),
 			},
@@ -70,7 +72,7 @@ func TestGetGroup(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetGroup(tt.args.groupName, tt.args.currentTime)
+			got, err := GetGroup(tt.args.accessToken, tt.args.groupName, tt.args.currentTime)
 
 			assert.NoError(t, err)
 			assert.NotNil(t, got)

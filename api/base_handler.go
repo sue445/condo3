@@ -8,6 +8,11 @@ import (
 	"strconv"
 )
 
+// Handler manages API handler
+type Handler struct {
+	DoorkeeperAccessToken string
+}
+
 func errorStatusCode(err error) int {
 	re := regexp.MustCompile("^(\\d{3})")
 	matched := re.FindStringSubmatch(err.Error())
