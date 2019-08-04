@@ -5,13 +5,12 @@ import (
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/go-doorkeeper"
 	"golang.org/x/sync/errgroup"
-	"os"
 	"time"
 )
 
 // GetGroup returns group detail
-func GetGroup(groupName string, currentTime time.Time) (*model.Group, error) {
-	client := doorkeeper.NewClient(os.Getenv("DOORKEEPER_ACCESS_TOKEN"))
+func GetGroup(accessToken string, groupName string, currentTime time.Time) (*model.Group, error) {
+	client := doorkeeper.NewClient(accessToken)
 
 	var eg errgroup.Group
 

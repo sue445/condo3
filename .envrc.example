@@ -1,2 +1,3 @@
 export GO111MODULE=on
+export KMS_KEYRING_KEY_NAME=projects/condo3/locations/global/keyRings/condo3/cryptoKeys/app
 export DOORKEEPER_ACCESS_TOKEN=XXXXXXXXX
