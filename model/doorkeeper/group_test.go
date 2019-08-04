@@ -16,10 +16,6 @@ func tp(t time.Time) *time.Time {
 }
 
 func TestGetGroup(t *testing.T) {
-	//ctx, done, err := aetest.NewContext()
-	//assert.NoError(t, err)
-	//defer done()
-
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
