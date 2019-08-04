@@ -14,8 +14,10 @@ func tp(t time.Time) *time.Time {
 func TestGroup_ToIcal(t *testing.T) {
 	goconIcal := `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Arran Ubels//Golang ICS library
+PRODID:-//sue445//condo3.appspot.com//JA
 METHOD:PUBLISH
+CALSCALE:GREGORIAN
+X-WR-CALNAME;VALUE=TEXT:Go Conference - connpass
 BEGIN:VEVENT
 UID:https://gocon.connpass.com/event/139024/
 DESCRIPTION:Go 1.13 Release Party in Tokyo
