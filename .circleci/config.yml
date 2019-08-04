@@ -12,6 +12,7 @@ executors:
     working_directory: /home/circleci/app
     environment:
       TZ: Asia/Tokyo
+      MEMCACHED_SERVER: "127.0.0.1:11211"
 
 jobs:
   test:

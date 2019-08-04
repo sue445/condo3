@@ -3,6 +3,7 @@ package connpass
 import (
 	"github.com/stretchr/testify/assert"
 	"github.com/sue445/condo3/model"
+	"os"
 	"testing"
 )
 
@@ -13,7 +14,7 @@ func TestPageCache_SetAndGet(t *testing.T) {
 		Title:    "Go Conference - connpass",
 	}
 
-	cache, quit := NewPageCache(&model.MemcachedConfig{Server: "127.0.0.1:11211"})
+	cache, quit := NewPageCache(&model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")})
 	defer quit()
 
 	cache.memcached.Flush(0)

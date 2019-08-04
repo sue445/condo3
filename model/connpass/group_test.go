@@ -6,6 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/testutil"
+	"os"
 	"testing"
 	"time"
 )
@@ -25,7 +26,7 @@ func TestGetGroup(t *testing.T) {
 	httpmock.RegisterResponder("GET", "https://connpass.com/api/v1/event/?count=100&order=3&series_id=312&ym=201902%2C201903%2C201904%2C201905%2C201906%2C201907%2C201908%2C201909%2C201910%2C201911%2C201912%2C202001%2C202002",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/gocon.json")))
 
-	memcachedConfig := model.MemcachedConfig{Server: "127.0.0.1:11211"}
+	memcachedConfig := model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")}
 
 	type args struct {
 		groupName   string

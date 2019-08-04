@@ -8,6 +8,7 @@ import (
 	"github.com/sue445/condo3/testutil"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 )
 
@@ -23,7 +24,7 @@ func TestConpassHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/api/connpass/gocon.ics", nil)
 	assert.NoError(t, err)
 
-	memcachedConfig := model.MemcachedConfig{Server: "127.0.0.1:11211"}
+	memcachedConfig := model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")}
 	a := Handler{MemcachedConfig: &memcachedConfig}
 
 	rr := httptest.NewRecorder()
