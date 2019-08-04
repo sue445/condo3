@@ -34,8 +34,8 @@ make && ./bin/condo3
 ### Encrypt credentials with KMS
 ```bash
 vi credential.txt
-gcloud kms encrypt --location=global --keyring condo3 --key app --plaintext-file credential.txt --ciphertext-file encrypted_credential
-cat encrypted_credential | base64 > encrypted_credential_base64.txt
+gcloud kms encrypt --location=global --keyring condo3 --key app --plaintext-file credential.txt --ciphertext-file credential.enc
+cat credential.enc | base64 > encrypted_credential_base64.txt
 ```
 
 Write to [app.yaml](app.yaml)
