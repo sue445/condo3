@@ -5,8 +5,20 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	"golang.org/x/oauth2/google"
+	"google.golang.org/api/option"
 	kmspb "google.golang.org/genproto/googleapis/cloud/kms/v1"
 	"os"
+)
+
+// c.f. https://godoc.org/google.golang.org/api/cloudkms/v1#pkg-constants
+const (
+	// View and manage your data across Google Cloud Platform services
+	cloudPlatformScope = "https://www.googleapis.com/auth/cloud-platform"
+
+	// View and manage your keys and secrets stored in Cloud Key Management
+	// Service
+	cloudkmsScope = "https://www.googleapis.com/auth/cloudkms"
 )
 
 // Kms manages kms decryption
@@ -37,7 +49,13 @@ func (k *Kms) GetFromEnvOrKms(key string) (string, error) {
 
 func (k *Kms) decrypt(base64Value string) (string, error) {
 	ctx := context.Background()
-	client, err := cloudkms.NewKeyManagementClient(ctx)
+
+	creds, err := google.FindDefaultCredentials(ctx, cloudkmsScope)
+	if err != nil {
+		return "", err
+	}
+
+	client, err := cloudkms.NewKeyManagementClient(ctx, option.WithCredentials(creds))
 	if err != nil {
 		return "", err
 	}
