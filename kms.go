@@ -28,7 +28,7 @@ type Kms struct {
 }
 
 // GetFromEnvOrKms returns value either env or KMS
-func (k *Kms) GetFromEnvOrKms(key string) (string, error) {
+func (k *Kms) GetFromEnvOrKms(key string, required bool) (string, error) {
 	if os.Getenv(key) != "" {
 		return strings.TrimSpace(os.Getenv(key)), nil
 	}
@@ -45,7 +45,11 @@ func (k *Kms) GetFromEnvOrKms(key string) (string, error) {
 		return strings.TrimSpace(value), nil
 	}
 
-	return "", fmt.Errorf("either %s or %s is required", key, kmsKey)
+	if required {
+		return "", fmt.Errorf("either %s or %s is required", key, kmsKey)
+	}
+
+	return "", nil
 }
 
 func (k *Kms) decrypt(base64Value string) (string, error) {

@@ -36,22 +36,22 @@ func main() {
 	// Load variables
 	kms := &Kms{KeyringKeyName: os.Getenv("KMS_KEYRING_KEY_NAME")}
 
-	doorkeeperAccessToken, err := kms.GetFromEnvOrKms("DOORKEEPER_ACCESS_TOKEN")
+	doorkeeperAccessToken, err := kms.GetFromEnvOrKms("DOORKEEPER_ACCESS_TOKEN", true)
 	if err != nil {
 		panic(err)
 	}
 
-	memcachedServer, err := kms.GetFromEnvOrKms("MEMCACHED_SERVER")
+	memcachedServer, err := kms.GetFromEnvOrKms("MEMCACHED_SERVER", true)
 	if err != nil {
 		panic(err)
 	}
 
-	memcachedUsername, err := kms.GetFromEnvOrKms("MEMCACHED_USERNAME")
+	memcachedUsername, err := kms.GetFromEnvOrKms("MEMCACHED_USERNAME", false)
 	if err != nil {
 		panic(err)
 	}
 
-	memcachedPassword, err := kms.GetFromEnvOrKms("MEMCACHED_PASSWORD")
+	memcachedPassword, err := kms.GetFromEnvOrKms("MEMCACHED_PASSWORD", false)
 	if err != nil {
 		panic(err)
 	}
