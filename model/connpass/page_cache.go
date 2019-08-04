@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/memcachier/mc"
 	"github.com/sue445/condo3/model"
+	"time"
 )
 
 const (
@@ -53,8 +54,8 @@ func (p *PageCache) Set(key string, page *Page) error {
 		return err
 	}
 
-	expiration := 60 * 60 * 24 // 1 day
-	_, err = p.memcached.Set(keyPrefix+key, string(bytes), 0, uint32(expiration), 0)
+	expiration := time.Hour * 24 // 1 day
+	_, err = p.memcached.Set(keyPrefix+key, string(bytes), 0, uint32(expiration.Seconds()), 0)
 
 	if err != nil {
 		return err
