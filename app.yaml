@@ -25,5 +25,6 @@ handlers:
     redirect_http_response_code: 301
     script: auto
 
-includes:
-  - secrets.yaml
+env_variables:
+  # encoded by BASE64
+  KMS_DOORKEEPER_ACCESS_TOKEN: "CiQAT3DMmLlQwLNqtLr5ulPeMF8gRguotG1yqz3pJ3Sv0UDaelwSPgBmE7EAhRtSyMzg2wxT0kzwkZi5hhjzOPTnCXqEcvFYtJ1x5a3Yn1alWBJs+B+tcRAjxbuQ8FMvHbKh47mc"
