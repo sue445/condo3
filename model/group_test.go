@@ -17,7 +17,7 @@ VERSION:2.0
 PRODID:-//sue445//condo3.appspot.com//JA
 METHOD:PUBLISH
 CALSCALE:GREGORIAN
-X-WR-CALDESC:Go Conference - connpass
+X-WR-CALDESC:Go Conference - connpass\nhttps://gocon.connpass.com/
 X-WR-CALNAME:Go Conference - connpass
 X-WR-TIMEZONE:UTC
 BEGIN:VEVENT
