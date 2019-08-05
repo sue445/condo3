@@ -50,7 +50,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 		}
 
 		if resultEvent.Start != "" {
-			startedAt, err := time.Parse(time.RFC3339, resultEvent.Start)
+			startedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.Start, model.JST)
 
 			if err != nil {
 				return []model.Event{}, err
@@ -60,7 +60,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 		}
 
 		if resultEvent.End != "" {
-			endedAt, err := time.Parse(time.RFC3339, resultEvent.End)
+			endedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.End, model.JST)
 
 			if err != nil {
 				return []model.Event{}, err
