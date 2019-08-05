@@ -4,7 +4,6 @@ go 1.12
 
 require (
 	cloud.google.com/go v0.43.0
-	github.com/arran4/golang-ical v0.0.0-20190711113309-f39a345f6c4e
 	github.com/gorilla/feeds v1.1.1
 	github.com/gorilla/mux v1.7.3
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
