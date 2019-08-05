@@ -14,21 +14,41 @@ func tp(t time.Time) *time.Time {
 func TestGroup_ToIcal(t *testing.T) {
 	goconIcal := `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//sue445//condo3.appspot.com//JA
-METHOD:PUBLISH
 CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//sue445//condo3.appspot.com//JA
 X-WR-CALDESC:Go Conference - connpass\nhttps://gocon.connpass.com/
 X-WR-CALNAME:Go Conference - connpass
 X-WR-TIMEZONE:UTC
 BEGIN:VEVENT
-UID:https://gocon.connpass.com/event/139024/
-SUMMARY:Go 1.13 Release Party in Tokyo
 DESCRIPTION:https://gocon.connpass.com/event/139024/
-URL:https://gocon.connpass.com/event/139024/
-LOCATION:東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F
- )
-DTSTART:20190823T103000Z
 DTEND:20190823T130000Z
+DTSTART:20190823T103000Z
+LOCATION:東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)
+SUMMARY:Go 1.13 Release Party in Tokyo
+UID:https://gocon.connpass.com/event/139024/
+URL:https://gocon.connpass.com/event/139024/
+END:VEVENT
+END:VCALENDAR
+`
+
+	tokyurubykaigiIcal := `BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//sue445//condo3.appspot.com//JA
+X-WR-CALDESC:TokyuRubyKaigi | Doorkeeper\nhttps://tokyu-rubykaigi.doorkeepe
+ r.jp/
+X-WR-CALNAME:TokyuRubyKaigi | Doorkeeper
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+DESCRIPTION:https://tokyu-rubykaigi.doorkeeper.jp/events/91543
+DTEND:20190629T103000Z
+DTSTART:20190629T050000Z
+LOCATION:〒106-0032 東京都港区六本木4-1-4 黒崎ビル4階
+SUMMARY:TokyuRubyKaigi13 一般参加者募集(LT発表者は登録不要です)
+UID:https://tokyu-rubykaigi.doorkeeper.jp/events/91543
+URL:https://tokyu-rubykaigi.doorkeeper.jp/events/91543
 END:VEVENT
 END:VCALENDAR
 `
@@ -59,6 +79,23 @@ END:VCALENDAR
 				},
 			},
 			want: strings.ReplaceAll(goconIcal, "\n", "\r\n"),
+		},
+		{
+			name: "mojibake ics",
+			fields: fields{
+				Title: "TokyuRubyKaigi | Doorkeeper",
+				URL:   "https://tokyu-rubykaigi.doorkeeper.jp/",
+				Events: []Event{
+					{
+						Title:     "TokyuRubyKaigi13 一般参加者募集(LT発表者は登録不要です)",
+						URL:       "https://tokyu-rubykaigi.doorkeeper.jp/events/91543",
+						Address:   "〒106-0032 東京都港区六本木4-1-4 黒崎ビル4階",
+						StartedAt: tp(time.Date(2019, 6, 29, 14, 00, 0, 0, time.Local)),
+						EndedAt:   tp(time.Date(2019, 6, 29, 19, 30, 0, 0, time.Local)),
+					},
+				},
+			},
+			want: strings.ReplaceAll(tokyurubykaigiIcal, "\n", "\r\n"),
 		},
 	}
 	for _, tt := range tests {

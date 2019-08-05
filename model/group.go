@@ -2,8 +2,12 @@ package model
 
 import (
 	"fmt"
-	"github.com/arran4/golang-ical"
 	"github.com/gorilla/feeds"
+	"github.com/lestrrat-go/ical"
+)
+
+const (
+	icalTimeFormat = "20060102T150405Z"
 )
 
 // Group represents group info
@@ -15,54 +19,33 @@ type Group struct {
 
 // ToIcal return ical formatted group
 func (g *Group) ToIcal() string {
-	cal := ics.NewCalendar()
-	cal.SetProductId("-//sue445//condo3.appspot.com//JA")
-	cal.SetMethod(ics.MethodPublish)
-
-	cal.CalendarProperties = append(cal.CalendarProperties,
-		ics.CalendarProperty{
-			BaseProperty: ics.BaseProperty{
-				IANAToken: string(ics.PropertyCalscale),
-				Value:     "GREGORIAN",
-			},
-		},
-		ics.CalendarProperty{
-			BaseProperty: ics.BaseProperty{
-				IANAToken: "X-WR-CALDESC",
-				Value:     g.Title + "\\n" + g.URL,
-			},
-		},
-		ics.CalendarProperty{
-			BaseProperty: ics.BaseProperty{
-				IANAToken: "X-WR-CALNAME",
-				Value:     g.Title,
-			},
-		},
-		ics.CalendarProperty{
-			BaseProperty: ics.BaseProperty{
-				IANAToken: "X-WR-TIMEZONE",
-				Value:     "UTC",
-			},
-		},
-	)
+	cal := ical.New()
+	cal.AddProperty("PRODID", "-//sue445//condo3.appspot.com//JA")
+	cal.AddProperty("METHOD", "PUBLISH")
+	cal.AddProperty("CALSCALE", "GREGORIAN")
+	cal.AddProperty("X-WR-CALDESC", g.Title+"\n"+g.URL)
+	cal.AddProperty("X-WR-CALNAME", g.Title)
+	cal.AddProperty("X-WR-TIMEZONE", "UTC")
 
 	for _, e := range g.Events {
-		event := cal.AddEvent(e.URL)
-
-		event.SetSummary(e.Title)
-		event.SetDescription(e.URL)
-		event.SetURL(e.URL)
-		event.SetLocation(e.Address)
+		event := ical.NewEvent()
+		event.AddProperty("UID", e.URL)
+		event.AddProperty("SUMMARY", e.Title)
+		event.AddProperty("DESCRIPTION", e.URL)
+		event.AddProperty("URL", e.URL)
+		event.AddProperty("LOCATION", e.Address)
 
 		if e.StartedAt != nil {
-			event.SetStartAt(*e.StartedAt)
+			event.AddProperty("DTSTART", e.StartedAt.UTC().Format(icalTimeFormat))
 		}
 		if e.EndedAt != nil {
-			event.SetEndAt(*e.EndedAt)
+			event.AddProperty("DTEND", e.EndedAt.UTC().Format(icalTimeFormat))
 		}
+
+		cal.AddEntry(event)
 	}
 
-	return cal.Serialize()
+	return cal.String()
 }
 
 // ToAtom return atom formatted group
