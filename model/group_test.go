@@ -53,8 +53,6 @@ END:VEVENT
 END:VCALENDAR
 `
 
-	jst, _ := time.LoadLocation("Asia/Tokyo")
-
 	type fields struct {
 		Title  string
 		URL    string
@@ -75,8 +73,8 @@ END:VCALENDAR
 						Title:     "Go 1.13 Release Party in Tokyo",
 						URL:       "https://gocon.connpass.com/event/139024/",
 						Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
-						StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, jst)),
-						EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, jst)),
+						StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, JST)),
+						EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, JST)),
 					},
 				},
 			},
@@ -143,8 +141,6 @@ func TestGroup_ToAtom(t *testing.T) {
   </entry>
 </feed>`
 
-	jst, _ := time.LoadLocation("Asia/Tokyo")
-
 	type fields struct {
 		Title  string
 		URL    string
@@ -165,8 +161,8 @@ func TestGroup_ToAtom(t *testing.T) {
 						Title:     "Go 1.13 Release Party in Tokyo",
 						URL:       "https://gocon.connpass.com/event/139024/",
 						Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
-						StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, jst)),
-						EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, jst)),
+						StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, JST)),
+						EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, JST)),
 					},
 				},
 			},
