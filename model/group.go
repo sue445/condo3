@@ -29,7 +29,7 @@ func (g *Group) ToIcal() string {
 		ics.CalendarProperty{
 			BaseProperty: ics.BaseProperty{
 				IANAToken: "X-WR-CALDESC",
-				Value:     g.Title,
+				Value:     g.Title + "\\n" + g.URL,
 			},
 		},
 		ics.CalendarProperty{
