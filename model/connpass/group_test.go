@@ -27,6 +27,7 @@ func TestGetGroup(t *testing.T) {
 		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/gocon.json")))
 
 	memcachedConfig := model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")}
+	jst, _ := time.LoadLocation("Asia/Tokyo")
 
 	type args struct {
 		groupName   string
@@ -50,8 +51,8 @@ func TestGetGroup(t *testing.T) {
 				Title:     "Go 1.13 Release Party in Tokyo",
 				URL:       "https://gocon.connpass.com/event/139024/",
 				Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
-				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, time.Local)),
-				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, time.Local)),
+				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, jst)),
+				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, jst)),
 			},
 			wantEventCount: 27,
 			wantURL:        "https://gocon.connpass.com/",

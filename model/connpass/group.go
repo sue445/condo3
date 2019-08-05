@@ -41,6 +41,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 	}
 
 	events := []model.Event{}
+	jst, _ := time.LoadLocation("Asia/Tokyo")
 
 	for _, resultEvent := range result.Events {
 		ev := model.Event{
@@ -50,7 +51,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 		}
 
 		if resultEvent.Start != "" {
-			startedAt, err := time.Parse(time.RFC3339, resultEvent.Start)
+			startedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.Start, jst)
 
 			if err != nil {
 				return []model.Event{}, err
@@ -60,7 +61,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 		}
 
 		if resultEvent.End != "" {
-			endedAt, err := time.Parse(time.RFC3339, resultEvent.End)
+			endedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.End, jst)
 
 			if err != nil {
 				return []model.Event{}, err
