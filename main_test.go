@@ -32,7 +32,7 @@ func TestIndexHandler(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	assert.Equal(t, http.StatusOK, rr.Code)
-	assert.Contains(t, rr.Body.String(), "It works")
+	assert.Contains(t, rr.Body.String(), "condo3")
 }
 
 func TestIndexHandlerNotFound(t *testing.T) {
