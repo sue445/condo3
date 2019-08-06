@@ -14,6 +14,11 @@ executors:
       TZ: Asia/Tokyo
       MEMCACHED_SERVER: "127.0.0.1:11211"
 
+  node:
+    docker:
+      - image: circleci/node
+    working_directory: /home/circleci/app
+
 jobs:
   test:
     executor: golang
@@ -69,12 +74,27 @@ jobs:
 #       - *restore_cache
 #       - run: "! gofmt -d . | grep '^'"
 
+  webpack:
+    executor: node
+
+    steps:
+      - checkout
+      - run: npm ci
+      - run: NODE_ENV=production npm run build
+      - persist_to_workspace:
+          root: /home/circleci/app
+          paths:
+            - public/js/*
+
   deploy:
     docker:
       - image: google/cloud-sdk:alpine
 
+    working_directory: /home/circleci/app
+
     steps:
       - checkout
+      - *attach_workspace
       - run: gcloud --version
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
@@ -103,12 +123,15 @@ workflows:
 #           requires:
 #             - go-module/download
 
+      - webpack
+
       - deploy:
           requires:
             - test
             # - golint
             # - go-vet
             # - gofmt
+            - webpack
           filters:
             branches:
               only: master
