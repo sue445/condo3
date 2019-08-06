@@ -4,6 +4,7 @@ handlers:
   # Otherwise, find file in static directory
   - url: /public
     static_dir: public
+    expiration: 30m
 
   # All URLs are handled by the Go application script
   - url: /.*
