@@ -4,7 +4,7 @@ version: 1
 update_configs:
   - package_manager: "go:modules"
 
-    directory: "/"
+    directory: "/server/"
 
     update_schedule: "weekly"
 

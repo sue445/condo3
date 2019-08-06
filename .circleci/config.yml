@@ -24,8 +24,9 @@ jobs:
           at: /home/circleci/app
       - &restore_cache
         restore_cache:
-          key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
+          key: go-mod-cache-{{ .Branch }}-{{ checksum "server/go.sum" }}
 
+      - run: cd server/
       - run: go get -u golang.org/x/lint/golint
       - run: make lint
       - run: make vet
@@ -78,6 +79,7 @@ jobs:
       - run: gcloud --version
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
+      - run: cd server/
       - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
 
 workflows:
