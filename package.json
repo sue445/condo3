@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/sue445/condo3/issues"
   },
-  "homepage": "https://github.com/sue445/condo3#readme"
+  "homepage": "https://github.com/sue445/condo3#readme",
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  }
 }
