@@ -1,0 +1,19 @@
+{
+  "name": "condo3",
+  "version": "1.0.0",
+  "description": "condo3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sue445/condo3.git"
+  },
+  "author": "sue445",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sue445/condo3/issues"
+  },
+  "homepage": "https://github.com/sue445/condo3#readme"
+}
