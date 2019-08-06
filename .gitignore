@@ -15,3 +15,4 @@ condo3
 bin/
 .envrc
 node_modules/
+public/js/
