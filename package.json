@@ -2,7 +2,7 @@
   "name": "condo3",
   "version": "1.0.0",
   "description": "condo3",
-  "main": "index.js",
+  "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",

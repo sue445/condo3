@@ -85,6 +85,7 @@ jobs:
           root: /home/circleci/app
           paths:
             - public/js/*
+            - public/css/*
 
   deploy:
     docker:
