@@ -1,4 +1,5 @@
 import Vue from "vue";
+require('./scss/mystyles.scss');
 
 let v = new Vue({
     el: "#app",

@@ -1,13 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: './frontend/index.ts',
     output: {
-        path: path.resolve(__dirname, './public/js'),
-        publicPath: '/public/js',
-        filename: 'build.js'
+        path: path.resolve(__dirname, './public'),
+        publicPath: '/public',
+        filename: 'js/build.js'
     },
     module: {
         rules: [
@@ -46,6 +47,22 @@ module.exports = {
                     'vue-style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                            // options...
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -65,7 +82,10 @@ module.exports = {
     devtool: '#eval-source-map',
     plugins: [
         // make sure to include the plugin for the magic
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        })
     ]
 }
 
