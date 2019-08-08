@@ -81,7 +81,16 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := indexTmpl.Execute(w, nil); err != nil {
+	if os.Getenv("GAE_SERVICE") == "" {
+		// Hot reloading for local
+		indexTmpl = template.Must(
+			template.ParseFiles(filepath.Join("templates", "index.html")),
+		)
+	}
+
+	vars := map[string]string{}
+
+	if err := indexTmpl.Execute(w, vars); err != nil {
 		log.Printf("Error executing template: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
