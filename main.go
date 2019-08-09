@@ -13,9 +13,7 @@ import (
 )
 
 var (
-	indexTmpl = template.Must(
-		template.ParseFiles(filepath.Join("templates", "index.html")),
-	)
+	indexTmpl = readTemplate("index.html")
 )
 
 func main() {
@@ -83,9 +81,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	if os.Getenv("GAE_SERVICE") == "" {
 		// Hot reloading for local
-		indexTmpl = template.Must(
-			template.ParseFiles(filepath.Join("templates", "index.html")),
-		)
+		indexTmpl = readTemplate("index.html")
 	}
 
 	vars := map[string]string{}
@@ -94,4 +90,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error executing template: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
+}
+
+func readTemplate(name string) *template.Template {
+	return template.Must(template.ParseFiles(filepath.Join("templates", name)))
 }
