@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/sue445/condo3/issues"
   },
-  "homepage": "https://github.com/sue445/condo3#readme",
+  "homepage": "https://github.com/sue445/condo3",
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/node": "^12.7.1",
