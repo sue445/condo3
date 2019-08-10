@@ -48,7 +48,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <input class="input is-danger" type="text" v-model="groupName">
+              <input class="input" type="text" v-model="groupName">
             </div>
           </div>
         </div>
