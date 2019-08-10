@@ -31,48 +31,19 @@ jobs:
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
 
+      - run: make test
+      - run: make testrace
+
+  lint:
+    executor: golang
+
+    steps:
+      - *attach_workspace
+      - *restore_cache
       - run: go get -u golang.org/x/lint/golint
       - run: make lint
       - run: make vet
       - run: "! gofmt -d . | grep '^'"
-
-      - run:
-          name: Install google-cloud-sdk
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y lsb-release
-            export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-            echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-            curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-            sudo apt-get update
-            sudo apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-go google-cloud-sdk-datastore-emulator openjdk-8-jdk-headless
-      - run: make test
-      - run: make testrace
-
-#   golint:
-#     executor: golang
-#
-#     steps:
-#       - *attach_workspace
-#       - *restore_cache
-#       - run: go get -u golang.org/x/lint/golint
-#       - run: make lint
-#
-#   go-vet:
-#     executor: golang
-#
-#     steps:
-#       - *attach_workspace
-#       - *restore_cache
-#       - run: make vet
-#
-#   gofmt:
-#     executor: golang
-#
-#     steps:
-#       - *attach_workspace
-#       - *restore_cache
-#       - run: "! gofmt -d . | grep '^'"
 
   webpack:
     executor: node
@@ -112,26 +83,16 @@ workflows:
           requires:
             - go-module/download
 
-#       - golint:
-#           requires:
-#             - go-module/download
-#
-#       - go-vet:
-#           requires:
-#             - go-module/download
-#
-#       - gofmt:
-#           requires:
-#             - go-module/download
+      - lint:
+          requires:
+            - go-module/download
 
       - webpack
 
       - deploy:
           requires:
             - test
-            # - golint
-            # - go-vet
-            # - gofmt
+            - lint
             - webpack
           filters:
             branches:
