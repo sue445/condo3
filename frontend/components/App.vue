@@ -50,6 +50,7 @@
             <div class="control">
               <input class="input" type="text" v-model="groupName">
             </div>
+            <p class="help">グループ名はconnpassだとグループページのURLの https://<b>XXXXX</b>.connpass.com/ の太字の部分、DoorkeeperだとグループページのURLの https://<b>XXXXX</b>.doorkeeper.jp/ の太字の部分を入力してください</p>
           </div>
         </div>
       </div>
@@ -69,6 +70,16 @@
                 Copy
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="help">このURLをRSSリーダーやGoogleカレンダーなどに登録してください</p>
           </div>
         </div>
       </div>
