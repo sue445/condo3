@@ -59,9 +59,15 @@
           <label class="label">URL</label>
         </div>
         <div class="field-body">
-          <div class="field">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input" type="text" :value="feedUrl" id="feedUrl" readonly>
+            </div>
             <div class="control">
-              <input class="input" type="text" :value="feedUrl" readonly>
+              <a class="button is-info" data-clipboard-target="#feedUrl">
+                <i class="far fa-clipboard"></i>
+                Copy
+              </a>
             </div>
           </div>
         </div>
@@ -81,7 +87,7 @@
     groupName = "gocon";
 
     get feedUrl() {
-      return 'https://condo3.appspot.com/api/' + this.site + "/" + this.groupName + "." + this.format
+      return 'https://condo3.appspot.com/api/' + this.site + "/" + this.groupName.trim() + "." + this.format
     }
   }
 </script>
