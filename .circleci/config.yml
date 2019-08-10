@@ -94,6 +94,7 @@ workflows:
             - test
             - lint
             - webpack
+          context: gcp_condo3
           filters:
             branches:
               only: master
