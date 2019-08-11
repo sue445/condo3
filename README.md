@@ -22,7 +22,7 @@ Mac
 
 ```bash
 brew cask install google-cloud-sdk
-gcloud components install app-engine-go cloud-datastore-emulator
+gcloud components install app-engine-go
 ```
 
 * https://cloud.google.com/appengine/docs/standard/go/download
