@@ -3,6 +3,7 @@ package model
 import (
 	"github.com/gorilla/feeds"
 	"github.com/lestrrat-go/ical"
+	"time"
 )
 
 const (
@@ -11,9 +12,10 @@ const (
 
 // Group represents group info
 type Group struct {
-	Title  string
-	URL    string
-	Events []Event
+	Title     string
+	URL       string
+	UpdatedAt time.Time
+	Events    []Event
 }
 
 // ToIcal return ical formatted group
