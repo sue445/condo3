@@ -200,3 +200,43 @@ func TestGroup_ToAtom(t *testing.T) {
 		})
 	}
 }
+
+func Test_maxTime(t *testing.T) {
+	type args struct {
+		times []time.Time
+	}
+	tests := []struct {
+		name string
+		args args
+		want time.Time
+	}{
+		{
+			name: "returns first",
+			args: args{
+				times: []time.Time{
+					time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC),
+					time.Date(2019, 1, 2, 12, 0, 0, 0, time.UTC),
+					time.Date(2019, 1, 1, 12, 0, 0, 0, time.UTC),
+				},
+			},
+			want: time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC),
+		},
+		{
+			name: "returns last",
+			args: args{
+				times: []time.Time{
+					time.Date(2019, 1, 1, 12, 0, 0, 0, time.UTC),
+					time.Date(2019, 1, 2, 12, 0, 0, 0, time.UTC),
+					time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC),
+				},
+			},
+			want: time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := maxTime(tt.args.times)
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}

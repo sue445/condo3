@@ -3,6 +3,7 @@ package model
 import (
 	"github.com/gorilla/feeds"
 	"github.com/lestrrat-go/ical"
+	"sort"
 	"time"
 )
 
@@ -74,4 +75,23 @@ func (g *Group) ToAtom() (string, error) {
 	}
 
 	return atom, nil
+}
+
+// ApplyUpdatedAt apply UpdatedAt from Events
+func (g *Group) ApplyUpdatedAt() {
+	var times []time.Time
+
+	for _, event := range g.Events {
+		times = append(times, event.UpdatedAt)
+	}
+
+	g.UpdatedAt = maxTime(times)
+}
+
+func maxTime(times []time.Time) time.Time {
+	sort.Slice(times, func(i, j int) bool {
+		return times[i].After(times[j])
+	})
+
+	return times[0]
 }

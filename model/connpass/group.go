@@ -20,11 +20,14 @@ func GetGroup(memcachedConfig *model.MemcachedConfig, groupName string, currentT
 		return nil, err
 	}
 
-	return &model.Group{
+	group := model.Group{
 		Title:  page.Title,
 		URL:    page.URL,
 		Events: events,
-	}, nil
+	}
+	group.ApplyUpdatedAt()
+
+	return &group, nil
 }
 
 func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
@@ -43,10 +46,17 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 	events := []model.Event{}
 
 	for _, resultEvent := range result.Events {
+		updatedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.Updated, model.JST)
+
+		if err != nil {
+			return []model.Event{}, err
+		}
+
 		ev := model.Event{
-			Title:   resultEvent.Title,
-			URL:     resultEvent.Url,
-			Address: resultEvent.Address,
+			Title:     resultEvent.Title,
+			URL:       resultEvent.Url,
+			Address:   resultEvent.Address,
+			UpdatedAt: updatedAt,
 		}
 
 		if resultEvent.Start != "" {

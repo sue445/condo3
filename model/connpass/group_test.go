@@ -39,6 +39,7 @@ func TestGetGroup(t *testing.T) {
 		wantEventCount int
 		wantURL        string
 		wantTitle      string
+		wantUpdatedAt  time.Time
 	}{
 		{
 			name: "successful",
@@ -50,12 +51,14 @@ func TestGetGroup(t *testing.T) {
 				Title:     "Go 1.13 Release Party in Tokyo",
 				URL:       "https://gocon.connpass.com/event/139024/",
 				Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
+				UpdatedAt: time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST),
 				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, model.JST)),
 				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, model.JST)),
 			},
 			wantEventCount: 27,
 			wantURL:        "https://gocon.connpass.com/",
 			wantTitle:      "Go Conference - connpass",
+			wantUpdatedAt:  time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST),
 		},
 	}
 	for _, tt := range tests {
@@ -70,6 +73,7 @@ func TestGetGroup(t *testing.T) {
 				assert.Equal(t, tt.wantEventFirst, got.Events[0])
 				assert.Equal(t, tt.wantURL, got.URL)
 				assert.Equal(t, tt.wantTitle, got.Title)
+				assert.Equal(t, tt.wantUpdatedAt, got.UpdatedAt)
 			}
 		})
 	}
