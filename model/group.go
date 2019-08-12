@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"github.com/gorilla/feeds"
 	"github.com/lestrrat-go/ical"
 )
@@ -60,7 +59,7 @@ func (g *Group) ToAtom() (string, error) {
 		item := feeds.Item{
 			Title:       e.Title,
 			Link:        &feeds.Link{Href: e.URL},
-			Description: fmt.Sprintf("開催日時：%s〜%s\n開催場所：%s", e.StartedAt.In(JST).Format("2006/01/02 15:04"), e.EndedAt.In(JST).Format("15:04"), e.Address),
+			Description: e.atomDescription(),
 			Id:          e.URL,
 		}
 		feed.Items = append(feed.Items, &item)
