@@ -50,7 +50,7 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 				Title:     ev.Title,
 				URL:       ev.PublicURL,
 				Address:   ev.Address,
-				UpdatedAt: ev.UpdatedAt,
+				UpdatedAt: &ev.UpdatedAt,
 				StartedAt: &ev.StartsAt,
 				EndedAt:   &ev.EndsAt,
 			}

@@ -59,7 +59,7 @@ func TestGetGroup(t *testing.T) {
 				Title:     "900K records per second with Ruby, Java, and JRuby",
 				URL:       "https://trbmeetup.doorkeeper.jp/events/28319",
 				Address:   "東京都渋谷区神泉町8-16 渋谷ファーストプレイス8F",
-				UpdatedAt: time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC),
+				UpdatedAt: tp(time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC)),
 				StartedAt: tp(time.Date(2015, 8, 13, 10, 0, 0, 0, time.UTC)),
 				EndedAt:   tp(time.Date(2015, 8, 13, 13, 0, 0, 0, time.UTC)),
 			},

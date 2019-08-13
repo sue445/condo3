@@ -61,7 +61,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 			Title:     resultEvent.Title,
 			URL:       resultEvent.Url,
 			Address:   resultEvent.Address,
-			UpdatedAt: updatedAt,
+			UpdatedAt: &updatedAt,
 		}
 
 		if resultEvent.Start != "" {
