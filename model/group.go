@@ -53,9 +53,10 @@ func (g *Group) ToIcal() string {
 // ToAtom return atom formatted group
 func (g *Group) ToAtom() (string, error) {
 	feed := &feeds.Feed{
-		Title: g.Title,
-		Link:  &feeds.Link{Href: g.URL},
-		Items: []*feeds.Item{},
+		Title:   g.Title,
+		Link:    &feeds.Link{Href: g.URL},
+		Items:   []*feeds.Item{},
+		Updated: g.UpdatedAt.In(JST),
 	}
 
 	for _, e := range g.Events {
@@ -64,6 +65,7 @@ func (g *Group) ToAtom() (string, error) {
 			Link:        &feeds.Link{Href: e.URL},
 			Description: e.atomDescription(),
 			Id:          e.URL,
+			Updated:     e.UpdatedAt.In(JST),
 		}
 		feed.Items = append(feed.Items, &item)
 	}
