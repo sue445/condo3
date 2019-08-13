@@ -3,6 +3,8 @@ package model
 import (
 	"github.com/gorilla/feeds"
 	"github.com/lestrrat-go/ical"
+	"sort"
+	"time"
 )
 
 const (
@@ -11,9 +13,10 @@ const (
 
 // Group represents group info
 type Group struct {
-	Title  string
-	URL    string
-	Events []Event
+	Title     string
+	URL       string
+	UpdatedAt time.Time
+	Events    []Event
 }
 
 // ToIcal return ical formatted group
@@ -50,9 +53,10 @@ func (g *Group) ToIcal() string {
 // ToAtom return atom formatted group
 func (g *Group) ToAtom() (string, error) {
 	feed := &feeds.Feed{
-		Title: g.Title,
-		Link:  &feeds.Link{Href: g.URL},
-		Items: []*feeds.Item{},
+		Title:   g.Title,
+		Link:    &feeds.Link{Href: g.URL},
+		Items:   []*feeds.Item{},
+		Updated: g.UpdatedAt.In(JST),
 	}
 
 	for _, e := range g.Events {
@@ -61,6 +65,7 @@ func (g *Group) ToAtom() (string, error) {
 			Link:        &feeds.Link{Href: e.URL},
 			Description: e.atomDescription(),
 			Id:          e.URL,
+			Updated:     e.UpdatedAt.In(JST),
 		}
 		feed.Items = append(feed.Items, &item)
 	}
@@ -72,4 +77,23 @@ func (g *Group) ToAtom() (string, error) {
 	}
 
 	return atom, nil
+}
+
+// ApplyUpdatedAt apply UpdatedAt from Events
+func (g *Group) ApplyUpdatedAt() {
+	var times []time.Time
+
+	for _, event := range g.Events {
+		times = append(times, event.UpdatedAt)
+	}
+
+	g.UpdatedAt = maxTime(times)
+}
+
+func maxTime(times []time.Time) time.Time {
+	sort.Slice(times, func(i, j int) bool {
+		return times[i].After(times[j])
+	})
+
+	return times[0]
 }

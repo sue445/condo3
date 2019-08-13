@@ -46,6 +46,7 @@ func TestGetGroup(t *testing.T) {
 		wantEventCount int
 		wantURL        string
 		wantTitle      string
+		wantUpdatedAt  time.Time
 	}{
 		{
 			name: "successful",
@@ -58,12 +59,14 @@ func TestGetGroup(t *testing.T) {
 				Title:     "900K records per second with Ruby, Java, and JRuby",
 				URL:       "https://trbmeetup.doorkeeper.jp/events/28319",
 				Address:   "東京都渋谷区神泉町8-16 渋谷ファーストプレイス8F",
+				UpdatedAt: time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC),
 				StartedAt: tp(time.Date(2015, 8, 13, 10, 0, 0, 0, time.UTC)),
 				EndedAt:   tp(time.Date(2015, 8, 13, 13, 0, 0, 0, time.UTC)),
 			},
 			wantEventCount: 1,
 			wantURL:        "https://trbmeetup.doorkeeper.jp/",
 			wantTitle:      "Tokyo Rubyist Meetup | Doorkeeper",
+			wantUpdatedAt:  time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC),
 		},
 	}
 	for _, tt := range tests {
@@ -78,6 +81,7 @@ func TestGetGroup(t *testing.T) {
 				assert.Equal(t, tt.wantEventFirst, got.Events[0])
 				assert.Equal(t, tt.wantURL, got.URL)
 				assert.Equal(t, tt.wantTitle, got.Title)
+				assert.Equal(t, tt.wantUpdatedAt, got.UpdatedAt)
 			}
 		})
 	}
