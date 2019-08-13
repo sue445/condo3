@@ -68,8 +68,12 @@ func (g *Group) ToAtom() (string, error) {
 			Link:        &feeds.Link{Href: e.URL},
 			Description: e.atomDescription(),
 			Id:          e.URL,
-			Updated:     e.UpdatedAt.In(JST),
 		}
+
+		if e.UpdatedAt != nil {
+			item.Updated = e.UpdatedAt.In(JST)
+		}
+
 		feed.Items = append(feed.Items, &item)
 	}
 
@@ -91,7 +95,7 @@ func (g *Group) MaxEventsUpdatedAt() *time.Time {
 	var times []time.Time
 
 	for _, event := range g.Events {
-		times = append(times, event.UpdatedAt)
+		times = append(times, *event.UpdatedAt)
 	}
 
 	t := maxTime(times)

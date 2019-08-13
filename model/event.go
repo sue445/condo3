@@ -11,7 +11,7 @@ type Event struct {
 	Title     string
 	URL       string
 	Address   string
-	UpdatedAt time.Time
+	UpdatedAt *time.Time
 	StartedAt *time.Time
 	EndedAt   *time.Time
 }

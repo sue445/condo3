@@ -51,7 +51,7 @@ func TestGetGroup(t *testing.T) {
 				Title:     "Go 1.13 Release Party in Tokyo",
 				URL:       "https://gocon.connpass.com/event/139024/",
 				Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
-				UpdatedAt: time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST),
+				UpdatedAt: tp(time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST)),
 				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, model.JST)),
 				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, model.JST)),
 			},
