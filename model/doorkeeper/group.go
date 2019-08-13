@@ -50,6 +50,7 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 				Title:     ev.Title,
 				URL:       ev.PublicURL,
 				Address:   ev.Address,
+				UpdatedAt: ev.UpdatedAt,
 				StartedAt: &ev.StartsAt,
 				EndedAt:   &ev.EndsAt,
 			}
@@ -62,6 +63,8 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 	if err := eg.Wait(); err != nil {
 		return nil, err
 	}
+
+	group.ApplyUpdatedAt()
 
 	return &group, nil
 }
