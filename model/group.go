@@ -15,7 +15,7 @@ const (
 type Group struct {
 	Title     string
 	URL       string
-	UpdatedAt time.Time
+	UpdatedAt *time.Time
 	Events    []Event
 }
 
@@ -53,10 +53,13 @@ func (g *Group) ToIcal() string {
 // ToAtom return atom formatted group
 func (g *Group) ToAtom() (string, error) {
 	feed := &feeds.Feed{
-		Title:   g.Title,
-		Link:    &feeds.Link{Href: g.URL},
-		Items:   []*feeds.Item{},
-		Updated: g.UpdatedAt.In(JST),
+		Title: g.Title,
+		Link:  &feeds.Link{Href: g.URL},
+		Items: []*feeds.Item{},
+	}
+
+	if g.UpdatedAt != nil {
+		feed.Updated = g.UpdatedAt.In(JST)
 	}
 
 	for _, e := range g.Events {

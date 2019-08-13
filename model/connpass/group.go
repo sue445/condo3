@@ -29,7 +29,7 @@ func GetGroup(memcachedConfig *model.MemcachedConfig, groupName string, currentT
 	updatedAt := group.MaxEventsUpdatedAt()
 
 	if updatedAt != nil {
-		group.UpdatedAt = *updatedAt
+		group.UpdatedAt = updatedAt
 	}
 
 	return &group, nil

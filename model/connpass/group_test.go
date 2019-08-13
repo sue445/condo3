@@ -39,7 +39,7 @@ func TestGetGroup(t *testing.T) {
 		wantEventCount int
 		wantURL        string
 		wantTitle      string
-		wantUpdatedAt  time.Time
+		wantUpdatedAt  *time.Time
 	}{
 		{
 			name: "successful",
@@ -58,7 +58,7 @@ func TestGetGroup(t *testing.T) {
 			wantEventCount: 27,
 			wantURL:        "https://gocon.connpass.com/",
 			wantTitle:      "Go Conference - connpass",
-			wantUpdatedAt:  time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST),
+			wantUpdatedAt:  tp(time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST)),
 		},
 	}
 	for _, tt := range tests {

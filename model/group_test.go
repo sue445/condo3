@@ -144,7 +144,7 @@ func TestGroup_ToAtom(t *testing.T) {
 	type fields struct {
 		Title     string
 		URL       string
-		UpdatedAt time.Time
+		UpdatedAt *time.Time
 		Events    []Event
 	}
 	tests := []struct {
@@ -157,7 +157,7 @@ func TestGroup_ToAtom(t *testing.T) {
 			fields: fields{
 				Title:     "Go Conference - connpass",
 				URL:       "https://gocon.connpass.com/",
-				UpdatedAt: time.Date(2019, 7, 25, 22, 24, 0, 0, JST),
+				UpdatedAt: tp(time.Date(2019, 7, 25, 22, 24, 0, 0, JST)),
 				Events: []Event{
 					{
 						Title:     "Go 1.13 Release Party in Tokyo",
@@ -176,7 +176,7 @@ func TestGroup_ToAtom(t *testing.T) {
 			fields: fields{
 				Title:     "TokyuRubyKaigi | Doorkeeper",
 				URL:       "https://tokyu-rubykaigi.doorkeeper.jp/",
-				UpdatedAt: time.Date(2019, 6, 29, 4, 0, 40, 747000000, time.UTC),
+				UpdatedAt: tp(time.Date(2019, 6, 29, 4, 0, 40, 747000000, time.UTC)),
 				Events: []Event{
 					{
 						Title:     "TokyuRubyKaigi13 一般参加者募集(LT発表者は登録不要です)",
@@ -251,7 +251,7 @@ func TestGroup_MaxEventsUpdatedAt(t *testing.T) {
 	type fields struct {
 		Title     string
 		URL       string
-		UpdatedAt time.Time
+		UpdatedAt *time.Time
 		Events    []Event
 	}
 	tests := []struct {

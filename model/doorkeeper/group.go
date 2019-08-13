@@ -67,7 +67,7 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 	updatedAt := group.MaxEventsUpdatedAt()
 
 	if updatedAt != nil {
-		group.UpdatedAt = *updatedAt
+		group.UpdatedAt = updatedAt
 	}
 
 	return &group, nil
