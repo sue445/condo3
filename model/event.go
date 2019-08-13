@@ -8,12 +8,13 @@ import (
 
 // Event represents event data
 type Event struct {
-	Title     string
-	URL       string
-	Address   string
-	UpdatedAt *time.Time
-	StartedAt *time.Time
-	EndedAt   *time.Time
+	Title       string
+	URL         string
+	Address     string
+	UpdatedAt   *time.Time
+	PublishedAt *time.Time
+	StartedAt   *time.Time
+	EndedAt     *time.Time
 }
 
 func (e *Event) atomDescription() string {

@@ -47,12 +47,13 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 
 		for _, ev := range events {
 			event := model.Event{
-				Title:     ev.Title,
-				URL:       ev.PublicURL,
-				Address:   ev.Address,
-				UpdatedAt: &ev.UpdatedAt,
-				StartedAt: &ev.StartsAt,
-				EndedAt:   &ev.EndsAt,
+				Title:       ev.Title,
+				URL:         ev.PublicURL,
+				Address:     ev.Address,
+				UpdatedAt:   &ev.UpdatedAt,
+				PublishedAt: &ev.PublishedAt,
+				StartedAt:   &ev.StartsAt,
+				EndedAt:     &ev.EndsAt,
 			}
 			group.Events = append(group.Events, event)
 		}
