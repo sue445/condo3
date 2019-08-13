@@ -144,7 +144,7 @@ func TestGroup_ToAtom(t *testing.T) {
 	type fields struct {
 		Title     string
 		URL       string
-		UpdatedAt time.Time
+		UpdatedAt *time.Time
 		Events    []Event
 	}
 	tests := []struct {
@@ -157,7 +157,7 @@ func TestGroup_ToAtom(t *testing.T) {
 			fields: fields{
 				Title:     "Go Conference - connpass",
 				URL:       "https://gocon.connpass.com/",
-				UpdatedAt: time.Date(2019, 7, 25, 22, 24, 0, 0, JST),
+				UpdatedAt: tp(time.Date(2019, 7, 25, 22, 24, 0, 0, JST)),
 				Events: []Event{
 					{
 						Title:     "Go 1.13 Release Party in Tokyo",
@@ -176,7 +176,7 @@ func TestGroup_ToAtom(t *testing.T) {
 			fields: fields{
 				Title:     "TokyuRubyKaigi | Doorkeeper",
 				URL:       "https://tokyu-rubykaigi.doorkeeper.jp/",
-				UpdatedAt: time.Date(2019, 6, 29, 4, 0, 40, 747000000, time.UTC),
+				UpdatedAt: tp(time.Date(2019, 6, 29, 4, 0, 40, 747000000, time.UTC)),
 				Events: []Event{
 					{
 						Title:     "TokyuRubyKaigi13 一般参加者募集(LT発表者は登録不要です)",
@@ -242,6 +242,53 @@ func Test_maxTime(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := maxTime(tt.args.times)
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestGroup_MaxEventsUpdatedAt(t *testing.T) {
+	type fields struct {
+		Title     string
+		URL       string
+		UpdatedAt *time.Time
+		Events    []Event
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   *time.Time
+	}{
+		{
+			name: "has events",
+			fields: fields{
+				Events: []Event{
+					{UpdatedAt: time.Date(2019, 1, 1, 12, 0, 0, 0, time.UTC)},
+					{UpdatedAt: time.Date(2019, 1, 2, 12, 0, 0, 0, time.UTC)},
+					{UpdatedAt: time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC)},
+				},
+			},
+			want: tp(time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC)),
+		},
+		{
+			name: "has events",
+			fields: fields{
+				Events: []Event{},
+			},
+			want: nil,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			group := &Group{
+				Title:     tt.fields.Title,
+				URL:       tt.fields.URL,
+				UpdatedAt: tt.fields.UpdatedAt,
+				Events:    tt.fields.Events,
+			}
+
+			got := group.MaxEventsUpdatedAt()
+
 			assert.Equal(t, tt.want, got)
 		})
 	}
