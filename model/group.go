@@ -79,15 +79,20 @@ func (g *Group) ToAtom() (string, error) {
 	return atom, nil
 }
 
-// ApplyUpdatedAt apply UpdatedAt from Events
-func (g *Group) ApplyUpdatedAt() {
+// MaxEventsUpdatedAt returns max UpdatedAt in Events
+func (g *Group) MaxEventsUpdatedAt() *time.Time {
+	if len(g.Events) == 0 {
+		return nil
+	}
+
 	var times []time.Time
 
 	for _, event := range g.Events {
 		times = append(times, event.UpdatedAt)
 	}
 
-	g.UpdatedAt = maxTime(times)
+	t := maxTime(times)
+	return &t
 }
 
 func maxTime(times []time.Time) time.Time {

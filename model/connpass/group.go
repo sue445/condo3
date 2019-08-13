@@ -25,7 +25,12 @@ func GetGroup(memcachedConfig *model.MemcachedConfig, groupName string, currentT
 		URL:    page.URL,
 		Events: events,
 	}
-	group.ApplyUpdatedAt()
+
+	updatedAt := group.MaxEventsUpdatedAt()
+
+	if updatedAt != nil {
+		group.UpdatedAt = *updatedAt
+	}
 
 	return &group, nil
 }

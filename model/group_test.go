@@ -246,3 +246,50 @@ func Test_maxTime(t *testing.T) {
 		})
 	}
 }
+
+func TestGroup_MaxEventsUpdatedAt(t *testing.T) {
+	type fields struct {
+		Title     string
+		URL       string
+		UpdatedAt time.Time
+		Events    []Event
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   *time.Time
+	}{
+		{
+			name: "has events",
+			fields: fields{
+				Events: []Event{
+					{UpdatedAt: time.Date(2019, 1, 1, 12, 0, 0, 0, time.UTC)},
+					{UpdatedAt: time.Date(2019, 1, 2, 12, 0, 0, 0, time.UTC)},
+					{UpdatedAt: time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC)},
+				},
+			},
+			want: tp(time.Date(2019, 1, 3, 12, 0, 0, 0, time.UTC)),
+		},
+		{
+			name: "has events",
+			fields: fields{
+				Events: []Event{},
+			},
+			want: nil,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			group := &Group{
+				Title:     tt.fields.Title,
+				URL:       tt.fields.URL,
+				UpdatedAt: tt.fields.UpdatedAt,
+				Events:    tt.fields.Events,
+			}
+
+			got := group.MaxEventsUpdatedAt()
+
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}
