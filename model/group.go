@@ -1,8 +1,9 @@
 package model
 
 import (
-	"github.com/gorilla/feeds"
+	"encoding/xml"
 	"github.com/lestrrat-go/ical"
+	"golang.org/x/tools/blog/atom"
 	"sort"
 	"time"
 )
@@ -52,38 +53,48 @@ func (g *Group) ToIcal() string {
 
 // ToAtom return atom formatted group
 func (g *Group) ToAtom() (string, error) {
-	feed := &feeds.Feed{
+	feed := atom.Feed{
 		Title: g.Title,
-		Link:  &feeds.Link{Href: g.URL},
-		Items: []*feeds.Item{},
+		ID:    g.URL,
+		Link: []atom.Link{
+			{Href: g.URL},
+		},
 	}
 
 	if g.UpdatedAt != nil {
-		feed.Updated = g.UpdatedAt.In(JST)
+		feed.Updated = atom.Time(g.UpdatedAt.In(JST))
 	}
 
-	for _, e := range g.Events {
-		item := feeds.Item{
-			Title:       e.Title,
-			Link:        &feeds.Link{Href: e.URL},
-			Description: e.atomDescription(),
-			Id:          e.URL,
+	for _, event := range g.Events {
+		entry := atom.Entry{
+			Title: event.Title,
+			Link: []atom.Link{
+				{Href: event.URL, Rel: "alternate"},
+			},
+			ID: event.URL,
+			Summary: &atom.Text{
+				Type: "html",
+				Body: event.atomDescription(),
+			},
 		}
 
-		if e.UpdatedAt != nil {
-			item.Updated = e.UpdatedAt.In(JST)
+		if event.UpdatedAt != nil {
+			entry.Updated = atom.Time(event.UpdatedAt.In(JST))
 		}
 
-		feed.Items = append(feed.Items, &item)
+		if event.PublishedAt != nil {
+			entry.Published = atom.Time(event.PublishedAt.In(JST))
+		}
+
+		feed.Entry = append(feed.Entry, &entry)
 	}
 
-	atom, err := feed.ToAtom()
-
+	data, err := xml.MarshalIndent(&feed, "", "  ")
 	if err != nil {
 		return "", err
 	}
 
-	return atom, nil
+	return xml.Header + string(data), nil
 }
 
 // MaxEventsUpdatedAt returns max UpdatedAt in Events
