@@ -128,16 +128,16 @@ func TestGroup_ToAtom(t *testing.T) {
 </feed>`
 
 	tokyurubykaigiAtom := `<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
-  <title>TokyuRubyKaigi | Doorkeeper</title>
-  <id>https://tokyu-rubykaigi.doorkeeper.jp/</id>
-  <updated>2019-06-29T13:00:40+09:00</updated>
-  <link href="https://tokyu-rubykaigi.doorkeeper.jp/"></link>
+  <title>Tokyo Rubyist Meetup | Doorkeeper</title>
+  <id>https://trbmeetup.doorkeeper.jp/</id>
+  <updated>2018-05-11T09:07:44+09:00</updated>
+  <link href="https://trbmeetup.doorkeeper.jp/"></link>
   <entry>
-    <title>TokyuRubyKaigi13 一般参加者募集(LT発表者は登録不要です)</title>
-    <updated>2019-06-29T13:00:40+09:00</updated>
-    <id>https://tokyu-rubykaigi.doorkeeper.jp/events/91543</id>
-    <link href="https://tokyu-rubykaigi.doorkeeper.jp/events/91543" rel="alternate"></link>
-    <summary type="html">開催日時：2019/06/29 14:00〜19:30&#xA;開催場所：〒106-0032 東京都港区六本木4-1-4 黒崎ビル4階</summary>
+    <title>900K records per second with Ruby, Java, and JRuby</title>
+    <updated>2018-05-11T09:07:44+09:00</updated>
+    <id>https://trbmeetup.doorkeeper.jp/events/28319</id>
+    <link href="https://trbmeetup.doorkeeper.jp/events/28319" rel="alternate"></link>
+    <summary type="html">開催日時：2015/08/13 19:00〜22:00&#xA;開催場所：東京都渋谷区神泉町8-16 渋谷ファーストプレイス8F</summary>
   </entry>
 </feed>`
 
@@ -174,17 +174,17 @@ func TestGroup_ToAtom(t *testing.T) {
 		{
 			name: "doorkeeper atom",
 			fields: fields{
-				Title:     "TokyuRubyKaigi | Doorkeeper",
-				URL:       "https://tokyu-rubykaigi.doorkeeper.jp/",
-				UpdatedAt: tp(time.Date(2019, 6, 29, 4, 0, 40, 747000000, time.UTC)),
+				Title:     "Tokyo Rubyist Meetup | Doorkeeper",
+				URL:       "https://trbmeetup.doorkeeper.jp/",
+				UpdatedAt: tp(time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC)),
 				Events: []Event{
 					{
-						Title:     "TokyuRubyKaigi13 一般参加者募集(LT発表者は登録不要です)",
-						URL:       "https://tokyu-rubykaigi.doorkeeper.jp/events/91543",
-						Address:   "〒106-0032 東京都港区六本木4-1-4 黒崎ビル4階",
-						UpdatedAt: tp(time.Date(2019, 6, 29, 4, 0, 40, 747000000, time.UTC)),
-						StartedAt: tp(time.Date(2019, 6, 29, 5, 00, 0, 0, time.UTC)),
-						EndedAt:   tp(time.Date(2019, 6, 29, 10, 30, 0, 0, time.UTC)),
+						Title:     "900K records per second with Ruby, Java, and JRuby",
+						URL:       "https://trbmeetup.doorkeeper.jp/events/28319",
+						Address:   "東京都渋谷区神泉町8-16 渋谷ファーストプレイス8F",
+						UpdatedAt: tp(time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC)),
+						StartedAt: tp(time.Date(2015, 8, 13, 10, 0, 0, 0, time.UTC)),
+						EndedAt:   tp(time.Date(2015, 8, 13, 13, 0, 0, 0, time.UTC)),
 					},
 				},
 			},
