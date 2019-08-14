@@ -123,6 +123,7 @@ func TestGroup_ToAtom(t *testing.T) {
     <title>Go 1.13 Release Party in Tokyo</title>
     <id>https://gocon.connpass.com/event/139024/</id>
     <link rel="alternate" href="https://gocon.connpass.com/event/139024/"></link>
+    <published></published>
     <updated>2019-07-25T22:24:00+09:00</updated>
     <summary type="html">開催日時：2019/08/23 19:30〜22:00&#xA;開催場所：東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)</summary>
   </entry>
