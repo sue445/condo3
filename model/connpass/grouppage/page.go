@@ -1,4 +1,4 @@
-package connpass
+package grouppage
 
 import (
 	"errors"

@@ -1,4 +1,4 @@
-package connpass
+package grouppage
 
 import (
 	"github.com/stretchr/testify/assert"

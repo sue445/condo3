@@ -17,7 +17,7 @@ func TestConpassHandler(t *testing.T) {
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/",
-		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/testdata/gocon.html")))
+		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/grouppage/testdata/gocon.html")))
 	httpmock.RegisterResponder("GET", `=~^https://connpass\.com/api/v1/event/`,
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/testdata/gocon.json")))
 
