@@ -5,6 +5,7 @@ import (
 	"github.com/lestrrat-go/ical"
 	"golang.org/x/tools/blog/atom"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -94,7 +95,9 @@ func (g *Group) ToAtom() (string, error) {
 		return "", err
 	}
 
-	return xml.Header + string(data), nil
+	xmlBody := string(data)
+	xmlBody = strings.ReplaceAll(xmlBody, "    <published></published>\n", "")
+	return xml.Header + xmlBody, nil
 }
 
 // MaxEventsUpdatedAt returns max UpdatedAt in Events
