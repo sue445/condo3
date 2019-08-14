@@ -14,19 +14,19 @@ func TestPageCache_SetAndGet(t *testing.T) {
 		Title:    "Go Conference - connpass",
 	}
 
-	cache, quit := NewPageCache(&model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")})
+	cache, quit := newPageCache(&model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")})
 	defer quit()
 
 	cache.memcached.Flush(0)
 
-	err := cache.Set("gocon", page)
+	err := cache.set("gocon", page)
 	assert.NoError(t, err)
 
-	actual, err := cache.Get("gocon")
+	actual, err := cache.get("gocon")
 	assert.NoError(t, err)
 	assert.Equal(t, page, actual)
 
-	actual2, err := cache.Get("not-found")
+	actual2, err := cache.get("not-found")
 	assert.NoError(t, err)
 	assert.Nil(t, actual2)
 }

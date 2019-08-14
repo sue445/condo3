@@ -8,26 +8,26 @@ import (
 )
 
 const (
-	keyPrefix = "connpass.PageCache-v1-"
+	keyPrefix = "connpass.pageCache-v1-"
 )
 
-// PageCache represents page cache
-type PageCache struct {
+// pageCache represents page cache
+type pageCache struct {
 	memcached *mc.Client
 }
 
 // Quit must be called when finalize
 type Quit func()
 
-// NewPageCache returns new PageCache instance
-func NewPageCache(memcachedConfig *model.MemcachedConfig) (*PageCache, Quit) {
+// newPageCache returns new pageCache instance
+func newPageCache(memcachedConfig *model.MemcachedConfig) (*pageCache, Quit) {
 	memcached := mc.NewMC(memcachedConfig.Server, memcachedConfig.Username, memcachedConfig.Password)
-	return &PageCache{memcached: memcached}, memcached.Quit
+	return &pageCache{memcached: memcached}, memcached.Quit
 }
 
-// Get returns value from memcache
-func (p *PageCache) Get(key string) (*Page, error) {
-	value, _, _, err := p.memcached.Get(keyPrefix + key)
+// get returns value from memcache
+func (c *pageCache) get(key string) (*Page, error) {
+	value, _, _, err := c.memcached.Get(keyPrefix + key)
 
 	if err != nil {
 		if err == mc.ErrNotFound {
@@ -46,8 +46,8 @@ func (p *PageCache) Get(key string) (*Page, error) {
 	return &page, nil
 }
 
-// Set sets value to memcache
-func (p *PageCache) Set(key string, page *Page) error {
+// set sets value to memcache
+func (c *pageCache) set(key string, page *Page) error {
 	bytes, err := json.Marshal(page)
 
 	if err != nil {
@@ -55,7 +55,7 @@ func (p *PageCache) Set(key string, page *Page) error {
 	}
 
 	expiration := time.Hour * 24 // 1 day
-	_, err = p.memcached.Set(keyPrefix+key, string(bytes), 0, uint32(expiration.Seconds()), 0)
+	_, err = c.memcached.Set(keyPrefix+key, string(bytes), 0, uint32(expiration.Seconds()), 0)
 
 	if err != nil {
 		return err
