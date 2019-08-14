@@ -25,11 +25,11 @@ func TestConpassHandler(t *testing.T) {
 	assert.NoError(t, err)
 
 	memcachedConfig := model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")}
-	a := Handler{MemcachedConfig: &memcachedConfig}
+	handler := Handler{MemcachedConfig: &memcachedConfig}
 
 	rr := httptest.NewRecorder()
 	router := mux.NewRouter()
-	router.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
+	router.HandleFunc("/api/connpass/{group}.{format}", handler.ConnpassHandler)
 	router.ServeHTTP(rr, req)
 
 	assert.Equal(t, http.StatusOK, rr.Code)

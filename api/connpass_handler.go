@@ -9,10 +9,10 @@ import (
 )
 
 // ConnpassHandler returns handler of /api/conpass
-func (a *Handler) ConnpassHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) ConnpassHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
-	group, err := connpass.GetGroup(a.MemcachedConfig, vars["group"], time.Now())
+	group, err := connpass.GetGroup(h.MemcachedConfig, vars["group"], time.Now())
 
 	if err != nil {
 		w.WriteHeader(errorStatusCode(err))
