@@ -15,7 +15,7 @@ type Page struct {
 	PublishDatetime string `json:"publish_datetime"`
 }
 
-// FetchGroupPageWithCache returns group page with memcache
+// FetchEventPageWithCache returns event page with memcache
 func FetchEventPageWithCache(memcachedConfig *model.MemcachedConfig, url string) (*Page, error) {
 	cache, quit := newPageCache(memcachedConfig)
 	defer quit()
