@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<!--
+
+
+   _|_|_|    _|_|    _|_|_|    _|_|_|    _|_|_|      _|_|_|    _|_|_|    _|_|_|
+ _|        _|    _|  _|    _|  _|    _|  _|    _|  _|    _|  _|_|      _|_|
+ _|        _|    _|  _|    _|  _|    _|  _|    _|  _|    _|      _|_|      _|_|
+   _|_|_|    _|_|    _|    _|  _|    _|  _|_|_|      _|_|_|  _|_|_|    _|_|_|
+                                         _|
+                                         _|
+-->
+<html lang="ja" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Event">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"fce4d6a551","agent":"","transactionName":"YFwHbUQFD0NRAk1dWlkWI0xYBxVZXw8WV1pZVxVYRRdPU18TXBpYWFsMVVNKF1lVFkoOeFhbDFVTMghVRw==","applicationID":"60638475","errorBeacon":"bam.nr-data.net","applicationTime":220}</script>
+<meta http-equiv="content-style-type" content="text/css; charset=utf-8" />
+<meta name="keywords" content="connpass,コンパス,イベント,IT勉強会,検索,開催,募集,参加,ソーシャル連携,アクセス解析,手数料無料" />
+<meta name="description" content="Let&#39;s celebrate the release of Go 1.13. We will hold this event at Mercari Tokyo Office. We&#39;re looking forward to celebrating it with you.  If you want to give a presentation, let @tenntenn or other organizers know it.  ## Connecting other venues  We have a plan to connect other venues around Jap..." />
+<title>Go 1.13 Release Party in Tokyo - connpass</title>
+
+
+
+<link type="text/css" href="https://connpass.com/static/css/connpass.css?20190814150110
+" rel="stylesheet" media="all" />
+
+<link href="https://connpass.com/static/css/exvalidation.css" type="text/css" rel="stylesheet" />
+
+  
+  
+<style>
+/*背景色*/
+body.page_group {
+  
+  background-color: #f7f7f7;
+  
+}
+/*カバー画像*/
+.group_header_area .group_cover {
+  
+  background-image: url(https://connpass.com/static/img/group/group_cover_blank.jpg);
+  
+}
+</style>
+
+
+
+
+
+
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="connpass" />
+<meta property="fb:app_id" content="259235460759625" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@connpass_jp" />
+<meta name="twitter:url" content="https://gocon.connpass.com/event/139024/?utm_campaign=twitter_card_event_139024&utm_source=twitter_card&utm_medium=twitter" />
+
+<meta property="og:title" content="Go 1.13 Release Party in Tokyo (2019/08/23 19:30〜)" />
+<meta property="og:url" content="https://gocon.connpass.com/event/139024/" />
+
+<meta property="og:image" content="https://connpass-tokyo.s3.amazonaws.com/thumbs/67/26/672605c8fbe317fa7b489bd9286e3fba.png" />
+<meta property="og:description" content="Let&#39;s celebrate the release of Go 1.13. We will hold this event at Mercari Tokyo Office. We&#39;re looking forward to celebrating it with you.  If you want to give a presentation, let @tenntenn or other organizers know it.  ## Connecting other venues  We have a plan to connect other venues around Jap..." />
+
+<meta itemprop="name" content="Go 1.13 Release Party in Tokyo" />
+<meta itemprop="description" content="Let&#39;s celebrate the release of Go 1.13. We will hold this event at Mercari Tokyo Office. We&#39;re looking forward to celebrating it with you.  If you want to give a presentation, let @tenntenn or other organizers know it.  ## Connecting other venues  We have a plan to connect other venues around Jap..." />
+
+<meta itemprop="image" content="https://connpass-tokyo.s3.amazonaws.com/event/64281/db7d2a65cd034d38b447c119b0eef69d.png" />
+
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://connpass.com/static/img/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="apple-touch-icon-precomposed" href="https://connpass.com/static/img/apple_touch_icon.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+  if (typeof console == "undefined") {window.console={log: function () {}};console.warn = console.debug = console.log;}
+</script>
+
+<script type="text/javascript">
+  function cst(cat, evt, targetUrl) {
+    if (window._gaq) {
+      _gaq.push(['_trackSocial', cat, evt, targetUrl]);
+    } else {
+      console.log("trackSocial(" + cat + ", " + evt + ", " + targetUrl + ")");
+    }
+  };
+  function cet(cat, evt, label, value, non_interaction) {
+    if (!label) {
+      label = 'None';
+    }
+    if (window._gaq) {
+      _gaq.push(['_trackEvent', cat, evt, label, value, non_interaction]);
+    } else {
+      console.log("trackEvent(" + cat + ", " + evt + ", " + label + ", " + value + ", " + non_interaction + ")");
+    }
+  };
+  function tol(link, cat, evt, label, value, non_interaction) {
+    cet(cat, evt, label, value, non_interaction);
+    if (link) {
+      var func;
+      if (link.href) {
+        func = function() {
+          document.location.href = link.href;
+        };
+      } else {
+        if (link.submit) {
+          func = function() {
+            link.submit();
+          };
+        } else {
+          if (link.form) {
+            func = function() {
+              link.form.submit();
+            };
+          }
+        }
+      }
+      if (func) {
+        setTimeout(func, 100);
+      }
+    }
+  };
+</script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26036000-1']);
+  _gaq.push(['_setDomainName', 'connpass.com']);
+  _gaq.push(['_setCustomVar', 1, 'Authenticated', 'false', 1]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+    <script type="text/javascript">
+        
+        var event_tech_tags = ["Go", "Security", "sh"];
+    </script>
+
+
+<script language="JavaScript" type="text/javascript" charset="UTF-8" src="//cdn.bigmining.com/private/media/js/connpass_bigmining.js"></script>
+
+
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script type="text/javascript">
+var path_value = location.pathname.substr(0,40);
+var parameter_value = location.search.substr(0, 40);
+var ref_value = "null";
+if (document.referrer){
+var ref_array=new Array();
+ref_array=document.referrer.split("/"); 
+ref_value = ref_array[2];}
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+
+
+
+  
+googletag.defineSlot('/21614746198/connpass_banner_middle', [[1, 1], [728, 90]], 'div-gpt-ad-1506474100733-0').addService(googletag.pubads());
+
+  
+googletag.defineSlot('/21614746198/connpass_rectangle_left', [[336, 280], [1, 1], [300, 250]], 'div-gpt-ad-1506475005574-0').addService(googletag.pubads());
+googletag.defineSlot('/21614746198/connpass_rectangle_right', [[1, 1], [300, 250], [336, 280]], 'div-gpt-ad-1506474215239-0').addService(googletag.pubads());
+
+  
+
+googletag.defineSlot('/21614746198/connpass_sidebarRectangle_topRight', [[1, 1], [300, 250], [336, 280]], 'div-gpt-ad-1506474577576-0').addService(googletag.pubads());
+
+googletag.defineSlot('/21614746198/connpass_sidebarRectangle_underRight', [[1, 1], [300, 250], [336, 280], [300, 600]], 'div-gpt-ad-1506474613770-0').addService(googletag.pubads());
+
+
+    googletag.pubads().setTargeting('URLs', path_value).setTargeting('Ref', ref_value).setTargeting('Para', parameter_value);
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+  });
+</script>
+
+</head>
+
+<body class="page_group page_edit page_event vevent" id="event_detail">
+
+<div id="wrapper" class="lang_ja">
+
+  <div id="header">
+    <div class="container clearfix">
+      <h1><a href="https://connpass.com/" title="connpass - エンジニアをつなぐIT勉強会支援プラットフォーム"><img src="https://connpass.com/static/img/common/sitelogo_266x132_bp.png" alt="connpass - エンジニアをつなぐIT勉強会支援プラットフォーム" height="66"></a></h1>
+
+      
+        <form action="https://connpass.com/search/" method="GET" id="header_event_search_form">
+          <div class="header_search">
+            <input type="text" class="form_input_text" name="q" id="id_q" value="" placeholder="イベント検索">
+            <input type="hidden" name="start_from" value="2019/08/14">
+            <input type="hidden" name="start_to" value="2020/02/14">
+            <button type="submit" class="btn btn_default btn_size_small"><img src="https://connpass.com/static/img/common/icon_search.png" alt="イベント検索"></button>
+          </div>
+        </form>
+      
+
+      
+        <div class="header_nav_contents">
+          <ul>
+          
+            <li><a href="https://connpass.com/#category_link_list">カテゴリ一覧</a></li>
+          
+            <li><a href="https://connpass.com/explore/">新着イベント</a></li>
+          </ul>
+        </div>
+        
+          
+            <div class="header_nav_login">
+              <a class="btn btn_default login" href="https://connpass.com/login/?next=https%3A//connpass.com/event/139024/">ログイン・新規登録</a>
+            </div>
+          
+        
+      
+
+
+    </div>
+  </div>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="social_btn_area clearfix">
+    <div class="container">
+      <span class="hatena">
+        
+        <a href="http://b.hatena.ne.jp/entry/gocon.connpass.com/event/139024/" class="hatena-bookmark-button" data-hatena-bookmark-title="Go 1.13 Release Party in Tokyo" data-hatena-bookmark-layout="simple-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+      </span>
+      <span class="facebook">
+        
+<fb:like href="https://gocon.connpass.com/event/139024/" send="false" layout="button_count" width="100" show_faces="false"></fb:like>
+
+
+
+
+      </span>
+      <span class="twitter">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-url="" data-text="Go 1.13 Release Party in Tokyo" data-lang="ja" data-related="connpass_jp" data-hashtags="go113party"></a>
+      </span>
+    </div>
+  </div>
+
+
+
+<div id="contents" class="container main_side_column clearfix">
+  <div id="flash_message_area" style="display: none;">
+    
+  </div>
+
+  
+  <div class="clearfix">
+    
+      
+      <div id="main">
+        
+<div class="group_box">
+  <div class="group_inner event_header_area">
+
+    <h2 class="event_title">
+      <span class="label_status_event offer">
+        
+            <p class="month">8月</p>
+            <p class="day">23</p>
+        
+      </span>
+
+      Go 1.13 Release Party in Tokyo
+      
+
+      <div class="EventBookmarkBox bookmark_area">
+        
+          
+        
+      </div>
+
+    </h2>
+    <p class="event_owner">主催 : GoCon運営</p>
+
+    
+      <a href="https://connpass-tokyo.s3.amazonaws.com/thumbs/ee/d0/eed039ea7d33480d9d7a579f6f09a981.png" target="_blank">
+        <div class="thumbnail" title="Go 1.13 Release Party in Tokyo" style="background-image:url(https://connpass-tokyo.s3.amazonaws.com/thumbs/ee/d0/eed039ea7d33480d9d7a579f6f09a981.png);"></div>
+      </a>
+    
+
+    
+      <div class="label_hashtag">
+        ハッシュタグ
+        ：<a href="https://twitter.com/search?q=%23go113party" target="_blank">#go113party</a>
+      </div>
+    
+
+  </div>
+
+  
+
+  <div class="group_inner event_ptype_area clearfix">
+    <table class="common_table th20">
+      <tbody>
+        <tr>
+          <th class="text_center">募集内容</th>
+          
+          
+          
+          <td class="participation">
+            <div class="ptypes">
+            
+            
+              <div class="ptype">
+                <p class="ptype_name">Gophers</p>
+                <p class="join_fee">
+                  
+                    無料
+                  
+                </p>
+                <p class="participants">
+                  <span class="determine">
+                    
+                    
+                      
+                      
+                        <span class="lottery">抽選（2019/08/16）</span>
+                      
+                    
+                  </span><br>
+
+                  
+                    
+                      <span class="amount"><span class="amount_over">292</span>/150</span>人
+                    
+                  
+                </p>
+              </div>
+            
+            
+            </div>
+          </td>
+          
+        </tr>
+
+  
+  
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+<div class="text_center main_content_banner">
+
+  
+  <div id='div-gpt-ad-1506474100733-0'>
+  <script>
+  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1506474100733-0'); });
+  </script>
+  </div>
+
+</div>
+
+
+
+<div class="group_box">
+  
+  <h3 class="event_detail_title"><span class="icon_gray_desc">イベントの説明</span></h3>
+  <div id="editor_area" class="group_inner clearfix">
+    <p>Let's celebrate the release of <a href="https://tip.golang.org/doc/go1.13" rel="nofollow">Go 1.13</a>. We will hold this event at Mercari Tokyo Office. We're looking forward to celebrating it with you.</p>
+<p>If you want to give a presentation, let @tenntenn or other organizers know it.</p>
+<h2>Connecting other venues</h2>
+<p>We have a plan to connect other venues around Japan.
+If you can provide a place for the release party, please contact @tenntenn :)</p>
+<ul>
+<li>Okayama: <a href="https://okayamago.connpass.com/event/139882/" rel="nofollow">https://okayamago.connpass.com/event/139882/</a></li>
+<li>Fukuoka: <a href="https://fukuokago.connpass.com/event/139929/" rel="nofollow">https://fukuokago.connpass.com/event/139929/</a></li>
+<li>Osaka: <a href="https://umedago.connpass.com/event/140197/" rel="nofollow">https://umedago.connpass.com/event/140197/</a></li>
+<li>Sendai: <a href="https://techplay.jp/event/742699" rel="nofollow">https://techplay.jp/event/742699</a></li>
+<li>Okinawa: TBD</li>
+</ul>
+<h2>Time table</h2>
+<table>
+<thead>
+<tr>
+<th align="center">Time</th>
+<th align="left">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">19:00 - 19:30</td>
+<td align="left">Open</td>
+</tr>
+<tr>
+<td align="center">19:30 - 19:40</td>
+<td align="left">What's new Go1.13? by tenntenn</td>
+</tr>
+<tr>
+<td align="center">19:40 - 20:00</td>
+<td align="left">GopherCon 2019 Report by knsh14</td>
+</tr>
+<tr>
+<td align="center">20:00 - 20:20</td>
+<td align="left">What's new sync.Pool in Go1.13 by huydx</td>
+</tr>
+<tr>
+<td align="center">20:20 - 20:30</td>
+<td align="left">Break</td>
+</tr>
+<tr>
+<td align="center">20:30 - 20:50</td>
+<td align="left">Generics in Go by linyows (Fukuoka.go)</td>
+</tr>
+<tr>
+<td align="center">20:50 - 21:00</td>
+<td align="left">testing.B.ReportMetric by ymotongpoo</td>
+</tr>
+<tr>
+<td align="center">21:00 - 21:10</td>
+<td align="left">by shibu_jp</td>
+</tr>
+<tr>
+<td align="center">21:10 - 21:40</td>
+<td align="left">After Party</td>
+</tr>
+</tbody>
+</table>
+<h2>Reception</h2>
+<p>The event reception would be located on LL floor of Roppoingi Hills Mori Tower.
+At the reception, you should get a sticker which is required to pass the security gate.
+Please prepare your reception number in advance of it.</p>
+<h2>Sponsors</h2>
+<ul>
+<li>Mercari, Inc.</li>
+</ul>
+  </div>
+  
+
+  
+</div>
+
+
+
+
+  <div class="text_center mt_20 mb_20">
+    <div class="inline mrl_10">
+    
+      
+      <div id='div-gpt-ad-1506475005574-0'>
+      <script>
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1506475005574-0'); });
+      </script>
+      </div>
+    
+    </div>
+    <div class="inline mrl_10">
+    
+      
+      <div id='div-gpt-ad-1506474215239-0'>
+      <script>
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1506474215239-0'); });
+      </script>
+      </div>
+    
+    </div>
+  </div>
+
+
+
+<div class="group_box">
+  <h3 class="event_detail_title">
+    <span class="icon_gray_doc">資料</span>
+    
+      <span class="right"><a href="https://gocon.connpass.com/event/139024/presentation/" class="btn btn_default btn_size_small">資料をもっと見る／編集する</a></span>
+    
+  </h3>
+  <div class="group_inner event_doc_area clearfix">
+    
+    <div class="no_data_area"><p>資料が投稿されると、最新の3件が表示されます。</p></div>
+    
+  </div>
+</div>
+
+<div class="group_box" id="feed">
+  <h3 class="title">フィード</h3>
+  <div class="group_inner event_feed_area eventTabContent">
+
+    
+    <div class="feed_area clearfix">
+      
+        
+
+<div class="thumb36_list">
+  
+  <span class="thumbnail">
+    
+      <a class="image_link" href="https://connpass.com/user/tenntenn/">
+        
+          <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/21/98/21985dd3c8265ab6be567d4048026340.png" width="36" height="36" title="tenntenn" alt="tenntenn" />
+        
+      </a>
+    
+  </span>
+
+  <p class="message">
+
+  <a href="https://connpass.com/user/tenntenn/">tenntenn</a> さんが <a href="https://gocon.connpass.com/event/139024/">Go 1.13 Release Party in Tokyo</a> を公開しました。
+  
+
+</p>
+  <p class="date">2019/07/10 12:01</p>
+  
+  
+  <p class="comment"><span class="icon_comment">Go 1.13 Release Party in Tokyo を公開しました！</span></p>
+  
+
+</div>
+
+
+      
+    </div>
+
+
+    
+
+  </div>
+</div>
+
+
+
+      </div>
+    
+    
+    <div id="side_area">
+      
+
+
+<div class="group_box event_group_area">
+  <h3 class="title">
+    グループ
+
+    <div class="GroupMembership group_btn_area right">
+    
+      
+      <form action="https://connpass.com/login/" method="GET">
+        <input type="hidden" name="next" value="https://connpass.com/event/139024/?gmem=1" />
+          <button class="GroupMembershipButton btn btn_size_small btn_default" onClick="cet('Series', 'unwatch');" title="このグループのメンバーになるにはログインしてください">メンバーになる</button>
+      </form>
+      
+    
+    </div>
+
+  </h3>
+
+  <div class="group_inner">
+    <p class="group_title">
+      <a href="https://gocon.connpass.com/">Go Conference</a>
+    </p>
+
+    
+    <div class="clearfix mt_5">
+      
+        <a href="https://gocon.connpass.com/" class="thumbnail image_bg" style="background-image: url(https://connpass-tokyo.s3.amazonaws.com/thumbs/f3/10/f310ab1add733b9ef78dee3ae5b1825f.png);" title="Go Conference"></a>
+      
+
+      <div class="group_date_area text_center">
+        <p>
+          イベント数
+          <a href="https://gocon.connpass.com/event/">27回</a>
+        </p>
+        <p>
+          メンバー数
+          <a href="https://gocon.connpass.com/participation/">4768人</a>
+        </p>
+      </div>
+    </div>
+
+    
+
+  </div>
+</div>
+
+
+
+<div class="group_box">
+
+  <div class="group_inner event_schedule_area text_center">
+    <div class="clearfix">
+    <span class="label_status_event offer">開催前</span>
+
+      
+      
+        <span class="dtstart">
+          <span class="value-title" title="2019-08-23T10:30:00Z"></span>
+          <p class="ymd">2019/08/23(金)</p>
+          <span class="hi">19:30</span>
+        </span>
+      
+      
+      〜
+      
+      
+        <span class="dtend">
+          <span class="value-title" title="2019-08-23T13:00:00Z"></span>
+          
+            22:00
+          
+        </span>
+    
+    
+    </div>
+    <div class="calendar_btn_area EventBookmarkBox clearfix text_center">
+      
+      
+        <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Go%201.13%20Release%20Party%20in%20Tokyo&dates=20190823T103000Z/20190823T130000Z&details=https%3A//gocon.connpass.com/event/139024/&location=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E5%85%AD%E6%9C%AC%E6%9C%A86-10-1%20%28%E5%85%AD%E6%9C%AC%E6%9C%A8%E3%83%92%E3%83%AB%E3%82%BA%E6%A3%AE%E3%82%BF%E3%83%AF%E3%83%BC18F%29&trp=false&sprop=https%3A//gocon.connpass.com/event/139024/&sprop=name:connpass" target="_blank"><span class="icon_gcal_add">Googleカレンダー</span></a>
+        <a href="https://connpass.com/event/139024.ics"><span class="icon_ics_dl">icsファイル</span></a>
+      
+      
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+<div class="group_inner event_entry_area text_center is_entry">
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+  
+
+    
+    
+      <form action="https://connpass.com/login/" method="GET">
+      
+      <input type="hidden" name="next" value="https://connpass.com/event/139024/join/" />
+        <p class="em mb_5">イベントに申し込むには<br />ログインしてください</p>
+        <button class="btn btn_high_priority btn_size_large btn_width_full" id="ParticipateButton" type="submit">ログイン・会員登録</button>
+      </form>
+    
+
+  
+
+
+  
+</div>
+
+
+
+
+
+
+
+  <div class="group_inner conflict_join_area">
+    <p>開催日時が重複しているイベントに申し込んでいる場合、このイベントには申し込むことができません</p>
+  </div>
+
+
+
+    <div class="group_inner event_entry_area">
+      <p class="text_center period">
+        募集期間<br />
+        2019/07/13(土) 09:00
+        〜<br />
+        
+          2019/08/16(金)
+        
+        17:00
+      </p>
+    </div>
+
+
+
+  <div class="group_inner event_inquiry_area">
+    
+      <h3 class="sub_title"><a href="https://connpass.com/login/?next=https%3A//connpass.com/event/139024/inquiry/"><span class="icon_gray_mail">イベントへのお問い合わせ</span></a></h3>
+    
+  </div>
+
+</div>
+
+
+
+<div class="side_sec_box side_ads_area">
+
+  
+  <div id='div-gpt-ad-1506474577576-0'>
+  <script>
+  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1506474577576-0'); });
+  </script>
+  </div>
+
+</div>
+
+
+
+<div class="group_box">
+  <div class="group_inner event_place_area">
+    <h3 class="sub_title"><span class="icon_gray_place">会場</span></h3>
+      
+        
+          <p class="place_name em"><span class="fn org">株式会社メルカリ</span></p>
+        
+        
+        <p class="adr">
+          <span class="value-title" title="東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)"></span>
+          東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)
+        </p>
+        <span class="geo">
+          <span class="latitude"><span class="value-title" title="35.660448000000"></span></span>
+          <span class="longitude"><span class="value-title" title="139.729233400000"></span></span>
+        </span>
+        
+      
+
+    <div class="map_image mt_5">
+    
+      <iframe width="288" height="288" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E5%85%AD%E6%9C%AC%E6%9C%A86-10-1+%28%E5%85%AD%E6%9C%AC%E6%9C%A8%E3%83%92%E3%83%AB%E3%82%BA%E6%A3%AE%E3%82%BF%E3%83%AF%E3%83%BC18F%29&amp;key=AIzaSyC5g64WfjB0_6RNKTf_WT_m_tJNQYUrd68" allowfullscreen></iframe>
+    
+    </div>
+
+  </div>
+</div>
+
+<div class="group_box">
+  <h3 class="title">管理者</h3>
+  <div class="group_inner event_owner_area">
+    <ul class="owner_list clearfix">
+      
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/Songmu/open/" title="Songmu"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/de/21/de214c16e285b6c9b05d5b45534c63ea.png" width="23" height="23" title="Songmu" alt="Songmu" />Songmu</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/deeeet/open/" title="deeeet"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/ba/ed/baed6647ffe457ec1ab1ce70c074c5ea.png" width="23" height="23" title="deeeet" alt="deeeet" />deeeet</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/ymotongpoo/open/" title="ymotongpoo"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/31/e1/31e128eb99f720d759107178c0cff78c.png" width="23" height="23" title="ymotongpoo" alt="ymotongpoo" />ymotongpoo</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/tenntenn/open/" title="tenntenn"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/23/23/2323a9b892030a8f61c0f86e3b1a236a.png" width="23" height="23" title="tenntenn" alt="tenntenn" />tenntenn</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/shibu_jp/open/" title="shibu_jp"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/b2/b4/b2b4b22a6e293aab9513f7fdb862a015.png" width="23" height="23" title="shibu_jp" alt="shibu_jp" />shibu_jp</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/sinmetal/open/" title="sinmetal"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/84/81/84811463a965c6ebfe04e463b5162fc7.png" width="23" height="23" title="sinmetal" alt="sinmetal" />sinmetal</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/budougumi0617/open/" title="budougumi0617"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/01/0c/010cbe18285eec62b01a75d6d969d27a.png" width="23" height="23" title="budougumi0617" alt="budougumi0617" />budougumi0617</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/momotomo/open/" title="mom0tomo"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/5f/8b/5f8b24e7df4c4b2016809e89437dea8a.png" width="23" height="23" title="mom0tomo" alt="mom0tomo" />mom0tomo</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/CodeHex/open/" title="CodeHex"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/9c/aa/9caa7b645c32c6fea1700cd103686cea.png" width="23" height="23" title="CodeHex" alt="CodeHex" />CodeHex</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/mi-shirakawa/open/" title="micchie"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/16/66/16669aefdc0af3b13f4672611ed25031.png" width="23" height="23" title="micchie" alt="micchie" />micchie</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/knsh14/open/" title="knsh14"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/db/cf/dbcf175b65694c3476b3844edcac5bcf.png" width="23" height="23" title="knsh14" alt="knsh14" />knsh14</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/monochromegane/open/" title="モノクロメガネ研究員"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/17/d3/17d33649544d3ffa90d8fb91a3f96de5.png" width="23" height="23" title="モノクロメガネ研究員" alt="モノクロメガネ研究員" />モノクロメガネ研究員</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/linyows/open/" title="linyows"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/77/b3/77b3c2faa061ac713ea88f5fa4e6f8ac.png" width="23" height="23" title="linyows" alt="linyows" />linyows</a>
+      </li>
+      
+      <li>
+        <a class="image_link" href="https://connpass.com/user/morikuni/open/" title="morikuni"><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/0a/77/0a77cb682d6f65b7019b5182647acc12.png" width="23" height="23" title="morikuni" alt="morikuni" />morikuni</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="group_box participants_area">
+  <h4 class="event_detail_title corner_top_6">
+    <a href="https://gocon.connpass.com/event/139024/participation/#lottery">抽選中（292人）</a>
+  </h4>
+  <div class="group_inner event_p_area">
+
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/dkthemonkey/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/e4/28/e42881385ac717e4077335c43c1391fb.png" alt="dk" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/dkthemonkey/">dk</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/ShotaSawada/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/49/28/4928808ee24660bd1c5cf743296f526c.png" alt="ShotaSawada" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/ShotaSawada/">ShotaSawada</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/jkaplan/">
+          
+            <img src="https://connpass.com/static/img/common/user_no_image.gif" width="23" height="23" alt="jkaplan" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/jkaplan/">jkaplan</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/kazyshr/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/9f/f3/9ff3c52292e5f0f5c4612f55aad4069d.png" alt="kazyshr" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/kazyshr/">kazyshr</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyo に参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/ishibashi_futoshi/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/ab/2d/ab2df5da32e8efdd064daf7f69424a4f.png" alt="futoshi ishibashi" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/ishibashi_futoshi/">futoshi ishibashi</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/sobueda/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/ec/6b/ec6b255bd1a0665a95a1d73ce384bb77.png" alt="sobueda" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/sobueda/">sobueda</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/KoichiroKuwahara/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/fd/bf/fdbf0bcc9e9c25e6576ae409e42086bb.png" alt="KoichiroKuwahara" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/KoichiroKuwahara/">KoichiroKuwahara</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/ponde_m/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/94/5d/945d0a09972e8d25729e6e8bf5150d08.png" alt="ponde_m" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/ponde_m/">ponde_m</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyo に参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/kuroko1t/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/59/75/5975b9cf27dcbaf70537f0d1aba7f292.png" alt="kuroko" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/kuroko1t/">kuroko</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <div class="thumb25_list">
+      
+        <a class="thumbnail image_link" href="https://connpass.com/user/OKAKI_SE/">
+          
+            <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/26/76/26768eb7f8ab857d3cc1c7055ec41398.png" alt="OKAKI_SE" width="23" height="23" />
+          
+        </a>
+      
+
+      <p class="name">
+      
+        <a href="https://connpass.com/user/OKAKI_SE/">OKAKI_SE</a>
+      
+      </p>
+      <p class="comment">Go 1.13 Release Party in Tokyoに参加を申し込みました！</p>
+    </div>
+    
+    <p class="p text_right">
+      <a href="https://gocon.connpass.com/event/139024/participation/#lottery"><span class="icon_red_four_right"></span>抽選中一覧（292人）</a>
+    </p>
+  </div>
+</div>
+
+
+
+<div class="group_box participants_area">
+  
+    <h4 class="event_detail_title corner_top_6">
+      
+        <a href="https://gocon.connpass.com/event/139024/participation/#participants">参加者（0人）</a>
+      
+    </h4>
+    <div class="group_inner event_p_area">
+
+    
+    <p class="p">まだ参加者はいません。</p>
+    
+    <p class="p text_right">
+      
+        <a href="https://gocon.connpass.com/event/139024/participation/#participants"><span class="icon_red_four_right"></span>参加者一覧（0人）</a>
+      
+    </p>
+  </div>
+  
+
+
+  
+
+  
+    <h4 class="event_detail_title">
+      
+        <a href="https://gocon.connpass.com/event/139024/participation/#cancelled">キャンセルした人（24人）</a>
+      
+    </h4>
+    <div class="group_inner event_p_area">
+    <ul class="clearfix thumb24_block">
+      
+      <li>
+        
+          <a class="image_link" href="https://connpass.com/user/masashi_tomi/">
+            
+              <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/13/03/13030987f9a8b2108316c912a0c6f123.png" alt="Tommy" width="24" height="24">
+            </a>
+        
+      </li>
+      
+      <li>
+        
+          <a class="image_link" href="https://connpass.com/user/ShotaroHirota/">
+            
+              <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/a4/3c/a43cbe3204d23f0a1f023f3ae5f77dd2.png" alt="shotanue" width="24" height="24">
+            </a>
+        
+      </li>
+      
+      <li>
+        
+          <a class="image_link" href="https://connpass.com/user/mogamin/">
+            
+              <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/1c/fe/1cfecd880d77b06ea81b9ea0e19ffe20.png" alt="mogamin" width="24" height="24">
+            </a>
+        
+      </li>
+      
+      <li>
+        
+          <a class="image_link" href="https://connpass.com/user/hidenori_tanaka_773/">
+            
+              <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/e2/77/e2773b244814ae3a1acb91b6065dc6d7.png" alt="hidenori_tanaka_773" width="24" height="24">
+            </a>
+        
+      </li>
+      
+      <li>
+        
+          <a class="image_link" href="https://connpass.com/user/AkiraHirouchi/">
+            
+              <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/83/1c/831ca02cce9ce2fad136115b80fa1dd0.png" alt="AkiraHirouchi" width="24" height="24">
+            </a>
+        
+      </li>
+      
+    </ul>
+    
+    <p class="p text_right">
+      
+        <a href="https://gocon.connpass.com/event/139024/participation/#cancelled"><span class="icon_red_four_right"></span>もっと見る（24人）</a>
+      
+    </p>
+    
+  </div>
+  
+</div>
+
+
+
+<div class="side_sec_box side_ads_area">
+
+  
+  <div id='div-gpt-ad-1506474613770-0'>
+  <script>
+  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1506474613770-0'); });
+  </script>
+  </div>
+
+</div>
+
+
+
+<div id="CurrentEventObj" style="display:none;"></div>
+
+
+
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+  <div id="footer">
+    <div class="footer_link_area clearfix">
+      <div class="layout_column_4 footer_site">
+        <div class="mb_5"><a href="https://connpass.com/" title="サイトのトップページへ"><img src="https://connpass.com/static/img/common/sitelogo_295x100.png" alt="connpass" class="connpass">エンジニアをつなぐ<br>IT勉強会支援プラットフォーム</a></div>
+        <div class="mb_5">
+        
+        <a href="https://itunes.apple.com/jp/app/connpass/id723317753?mt=8" target="_blank" style="display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/ja-jp/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;" onClick="cet('Marketing', 'iphone_app_banner', 'footer_banner', undefined, true);"></a>
+        
+        </div>
+        <a href="http://twitter.com/connpass_jp" target="_blank" class="mr_5"><img src="https://connpass.com/static/img/common/icon_twitter_official.png" alt="Twitter公式アカウント"></a>
+        <a href="http://www.facebook.com/connpass" target="_blank"><img src="https://connpass.com/static/img/common/icon_facebook_official.png" alt="Facebookページ"></a>
+
+      </div>
+      <div class="layout_column_4 footer_help">
+        <ul class="cmn_list">
+          <li><a href="http://help.connpass.com/" target="_blank" title="connpassのヘルプ">ご利用ガイド</a></li>
+          <li><a href="http://help.connpass.com/faq/" target="_blank">よくある質問</a></li>
+          
+          <li><a href="https://connpass.com/term/">利用規約</a></li>
+          <li><a href="https://www.beproud.jp/company/" target="_blank">運営会社</a></li>
+          <li><a href="https://connpass.com/about/api/">API</a></li>
+          <li><a href="https://connpass.com/law/">特定商取引法に基づく表示</a></li>
+          <li><a href="https://connpass.com/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+      <div class="layout_column_4 footer_sns">
+      <ul class="cmn_list">
+        <li class="li_icon_hint"><a href="https://connpass.com/about/" title="connpassの機能をタイムライン風に紹介">機能紹介</a></li>
+        <li class="li_icon_hint"><a href="https://connpass.com/about/comparison/" title="connpassと他イベントサイトとの機能比較">他サービスとの比較</a></li>
+        <li class="li_icon"><a href="https://connpass.com/explore/">新着イベント</a></li>
+        <li class="li_icon_feed"><a href="https://connpass.com/explore/ja.atom" target="_blank">新着イベントfeed</a></li>
+
+      </ul>
+      </div>
+      <div class="layout_column_4 footer_feedback">
+      
+
+<div class="event_feedback_area">
+  
+    
+    
+    <p>イベントへの問い合わせは<a href="https://connpass.com/login/?next=https%3A//connpass.com/event/139024/inquiry/">こちら</a>をご利用ください</p>
+  
+</div>
+
+
+      </div>
+    </div>
+    <div class="footer_link_area clearfix">
+      <div class="footer_beproud"><a href="https://www.beproud.jp/company/" target="_blank"><img src="https://connpass.com/static/img/common/logo_beproud.png" alt="BePROUD" title="BePROUD" />connpass は株式会社ビープラウドが開発・運営しています</a></div>
+      <address>&copy; 2019 BeProud, Inc. All Rights Reserved.</address>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+<script id="EventCreateTemplate" type="text/html">
+  <div class="popup">
+    <div class="popup_wrapper">
+      <div class="popup_header">
+        <h2 class="popup_title">イベントを作成する</h2>
+        <span class="close_btn_area">
+          <span class="btn btn_default btn_size_small corner_none modal-close" title="閉じる"><span class="icon_black_close"></span></span>
+        </span>
+      </div>
+      <div class="popup_contents text_center">
+        <p class="font_16 mb_10"><strong>イベント名を入力してください</strong></p>
+        <input name="title" type="text" class="form_input_text form_width_450 font_18">
+
+        <div class="mt_10 mb_30">
+          <button type="submit" class="EventCreateSubmit btn btn_action btn_size_large" onClick="cet('Create', 'create_event');">イベントを作成</button>
+        </div>
+        <div class="right">
+          <a href="https://connpass.com/group/new/"><span class="icon_red_four_right"></span>グループを作成</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="MessageTemplate" type="text/html">
+  <p class="message <%= level %>"><%- message %></p>
+</script>
+
+
+<div id="fb-root"></div>
+
+
+
+
+
+
+<div id="CurrentUserObj" style="display:none;" ></div>
+<div id="CSRFToken" style="display:none;" data-csrftoken="VGM56tzre4fOpUg3g6DTmCcHWa2MokFEf8TBMkX2rKENkR0tVIjjW82UM0ICka6g"></div>
+
+
+<script type="text/javascript" src="//d-cache.microad.jp/js/td_cnp_access.js"></script>
+<script type="text/javascript">
+  microadTd.CNP.start({"article_keyword": ["Go", "Security", "sh"]})
+</script>
+
+
+<script type="text/javascript" src="https://connpass.com/static/js/require.js?20190814150110
+"></script>
+<script type="text/javascript" src="https://connpass.com/static/js/connpass.min.js?20190814150110
+"></script>
+<script type="text/javascript">
+require.config({
+  
+  baseUrl: 'https://connpass.com/static/js/',
+  locale: 'ja',
+
+  config: {
+    'csrf': {
+      CSRF_COOKIE_NAME: 'connpass-csrftoken'
+    },
+    'sanca': {
+      
+      LOG_LEVEL: "WARNING",
+      HTTP_HOST: 'connpass.com',
+      STATIC_URL: 'https://connpass.com/static/',
+      MEDIA_URL: 'https://connpass.com/media/',
+      API_BASE_URL: 'https://gocon.connpass.com/api'
+    }
+  }
+});
+</script>
+
+
+<script type="text/javascript">
+  require([
+    'jquery', 'jquerytools/tooltip.dynamic',
+    'jquerytools/tooltip.slide', 'design'
+  ], function($, Views) {
+    $(function() {
+      $('.Help').tooltip({
+        effect: 'slide',
+        position: 'bottom center',
+        offset: [20, 0],
+      }).dynamic({
+        bottom: {
+          direction: 'down',
+          bounce: true
+        }
+      });
+    });
+  });
+
+  require(['jquery', 'cs!sanca/views/personal_menu'], function($, Views) {
+    var personal_menu = new Views.PersonalMenu({
+      el: '#header',
+      dropdown_el: '#personalMenu'
+    });
+  });
+
+  require(['jquery', 'cs!sanca/views/feedback'], function($, Views) {
+    var feedbackform = new Views.FeedbackView({
+      el: '#FeedbackForm'
+    });
+  });
+
+</script>
+<script type="text/javascript">
+  window.fbAsyncInit = function() {
+    FB.init({
+      version: 'v2.8',
+      status: true,
+      appId: '259235460759625',
+      xfbml: true  // Like btn
+    });
+    FB.Event.subscribe('edge.create', function(targetUrl) {
+      typeof cst === "function" && cst('facebook', 'like', targetUrl);
+    });
+    FB.Event.subscribe('edge.remove', function(targetUrl) {
+      typeof cst === "function" && cst('facebook', 'unlike', targetUrl);
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/ja_JP/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script type="text/javascript">
+require([
+    'jquery', 'underscore', 'cs!sanca/models/event', 'cs!sanca/views/event_detail', 'cs!sanca/models/group',
+], function($, _, Models, Views) {
+  $(function() {
+    
+    $.post('https://gocon.connpass.com/stats/track/?url=https%3A//gocon.connpass.com/event/139024/&profile=event/139024&referrer=' + encodeURI(document.referrer));
+
+    var detail_view = new Views.EventDetailView({
+      
+      el: '#event_detail',
+      model: new Models.Event({"event_type": "participation", "cancelled_count": 24, "series": 312, "image": "https://connpass-tokyo.s3.amazonaws.com/thumbs/e3/cf/e3cf19816f07c230684ad55d5c16bc44.png", "receipt_issuer_address": "", "lottery_publish_notification_sent": false, "lottery_publish_date": "2019-08-16", "open_end_datetime": "2019-08-16T17:00:00", "paypal_email": "", "id": 139024, "issue_ticket": true, "title": "Go 1.13 Release Party in Tokyo", "presenter_title": "", "sub_title": "", "allow_receipt": false, "cancel_policy": "", "allow_conflict_join": false, "waitlist_count": 0, "publish_datetime": "2019-07-10T12:01:10", "status": "live", "start_datetime": "2019-08-23T19:30:00", "contact_details": "", "description": "\u003cp\u003eLet's celebrate the release of \u003ca href=\"https://tip.golang.org/doc/go1.13\" rel=\"nofollow\"\u003eGo 1.13\u003c/a\u003e. We will hold this event at Mercari Tokyo Office. We're looking forward to celebrating it with you.\u003c/p\u003e\n\u003cp\u003eIf you want to give a presentation, let @tenntenn or other organizers know it.\u003c/p\u003e\n\u003ch2\u003eConnecting other venues\u003c/h2\u003e\n\u003cp\u003eWe have a plan to connect other venues around Japan.\nIf you can provide a place for the release party, please contact @tenntenn :)\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eOkayama: \u003ca href=\"https://okayamago.connpass.com/event/139882/\" rel=\"nofollow\"\u003ehttps://okayamago.connpass.com/event/139882/\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eFukuoka: \u003ca href=\"https://fukuokago.connpass.com/event/139929/\" rel=\"nofollow\"\u003ehttps://fukuokago.connpass.com/event/139929/\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eOsaka: \u003ca href=\"https://umedago.connpass.com/event/140197/\" rel=\"nofollow\"\u003ehttps://umedago.connpass.com/event/140197/\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eSendai: \u003ca href=\"https://techplay.jp/event/742699\" rel=\"nofollow\"\u003ehttps://techplay.jp/event/742699\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eOkinawa: TBD\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eTime table\u003c/h2\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth align=\"center\"\u003eTime\u003c/th\u003e\n\u003cth align=\"left\"\u003eContent\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e19:00 - 19:30\u003c/td\u003e\n\u003ctd align=\"left\"\u003eOpen\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e19:30 - 19:40\u003c/td\u003e\n\u003ctd align=\"left\"\u003eWhat's new Go1.13? by tenntenn\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e19:40 - 20:00\u003c/td\u003e\n\u003ctd align=\"left\"\u003eGopherCon 2019 Report by knsh14\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e20:00 - 20:20\u003c/td\u003e\n\u003ctd align=\"left\"\u003eWhat's new sync.Pool in Go1.13 by huydx\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e20:20 - 20:30\u003c/td\u003e\n\u003ctd align=\"left\"\u003eBreak\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e20:30 - 20:50\u003c/td\u003e\n\u003ctd align=\"left\"\u003eGenerics in Go by linyows (Fukuoka.go)\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e20:50 - 21:00\u003c/td\u003e\n\u003ctd align=\"left\"\u003etesting.B.ReportMetric by ymotongpoo\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e21:00 - 21:10\u003c/td\u003e\n\u003ctd align=\"left\"\u003eby shibu_jp\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd align=\"center\"\u003e21:10 - 21:40\u003c/td\u003e\n\u003ctd align=\"left\"\u003eAfter Party\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003ch2\u003eReception\u003c/h2\u003e\n\u003cp\u003eThe event reception would be located on LL floor of Roppoingi Hills Mori Tower.\nAt the reception, you should get a sticker which is required to pass the security gate.\nPlease prepare your reception number in advance of it.\u003c/p\u003e\n\u003ch2\u003eSponsors\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eMercari, Inc.\u003c/li\u003e\n\u003c/ul\u003e", "public_url": "https://gocon.connpass.com/event/139024/", "participants_count": 0, "hashtag": "go113party", "open_start_datetime": "2019-07-13T09:00:00", "participation_types": [{"total_participants_count": 292, "place_fee": 0, "cancelled_count": 24, "lottery_count": 292, "method": "lottery", "participants_count": 0, "join_fee": null, "max_participants": 150, "waitlist_count": 0, "id": 197173, "name": "Gophers"}], "owner_text": "GoCon\u904b\u55b6", "place": {"name": "\u682a\u5f0f\u4f1a\u793e\u30e1\u30eb\u30ab\u30ea", "url": "", "address": "\u6771\u4eac\u90fd\u6e2f\u533a\u516d\u672c\u67286-10-1 (\u516d\u672c\u6728\u30d2\u30eb\u30ba\u68ee\u30bf\u30ef\u30fc18F)", "lat": "35.660448000000", "map_image": "https://www.google.com/maps/embed/v1/place?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E5%85%AD%E6%9C%AC%E6%9C%A86-10-1+%28%E5%85%AD%E6%9C%AC%E6%9C%A8%E3%83%92%E3%83%AB%E3%82%BA%E6%A3%AE%E3%82%BF%E3%83%AF%E3%83%BC18F%29\u0026key=AIzaSyC5g64WfjB0_6RNKTf_WT_m_tJNQYUrd68", "lng": "139.729233400000", "id": 13944}, "end_datetime": "2019-08-23T22:00:00", "max_num": null, "description_input": "Let's celebrate the release of [Go 1.13](https://tip.golang.org/doc/go1.13). We will hold this event at Mercari Tokyo Office. We're looking forward to celebrating it with you.\r\n\r\nIf you want to give a presentation, let @tenntenn or other organizers know it.\r\n\r\n## Connecting other venues\r\n\r\nWe have a plan to connect other venues around Japan.\r\nIf you can provide a place for the release party, please contact @tenntenn :)\r\n\r\n* Okayama: https://okayamago.connpass.com/event/139882/\r\n* Fukuoka: https://fukuokago.connpass.com/event/139929/\r\n* Osaka: https://umedago.connpass.com/event/140197/\r\n* Sendai: https://techplay.jp/event/742699\r\n* Okinawa: TBD\r\n\r\n## Time table\r\n\r\n| Time | Content |\r\n|:--------------:|:------------|\r\n| 19:00 - 19:30 | Open |\r\n| 19:30 - 19:40 | What's new Go1.13? by tenntenn |\r\n| 19:40 - 20:00 | GopherCon 2019 Report by knsh14 |\r\n| 20:00 - 20:20 | What's new sync.Pool in Go1.13 by huydx |\r\n| 20:20 - 20:30 | Break |\r\n| 20:30 - 20:50 | Generics in Go by linyows (Fukuoka.go) |\r\n| 20:50 - 21:00 | testing.B.ReportMetric by ymotongpoo |\r\n| 21:00 - 21:10 | by shibu_jp |\r\n| 21:10 - 21:40 | After Party |\r\n\r\n## Reception\r\n\r\nThe event reception would be located on LL floor of Roppoingi Hills Mori Tower.\r\nAt the reception, you should get a sticker which is required to pass the security gate.\r\nPlease prepare your reception number in advance of it.\r\n\r\n\r\n## Sponsors\r\n\r\n* Mercari, Inc.", "receipt_issuer_name": ""}, {parse: true})
+    });
+    
+    
+
+    $('.RemoveGroupMembershipButton').hover(function() {
+        $(this).text('　退会する　');
+    }, function() {
+        $(this).text('メンバーです');
+    });
+
+  });
+});
+</script>
+
+
+  <script id="CancelTemplate" type="text/html">
+    
+    
+
+<div class="popup">
+  <div class="popup_wrapper">
+    <div class="popup_header">
+      <h2 class="popup_h2">申し込みをキャンセルする</h2>
+      <p class="btn_close"><span class="btn btn_default btn_size_small modal-close"><span class="icon_close">閉じる</span></span></p>
+    </div>
+    <div class="popup_contents">
+      <h3 class="main_h3">コメント</h3>
+      <div id="add_entry_comment" class="add_area">
+        <p class="p note">※全員に公開されます。</p>
+        <p class="text_center"><input class="form_input_big" id="CancelComment" type="text" /></p>
+      </div>
+      <div class="btn_area"><button id="CancelSubmit" class="btn btn_action btn_size_large">キャンセルを確定する</button></div>
+    </div>
+  </div>
+</div>
+
+
+    
+  </script>
+
+
+<script type="text/javascript">
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+  return t;
+}(document, "script", "twitter-wjs"));
+
+twttr.ready(function (twttr) {
+    twttr.events.bind("tweet", function (event) {
+       if (event && typeof cst === "function") {
+         cst('twitter', 'tweet');
+       }
+    });
+});
+</script>
+
+
+<script src='https://www.google.com/recaptcha/api.js?render=6LfmFnoUAAAAABdVlQNqZkIyKWKRv1NkLfDx7-JY'></script>
+
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LfmFnoUAAAAABdVlQNqZkIyKWKRv1NkLfDx7-JY', {action: 'event_detail'}).then(function(token) {
+    document.querySelectorAll('input.django-recaptcha-hidden-field').forEach(function (value) {
+        value.value = token;
+    });
+    return token;
+})
+    });
+</script>
+
+</body>
+</html>
