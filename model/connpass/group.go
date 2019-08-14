@@ -3,8 +3,14 @@ package connpass
 import (
 	"github.com/hkurokawa/go-connpass"
 	"github.com/sue445/condo3/model"
+	"github.com/sue445/condo3/model/connpass/eventpage"
 	"github.com/sue445/condo3/model/connpass/grouppage"
+	"golang.org/x/sync/errgroup"
 	"time"
+)
+
+const (
+	publishDateFormat = "2006-01-02T15:04:05"
 )
 
 // GetGroup returns group detail
@@ -18,6 +24,33 @@ func GetGroup(memcachedConfig *model.MemcachedConfig, groupName string, currentT
 	events, err := getEvents(page.SeriesID, currentTime)
 
 	if err != nil {
+		return nil, err
+	}
+
+	var eg errgroup.Group
+
+	for i := range events {
+		// NOTE: https://golang.org/doc/faq#closures_and_goroutines
+		i := i
+
+		eg.Go(func() error {
+			page, err := eventpage.FetchEventPageWithCache(memcachedConfig, events[i].URL)
+			if err != nil {
+				return err
+			}
+
+			t, err := time.ParseInLocation(publishDateFormat, page.PublishDatetime, model.JST)
+			if err != nil {
+				return err
+			}
+
+			events[i].PublishedAt = &t
+
+			return nil
+		})
+	}
+
+	if err := eg.Wait(); err != nil {
 		return nil, err
 	}
 

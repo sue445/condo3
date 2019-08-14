@@ -26,6 +26,14 @@ func TestGetGroup(t *testing.T) {
 	httpmock.RegisterResponder("GET", "https://connpass.com/api/v1/event/?count=100&order=3&series_id=312&ym=201902%2C201903%2C201904%2C201905%2C201906%2C201907%2C201908%2C201909%2C201910%2C201911%2C201912%2C202001%2C202002",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/gocon.json")))
 
+	// FIXME: race condition error when same responder is called in goroutine
+	//httpmock.RegisterResponder("GET", `=~^https://gocon\.connpass\.com/event/`,
+	//	httpmock.NewStringResponder(200, testutil.ReadTestData("eventpage/testdata/gocon_139024.html")))
+	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/event/139024/",
+		httpmock.NewStringResponder(200, testutil.ReadTestData("eventpage/testdata/gocon_139024.html")))
+	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/event/124530/",
+		httpmock.NewStringResponder(200, testutil.ReadTestData("eventpage/testdata/gocon_124530.html")))
+
 	memcachedConfig := model.MemcachedConfig{Server: os.Getenv("MEMCACHED_SERVER")}
 
 	type args struct {
@@ -48,14 +56,15 @@ func TestGetGroup(t *testing.T) {
 				currentTime: currentTime,
 			},
 			wantEventFirst: model.Event{
-				Title:     "Go 1.13 Release Party in Tokyo",
-				URL:       "https://gocon.connpass.com/event/139024/",
-				Address:   "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
-				UpdatedAt: tp(time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST)),
-				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, model.JST)),
-				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, model.JST)),
+				Title:       "Go 1.13 Release Party in Tokyo",
+				URL:         "https://gocon.connpass.com/event/139024/",
+				Address:     "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
+				UpdatedAt:   tp(time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST)),
+				PublishedAt: tp(time.Date(2019, 7, 10, 12, 01, 10, 0, model.JST)),
+				StartedAt:   tp(time.Date(2019, 8, 23, 19, 30, 0, 0, model.JST)),
+				EndedAt:     tp(time.Date(2019, 8, 23, 22, 0, 0, 0, model.JST)),
 			},
-			wantEventCount: 27,
+			wantEventCount: 2,
 			wantURL:        "https://gocon.connpass.com/",
 			wantTitle:      "Go Conference - connpass",
 			wantUpdatedAt:  tp(time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST)),

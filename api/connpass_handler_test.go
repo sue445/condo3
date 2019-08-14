@@ -21,6 +21,14 @@ func TestConpassHandler(t *testing.T) {
 	httpmock.RegisterResponder("GET", `=~^https://connpass\.com/api/v1/event/`,
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/testdata/gocon.json")))
 
+	// FIXME: race condition error when same responder is called in goroutine
+	//httpmock.RegisterResponder("GET", `=~^https://gocon\.connpass\.com/event/`,
+	//	httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/eventpage/testdata/gocon_139024.html")))
+	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/event/139024/",
+		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/eventpage/testdata/gocon_139024.html")))
+	httpmock.RegisterResponder("GET", "https://gocon.connpass.com/event/124530/",
+		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/connpass/eventpage/testdata/gocon_124530.html")))
+
 	req, err := http.NewRequest("GET", "/api/connpass/gocon.ics", nil)
 	assert.NoError(t, err)
 
