@@ -1,0 +1,14 @@
+{
+  "title": "test1",
+  "url": "https://sue445.github.io/condo3-sandbox/data/test1.json",
+  "updated_at": "2019-08-14T16:00:00+09:00",
+  "events": [
+    {
+      "title": "test1 event1",
+      "url": "https://sue445.github.io/condo3-sandbox/data/test1.json",
+      "address": "東京都",
+      "updated_at": "2019-08-14T16:00:00+09:00",
+      "published_at": "2019-08-14T16:00:00+09:00"
+    }
+  ]
+}
