@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	keyPrefix = "connpass.pageCache-v1-"
+	keyPrefix = "connpass.grouppage.pageCache-v1-"
 )
 
 // pageCache represents page cache
