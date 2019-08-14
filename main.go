@@ -52,6 +52,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
 	r.HandleFunc("/api/doorkeeper/{group}.{format}", a.DoorkeeperHandler)
+	r.HandleFunc("/api/sandbox/{group}.{format}", a.SandboxHandler)
 	r.HandleFunc("/", indexHandler)
 	http.Handle("/", r)
 
