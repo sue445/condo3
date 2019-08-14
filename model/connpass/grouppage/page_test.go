@@ -1,4 +1,4 @@
-package connpass
+package grouppage
 
 import (
 	"github.com/jarcoal/httpmock"
@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func Test_FetchGroupPage(t *testing.T) {
+func Test_fetchGroupPage(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
@@ -70,7 +70,7 @@ func Test_FetchGroupPage(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := FetchGroupPage(tt.args.groupName)
+			got, err := fetchGroupPage(tt.args.groupName)
 
 			if tt.wantErr {
 				assert.Error(t, err)

@@ -1,4 +1,4 @@
-package connpass
+package grouppage
 
 import (
 	"errors"
@@ -21,36 +21,36 @@ type Page struct {
 
 // FetchGroupPageWithCache returns group page with memcache
 func FetchGroupPageWithCache(memcachedConfig *model.MemcachedConfig, groupName string) (*Page, error) {
-	cache, quit := NewPageCache(memcachedConfig)
+	cache, quit := newPageCache(memcachedConfig)
 	defer quit()
 
-	cached, err := cache.Get(groupName)
+	cached, err := cache.get(groupName)
 
 	if err != nil {
-		log.Printf("[WARN] cache.Get is failed: groupName=%s, err=%+v\n", groupName, err)
+		log.Printf("[WARN] cache.get is failed: groupName=%s, err=%+v\n", groupName, err)
 	}
 
 	if cached != nil {
 		return cached, nil
 	}
 
-	page, err := FetchGroupPage(groupName)
+	page, err := fetchGroupPage(groupName)
 
 	if err != nil {
 		return nil, err
 	}
 
-	err = cache.Set(groupName, page)
+	err = cache.set(groupName, page)
 
 	if err != nil {
-		log.Printf("[WARN] cache.Set is failed: groupName=%s, err=%+v\n", groupName, err)
+		log.Printf("[WARN] cache.set is failed: groupName=%s, err=%+v\n", groupName, err)
 	}
 
 	return page, nil
 }
 
-// FetchGroupPage fetch connpass group page
-func FetchGroupPage(groupName string) (*Page, error) {
+// fetchGroupPage fetch connpass group page
+func fetchGroupPage(groupName string) (*Page, error) {
 	url := fmt.Sprintf("https://%s.connpass.com/", groupName)
 
 	resp, err := http.Get(url)
