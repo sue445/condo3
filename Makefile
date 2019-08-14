@@ -29,3 +29,6 @@ lint:
 .PHONY: vet
 vet:
 	go vet ./...
+
+.PHONY: test_all
+test_all: test testrace fmt lint vet
