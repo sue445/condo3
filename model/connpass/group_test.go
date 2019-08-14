@@ -55,7 +55,7 @@ func TestGetGroup(t *testing.T) {
 				StartedAt: tp(time.Date(2019, 8, 23, 19, 30, 0, 0, model.JST)),
 				EndedAt:   tp(time.Date(2019, 8, 23, 22, 0, 0, 0, model.JST)),
 			},
-			wantEventCount: 27,
+			wantEventCount: 2,
 			wantURL:        "https://gocon.connpass.com/",
 			wantTitle:      "Go Conference - connpass",
 			wantUpdatedAt:  tp(time.Date(2019, 7, 25, 22, 24, 0, 0, model.JST)),
