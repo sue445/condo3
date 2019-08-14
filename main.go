@@ -40,7 +40,7 @@ func main() {
 		panic(err)
 	}
 
-	a := api.Handler{
+	handler := api.Handler{
 		DoorkeeperAccessToken: doorkeeperAccessToken,
 		MemcachedConfig: &model.MemcachedConfig{
 			Server:   memcachedServer,
@@ -50,9 +50,9 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.HandleFunc("/api/connpass/{group}.{format}", a.ConnpassHandler)
-	r.HandleFunc("/api/doorkeeper/{group}.{format}", a.DoorkeeperHandler)
-	r.HandleFunc("/api/sandbox/{group}.{format}", a.SandboxHandler)
+	r.HandleFunc("/api/connpass/{group}.{format}", handler.ConnpassHandler)
+	r.HandleFunc("/api/doorkeeper/{group}.{format}", handler.DoorkeeperHandler)
+	r.HandleFunc("/api/sandbox/{group}.{format}", handler.SandboxHandler)
 	r.HandleFunc("/", indexHandler)
 	http.Handle("/", r)
 

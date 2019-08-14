@@ -9,10 +9,10 @@ import (
 )
 
 // DoorkeeperHandler returns handler of /api/doorkeeper
-func (a *Handler) DoorkeeperHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) DoorkeeperHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
-	group, err := doorkeeper.GetGroup(a.DoorkeeperAccessToken, vars["group"], time.Now())
+	group, err := doorkeeper.GetGroup(h.DoorkeeperAccessToken, vars["group"], time.Now())
 
 	if err != nil {
 		w.WriteHeader(errorStatusCode(err))

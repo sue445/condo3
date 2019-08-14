@@ -8,7 +8,7 @@ import (
 )
 
 // SandboxHandler returns handler of /api/sandbox
-func (a *Handler) SandboxHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) SandboxHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	group, err := sandbox.GetGroup(vars["group"])
