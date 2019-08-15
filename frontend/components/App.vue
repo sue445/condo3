@@ -98,7 +98,7 @@
     groupName = "gocon";
 
     get feedUrl() {
-      return 'https://condo3.appspot.com/api/' + this.site + "/" + this.groupName.trim() + "." + this.format
+      return window.location.protocol + "//" + window.location.host + "/api/" + this.site + "/" + this.groupName.trim() + "." + this.format
     }
   }
 </script>
