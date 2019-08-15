@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  go-module: timakin/go-module@0.3.0
+  codeclimate: sue445/codeclimate@volatile
+  go-module:   timakin/go-module@0.3.0
 
 executors:
   golang:
@@ -23,6 +24,10 @@ jobs:
   test:
     executor: golang
 
+    environment:
+      CC_TEST_REPORTER_ID: 62f4b81c3edd3cc6a6c2e2218dbdbf24e724f5c9244df2b3358e4405ff45727b
+      TEST_ARGS: "-coverprofile c.out"
+
     steps:
       - &attach_workspace
         attach_workspace:
@@ -31,8 +36,10 @@ jobs:
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
 
-      - run: make test
-      - run: make testrace
+      - codeclimate/with-cc-test-reporter:
+          steps:
+            - run: make test
+            - run: make testrace
 
   lint:
     executor: golang
