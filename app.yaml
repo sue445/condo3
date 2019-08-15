@@ -5,9 +5,9 @@ handlers:
   - url: /public
     static_dir: public
 
-  - url: /(.+\.html)$
+  - url: /(.+\.(html|txt))$
     static_files: public/\1
-    upload: public/.+\.html$
+    upload: public/.+\.(html|txt)$
 
   # All URLs are handled by the Go application script
   - url: /.*
