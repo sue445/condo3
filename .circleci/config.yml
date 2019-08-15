@@ -8,18 +8,13 @@ executors:
   golang:
     docker:
       # FIXME: google-cloud-sdk-datastore-emulator requires openjdk-8-jdk, but only openjdk-11-jdk is available on buster
-      - image: circleci/golang:1.12-stretch
+      - image: circleci/golang:1.12-stretch-node
       - image: memcached:1.5-alpine
     working_directory: /go/src/github.com/sue445/condo3
     environment:
       TZ: Asia/Tokyo
       MEMCACHED_SERVER: "127.0.0.1:11211"
       GO111MODULE: "on"
-
-  node:
-    docker:
-      - image: circleci/node
-    working_directory: /go/src/github.com/sue445/condo3
 
 jobs:
   test:
@@ -54,7 +49,7 @@ jobs:
       - run: "! gofmt -d . | grep '^'"
 
   webpack:
-    executor: node
+    executor: golang
 
     steps:
       - checkout
