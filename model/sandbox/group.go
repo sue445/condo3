@@ -51,6 +51,10 @@ func GetGroup(groupName string) (*model.Group, error) {
 	var res group
 	err = json.Unmarshal(byteArray, &res)
 
+	if err != nil {
+		return nil, err
+	}
+
 	group := model.Group{
 		Title: res.Title,
 		URL:   res.URL,
