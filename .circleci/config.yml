@@ -10,15 +10,16 @@ executors:
       # FIXME: google-cloud-sdk-datastore-emulator requires openjdk-8-jdk, but only openjdk-11-jdk is available on buster
       - image: circleci/golang:1.12-stretch
       - image: memcached:1.5-alpine
-    working_directory: /home/circleci/app
+    working_directory: /go/src/github.com/sue445/condo3
     environment:
       TZ: Asia/Tokyo
       MEMCACHED_SERVER: "127.0.0.1:11211"
+      GO111MODULE: "on"
 
   node:
     docker:
       - image: circleci/node
-    working_directory: /home/circleci/app
+    working_directory: /go/src/github.com/sue445/condo3
 
 jobs:
   test:
@@ -31,7 +32,7 @@ jobs:
     steps:
       - &attach_workspace
         attach_workspace:
-          at: /home/circleci/app
+          at: /go/src/github.com/sue445/condo3
       - &restore_cache
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
@@ -60,7 +61,7 @@ jobs:
       - run: npm ci
       - run: NODE_ENV=production npm run build
       - persist_to_workspace:
-          root: /home/circleci/app
+          root: /go/src/github.com/sue445/condo3
           paths:
             - public/js/*
             - public/css/*
@@ -69,7 +70,7 @@ jobs:
     docker:
       - image: google/cloud-sdk:alpine
 
-    working_directory: /home/circleci/app
+    working_directory: /go/src/github.com/sue445/condo3
 
     steps:
       - checkout
