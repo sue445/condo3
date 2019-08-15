@@ -5,6 +5,10 @@ handlers:
   - url: /public
     static_dir: public
 
+  - url: /(.+\.html)$
+    static_files: public/\1
+    upload: public/.+\.html$
+
   # All URLs are handled by the Go application script
   - url: /.*
     secure: always
