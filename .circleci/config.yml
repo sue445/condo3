@@ -1,38 +1,41 @@
 version: 2.1
 
 orbs:
-  go-module: timakin/go-module@0.3.0
+  codeclimate: sue445/codeclimate@volatile
+  go-module:   timakin/go-module@0.3.0
 
 executors:
   golang:
     docker:
       # FIXME: google-cloud-sdk-datastore-emulator requires openjdk-8-jdk, but only openjdk-11-jdk is available on buster
-      - image: circleci/golang:1.12-stretch
+      - image: circleci/golang:1.12-stretch-node
       - image: memcached:1.5-alpine
-    working_directory: /home/circleci/app
+    working_directory: /go/src/github.com/sue445/condo3
     environment:
       TZ: Asia/Tokyo
       MEMCACHED_SERVER: "127.0.0.1:11211"
-
-  node:
-    docker:
-      - image: circleci/node
-    working_directory: /home/circleci/app
+      GO111MODULE: "on"
 
 jobs:
   test:
     executor: golang
 
+    environment:
+      CC_TEST_REPORTER_ID: 62f4b81c3edd3cc6a6c2e2218dbdbf24e724f5c9244df2b3358e4405ff45727b
+      TEST_ARGS: "-coverprofile c.out"
+
     steps:
       - &attach_workspace
         attach_workspace:
-          at: /home/circleci/app
+          at: /go/src/github.com/sue445/condo3
       - &restore_cache
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
 
-      - run: make test
-      - run: make testrace
+      - codeclimate/with-cc-test-reporter:
+          steps:
+            - run: make test
+            - run: make testrace
 
   lint:
     executor: golang
@@ -46,14 +49,14 @@ jobs:
       - run: "! gofmt -d . | grep '^'"
 
   webpack:
-    executor: node
+    executor: golang
 
     steps:
       - checkout
       - run: npm ci
       - run: NODE_ENV=production npm run build
       - persist_to_workspace:
-          root: /home/circleci/app
+          root: /go/src/github.com/sue445/condo3
           paths:
             - public/js/*
             - public/css/*
@@ -62,7 +65,7 @@ jobs:
     docker:
       - image: google/cloud-sdk:alpine
 
-    working_directory: /home/circleci/app
+    working_directory: /go/src/github.com/sue445/condo3
 
     steps:
       - checkout
