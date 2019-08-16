@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.12
 
 require (
-	cloud.google.com/go v0.44.0
+	cloud.google.com/go v0.44.3
 	github.com/gorilla/mux v1.7.3
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
 	github.com/jarcoal/httpmock v1.0.4
