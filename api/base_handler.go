@@ -55,8 +55,10 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		setContentType(w, "application/atom+xml; charset=utf-8")
 		writeAPIResponse(w, atom)
 	default:
-		log.Warnf("Unknown format: %s", format)
+		message := fmt.Sprintf("Unknown format: %s", format)
+		log.Warn(message)
 		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, message)
 	}
 }
 
