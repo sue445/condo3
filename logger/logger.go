@@ -9,7 +9,19 @@ import (
 // NewLogger returns a new Logger instance
 func NewLogger() *logrus.Logger {
 	log := logrus.New()
-	log.Level = logrus.DebugLevel
+
+	if os.Getenv("LOG_LEVEL") == "" {
+		log.Level = logrus.DebugLevel
+	} else {
+		level, err := logrus.ParseLevel(os.Getenv("LOG_LEVEL"))
+
+		if err != nil {
+			panic(err)
+		}
+
+		log.Level = level
+	}
+
 	log.Formatter = &logrus.JSONFormatter{
 		FieldMap: logrus.FieldMap{
 			logrus.FieldKeyTime:  "timestamp",
