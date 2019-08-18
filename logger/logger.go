@@ -2,12 +2,23 @@ package logger
 
 import (
 	"github.com/sirupsen/logrus"
+	"io"
 	"os"
 	"time"
 )
 
 // NewLogger returns a new Logger instance
 func NewLogger() *logrus.Logger {
+	return newLogger(os.Stdout)
+}
+
+
+// NewErrorLogger returns a new Logger instance for error logging
+func NewErrorLogger() *logrus.Logger {
+	return newLogger(os.Stderr)
+}
+
+func newLogger(out io.Writer) *logrus.Logger {
 	log := logrus.New()
 
 	if os.Getenv("LOG_LEVEL") == "" {
@@ -31,7 +42,7 @@ func NewLogger() *logrus.Logger {
 		},
 		TimestampFormat: time.RFC3339Nano,
 	}
-	log.Out = os.Stdout
+	log.Out = out
 
 	return log
 }
