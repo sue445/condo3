@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"net/http"
@@ -33,7 +34,7 @@ func errorStatusCode(err error) int {
 }
 
 func renderError(w http.ResponseWriter, err error) {
-	errorLog.Errorf("API is failed: %s", err)
+	errorLog.Errorf("%+v", errors.WithStack(err))
 	w.WriteHeader(errorStatusCode(err))
 	fmt.Fprint(w, err)
 }
@@ -47,9 +48,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		atom, err := group.ToAtom()
 
 		if err != nil {
-			errorLog.Errorf("group.ToAtom is failed: %s", err)
-			w.WriteHeader(http.StatusInternalServerError)
-			fmt.Fprint(w, err)
+			renderError(w, err)
 			return
 		}
 
