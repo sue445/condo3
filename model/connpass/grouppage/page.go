@@ -3,13 +3,17 @@ package grouppage
 import (
 	"errors"
 	"fmt"
+	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
+)
+
+var (
+	log = logger.NewLogger()
 )
 
 // Page represents connpass group page
@@ -27,7 +31,7 @@ func FetchGroupPageWithCache(memcachedConfig *model.MemcachedConfig, groupName s
 	cached, err := cache.get(groupName)
 
 	if err != nil {
-		log.Printf("[WARN] cache.get is failed: groupName=%s, err=%+v\n", groupName, err)
+		log.Warnf("cache.get is failed: groupName=%s, err=%+v", groupName, err)
 	}
 
 	if cached != nil {
@@ -43,7 +47,7 @@ func FetchGroupPageWithCache(memcachedConfig *model.MemcachedConfig, groupName s
 	err = cache.set(groupName, page)
 
 	if err != nil {
-		log.Printf("[WARN] cache.set is failed: groupName=%s, err=%+v\n", groupName, err)
+		log.Warnf("cache.set is failed: groupName=%s, err=%+v", groupName, err)
 	}
 
 	return page, nil
