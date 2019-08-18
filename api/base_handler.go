@@ -2,11 +2,11 @@ package api
 
 import (
 	"fmt"
-	"github.com/pkg/errors"
 	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"net/http"
 	"regexp"
+	"runtime/debug"
 	"strconv"
 )
 
@@ -34,7 +34,7 @@ func errorStatusCode(err error) int {
 }
 
 func renderError(w http.ResponseWriter, err error) {
-	errorLog.Errorf("%+v", errors.WithStack(err))
+	errorLog.Error(string(debug.Stack()))
 	w.WriteHeader(errorStatusCode(err))
 	fmt.Fprint(w, err)
 }
