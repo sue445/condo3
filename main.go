@@ -15,6 +15,7 @@ import (
 var (
 	indexTmpl = readTemplate("index.html")
 	log       = logger.NewLogger()
+	errorLog  = logger.NewErrorLogger()
 )
 
 func main() {
@@ -89,7 +90,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	vars := map[string]string{}
 
 	if err := indexTmpl.Execute(w, vars); err != nil {
-		log.Errorf("Error executing template: %v", err)
+		errorLog.Errorf("Error executing template: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
 }
