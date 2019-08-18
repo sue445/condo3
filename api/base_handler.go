@@ -34,8 +34,16 @@ func errorStatusCode(err error) int {
 }
 
 func renderError(w http.ResponseWriter, err error) {
-	errorLog.Error(string(debug.Stack()))
-	w.WriteHeader(errorStatusCode(err))
+	statusCode := errorStatusCode(err)
+
+	errorLog.Error(err)
+
+	if statusCode/100 == 5 {
+		// Send to Stackdriver Error Reporting
+		errorLog.Error(string(debug.Stack()))
+	}
+
+	w.WriteHeader(statusCode)
 	fmt.Fprint(w, err)
 }
 
