@@ -26,6 +26,11 @@ func errorStatusCode(err error) int {
 	return statusCode
 }
 
+func renderError(w http.ResponseWriter, err error) {
+	w.WriteHeader(errorStatusCode(err))
+	fmt.Fprint(w, err)
+}
+
 func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 	switch format {
 	case "ics":
