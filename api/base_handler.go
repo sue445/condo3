@@ -10,7 +10,8 @@ import (
 )
 
 var (
-	log = logger.NewLogger()
+	log      = logger.NewLogger()
+	errorLog = logger.NewErrorLogger()
 )
 
 // Handler manages API handler
@@ -32,7 +33,7 @@ func errorStatusCode(err error) int {
 }
 
 func renderError(w http.ResponseWriter, err error) {
-	log.Errorf("API is failed: %s", err)
+	errorLog.Errorf("API is failed: %s", err)
 	w.WriteHeader(errorStatusCode(err))
 	fmt.Fprint(w, err)
 }
@@ -46,7 +47,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		atom, err := group.ToAtom()
 
 		if err != nil {
-			log.Errorf("group.ToAtom is failed: %s", err)
+			errorLog.Errorf("group.ToAtom is failed: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprint(w, err)
 			return
