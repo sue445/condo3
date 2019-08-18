@@ -22,6 +22,7 @@ func NewLogger() *logrus.Logger {
 		log.Level = level
 	}
 
+	// c.f. https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry
 	log.Formatter = &logrus.JSONFormatter{
 		FieldMap: logrus.FieldMap{
 			logrus.FieldKeyTime:  "timestamp",

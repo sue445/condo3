@@ -32,7 +32,7 @@ func errorStatusCode(err error) int {
 }
 
 func renderError(w http.ResponseWriter, err error) {
-	log.WithError(err).Error("error")
+	log.Errorf("API is failed: %s", err)
 	w.WriteHeader(errorStatusCode(err))
 	fmt.Fprint(w, err)
 }
@@ -46,6 +46,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		atom, err := group.ToAtom()
 
 		if err != nil {
+			log.Errorf("group.ToAtom is failed: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprint(w, err)
 			return
@@ -54,6 +55,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		setContentType(w, "application/atom+xml; charset=utf-8")
 		writeAPIResponse(w, atom)
 	default:
+		log.Warnf("Unknown format: %s", format)
 		w.WriteHeader(http.StatusBadRequest)
 	}
 }
