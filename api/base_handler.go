@@ -2,10 +2,15 @@ package api
 
 import (
 	"fmt"
+	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"net/http"
 	"regexp"
 	"strconv"
+)
+
+var (
+	log = logger.NewLogger()
 )
 
 // Handler manages API handler
@@ -27,6 +32,7 @@ func errorStatusCode(err error) int {
 }
 
 func renderError(w http.ResponseWriter, err error) {
+	log.WithError(err).Error("error")
 	w.WriteHeader(errorStatusCode(err))
 	fmt.Fprint(w, err)
 }
