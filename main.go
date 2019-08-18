@@ -67,10 +67,10 @@ func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
-		log.Printf("Defaulting to port %s", port)
+		log.Infof("Defaulting to port %s", port)
 	}
 
-	log.Printf("Listening on port %s", port)
+	log.Infof("Listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
@@ -89,7 +89,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	vars := map[string]string{}
 
 	if err := indexTmpl.Execute(w, vars); err != nil {
-		log.Printf("Error executing template: %v", err)
+		log.Errorf("Error executing template: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
 }
