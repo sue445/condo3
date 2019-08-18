@@ -2,10 +2,15 @@ package api
 
 import (
 	"fmt"
+	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"net/http"
 	"regexp"
 	"strconv"
+)
+
+var (
+	log = logger.NewLogger()
 )
 
 // Handler manages API handler
@@ -26,6 +31,12 @@ func errorStatusCode(err error) int {
 	return statusCode
 }
 
+func renderError(w http.ResponseWriter, err error) {
+	log.Errorf("API is failed: %s", err)
+	w.WriteHeader(errorStatusCode(err))
+	fmt.Fprint(w, err)
+}
+
 func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 	switch format {
 	case "ics":
@@ -35,6 +46,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		atom, err := group.ToAtom()
 
 		if err != nil {
+			log.Errorf("group.ToAtom is failed: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprint(w, err)
 			return
@@ -43,7 +55,10 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		setContentType(w, "application/atom+xml; charset=utf-8")
 		writeAPIResponse(w, atom)
 	default:
+		message := fmt.Sprintf("Unknown format: %s", format)
+		log.Warn(message)
 		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, message)
 	}
 }
 

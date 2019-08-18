@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/api"
+	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"html/template"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -14,6 +14,7 @@ import (
 
 var (
 	indexTmpl = readTemplate("index.html")
+	log       = logger.NewLogger()
 )
 
 func main() {

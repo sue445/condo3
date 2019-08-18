@@ -2,12 +2,16 @@ package eventpage
 
 import (
 	"errors"
+	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"regexp"
 	"strings"
+)
+
+var (
+	log = logger.NewLogger()
 )
 
 // Page represents connpass group page
@@ -23,7 +27,7 @@ func FetchEventPageWithCache(memcachedConfig *model.MemcachedConfig, url string)
 	cached, err := cache.get(url)
 
 	if err != nil {
-		log.Printf("[WARN] cache.get is failed: url=%s, err=%+v\n", url, err)
+		log.Warnf("cache.get is failed: url=%s, err=%+v", url, err)
 	}
 
 	if cached != nil {
@@ -39,7 +43,7 @@ func FetchEventPageWithCache(memcachedConfig *model.MemcachedConfig, url string)
 	err = cache.set(url, page)
 
 	if err != nil {
-		log.Printf("[WARN] cache.set is failed: url=%s, err=%+v\n", url, err)
+		log.Warnf("cache.set is failed: url=%s, err=%+v", url, err)
 	}
 
 	return page, nil

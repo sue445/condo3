@@ -1,4 +1,5 @@
 export GO111MODULE=on
+export LOG_LEVEL=debug
 export KMS_KEYRING_KEY_NAME=projects/condo3/locations/global/keyRings/condo3/cryptoKeys/app
 export DOORKEEPER_ACCESS_TOKEN=XXXXXXXXX
 export MEMCACHED_SERVER=127.0.0.1:11211
