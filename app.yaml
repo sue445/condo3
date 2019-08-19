@@ -16,7 +16,7 @@ handlers:
     script: auto
 
 env_variables:
-  LOG_LEVEL: "debug"
+  LOG_LEVEL: "info"
   KMS_KEYRING_KEY_NAME: "projects/condo3/locations/global/keyRings/condo3/cryptoKeys/app"
   MEMCACHED_SERVER: "memcached-17716.c1.asia-northeast1-1.gce.cloud.redislabs.com:17716"
 
