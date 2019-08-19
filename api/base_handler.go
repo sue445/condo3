@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
@@ -18,6 +19,19 @@ var (
 type Handler struct {
 	DoorkeeperAccessToken string
 	MemcachedConfig       *model.MemcachedConfig
+}
+
+func performAPI(w http.ResponseWriter, r *http.Request, getGroup func(string) (*model.Group, error)) {
+	vars := mux.Vars(r)
+
+	group, err := getGroup(vars["group"])
+
+	if err != nil {
+		renderError(w, err)
+		return
+	}
+
+	renderGroup(w, group, vars["format"])
 }
 
 func errorStatusCode(err error) int {

@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/gorilla/mux"
+	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/model/connpass"
 	"net/http"
 	"time"
@@ -9,14 +9,7 @@ import (
 
 // ConnpassHandler returns handler of /api/conpass
 func (h *Handler) ConnpassHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-
-	group, err := connpass.GetGroup(h.MemcachedConfig, vars["group"], time.Now())
-
-	if err != nil {
-		renderError(w, err)
-		return
-	}
-
-	renderGroup(w, group, vars["format"])
+	performAPI(w, r, func(groupName string) (*model.Group, error) {
+		return connpass.GetGroup(h.MemcachedConfig, groupName, time.Now())
+	})
 }
