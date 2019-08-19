@@ -37,7 +37,8 @@ func renderError(w http.ResponseWriter, err error) {
 
 	if statusCode/100 == 5 || log.IsLevelEnabled(logrus.DebugLevel) {
 		// Send to Stackdriver Error Reporting when 5xx error or debug logging is enabled
-		logger.WithErrorLocation(log, err).Error(err)
+		// logger.WithErrorLocation(log, err).Error(err)
+		log.Errorf("%+v", err)
 	} else {
 		log.Error(err)
 	}
