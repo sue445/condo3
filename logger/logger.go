@@ -63,12 +63,10 @@ func WithErrorLocation(logger *logrus.Logger, err error) *logrus.Entry {
 	lineNumber, _ := strconv.Atoi(fmt.Sprintf("%d", frame))
 
 	return logger.WithFields(logrus.Fields{
-		"context": logrus.Fields{
-			"reportLocation": logrus.Fields{
-				"filePath":     sourceFullPath,
-				"lineNumber":   lineNumber,
-				"functionName": fmt.Sprintf("%n", frame),
-			},
+		"logging.googleapis.com/sourceLocation": logrus.Fields{
+			"file":     sourceFullPath,
+			"line":     lineNumber,
+			"function": fmt.Sprintf("%n", frame),
 		},
 	})
 }
