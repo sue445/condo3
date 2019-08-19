@@ -7,7 +7,6 @@ import (
 	"github.com/sue445/condo3/model"
 	"net/http"
 	"regexp"
-	"runtime/debug"
 	"strconv"
 )
 
@@ -38,9 +37,9 @@ func renderError(w http.ResponseWriter, err error) {
 
 	if statusCode/100 == 5 || log.IsLevelEnabled(logrus.DebugLevel) {
 		// Send to Stackdriver Error Reporting when 5xx error or debug logging is enabled
-		// logger.WithErrorLocation(log, err).Error(err)
+		logger.WithErrorLocation(log, err).Error(err)
 		// log.Errorf("%+v", err)
-		log.Error(string(debug.Stack()))
+		// log.Error(string(debug.Stack()))
 	} else {
 		log.Error(err)
 	}
