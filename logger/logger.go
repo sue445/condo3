@@ -1,14 +1,10 @@
 package logger
 
 import (
-	"fmt"
-	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"io"
 	"os"
 	"runtime/debug"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -44,32 +40,6 @@ func newLogger(out io.Writer) *logrus.Logger {
 	log.Out = out
 
 	return log
-}
-
-type stackTracer interface {
-	StackTrace() errors.StackTrace
-}
-
-// WithErrorLocation add error location for Stackdriver Error Reporting
-func WithErrorLocation(logger *logrus.Logger, err error) *logrus.Entry {
-	errorWithStack, ok := err.(stackTracer)
-
-	if !ok {
-		errorWithStack = errors.WithStack(err).(stackTracer)
-	}
-
-	frame := errorWithStack.StackTrace()[0]
-
-	sourceFullPath := strings.Split(fmt.Sprintf("%+s", frame), "\n\t")[1]
-	lineNumber, _ := strconv.Atoi(fmt.Sprintf("%d", frame))
-
-	return logger.WithFields(logrus.Fields{
-		"logging.googleapis.com/sourceLocation": logrus.Fields{
-			"file":     sourceFullPath,
-			"line":     lineNumber,
-			"function": fmt.Sprintf("%n", frame),
-		},
-	})
 }
 
 // SendError send error to Stackdriver Error Reporting
