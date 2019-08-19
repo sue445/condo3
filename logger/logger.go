@@ -1,11 +1,11 @@
 package logger
 
 import (
+	"github.com/gelraen/appengine-formatter"
 	"github.com/sirupsen/logrus"
 	"io"
 	"os"
 	"runtime/debug"
-	"time"
 )
 
 // NewLogger returns a new Logger instance
@@ -28,16 +28,9 @@ func newLogger(out io.Writer) *logrus.Logger {
 		log.Level = level
 	}
 
-	// c.f. https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry
-	log.Formatter = &logrus.JSONFormatter{
-		FieldMap: logrus.FieldMap{
-			logrus.FieldKeyTime:  "timestamp",
-			logrus.FieldKeyLevel: "severity",
-			logrus.FieldKeyMsg:   "message",
-		},
-		TimestampFormat: time.RFC3339Nano,
-	}
-	log.Out = out
+	log.SetReportCaller(true)
+	log.SetFormatter(&appengine.Formatter{})
+	log.SetOutput(out)
 
 	return log
 }
