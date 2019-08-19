@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/xml"
 	"github.com/lestrrat-go/ical"
+	"github.com/pkg/errors"
 	"golang.org/x/tools/blog/atom"
 	"sort"
 	"time"
@@ -91,7 +92,7 @@ func (g *Group) ToAtom() (string, error) {
 
 	data, err := xml.MarshalIndent(&feed, "", "  ")
 	if err != nil {
-		return "", err
+		return "", errors.WithStack(err)
 	}
 
 	return xml.Header + string(data), nil

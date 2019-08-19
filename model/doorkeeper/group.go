@@ -2,6 +2,7 @@ package doorkeeper
 
 import (
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/go-doorkeeper"
 	"golang.org/x/sync/errgroup"
@@ -22,7 +23,7 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 		g, _, err := client.GetGroup(groupName)
 
 		if err != nil {
-			return err
+			return errors.WithStack(err)
 		}
 
 		group.Title = fmt.Sprintf("%s | Doorkeeper", g.Name)
@@ -42,7 +43,7 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 		events, _, err := client.GetGroupEvents(groupName, &params)
 
 		if err != nil {
-			return err
+			return errors.WithStack(err)
 		}
 
 		for _, ev := range events {

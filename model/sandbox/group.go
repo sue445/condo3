@@ -2,8 +2,8 @@ package sandbox
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
 	"net/http"
@@ -34,7 +34,7 @@ func GetGroup(groupName string) (*model.Group, error) {
 	resp, err := http.Get(url)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	defer resp.Body.Close()
@@ -52,7 +52,7 @@ func GetGroup(groupName string) (*model.Group, error) {
 	err = json.Unmarshal(byteArray, &res)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	group := model.Group{
@@ -64,7 +64,7 @@ func GetGroup(groupName string) (*model.Group, error) {
 		updatedAt, err := time.ParseInLocation(time.RFC3339, res.UpdatedAt, model.JST)
 
 		if err != nil {
-			return nil, err
+			return nil, errors.WithStack(err)
 		}
 
 		group.UpdatedAt = &updatedAt
@@ -74,7 +74,7 @@ func GetGroup(groupName string) (*model.Group, error) {
 		event, err := e.toEvent()
 
 		if err != nil {
-			return nil, err
+			return nil, errors.WithStack(err)
 		}
 
 		group.Events = append(group.Events, *event)
@@ -94,7 +94,7 @@ func (e *event) toEvent() (*model.Event, error) {
 		updatedAt, err := time.ParseInLocation(time.RFC3339, e.UpdatedAt, model.JST)
 
 		if err != nil {
-			return nil, err
+			return nil, errors.WithStack(err)
 		}
 
 		event.UpdatedAt = &updatedAt
@@ -104,7 +104,7 @@ func (e *event) toEvent() (*model.Event, error) {
 		publishedAt, err := time.ParseInLocation(time.RFC3339, e.PublishedAt, model.JST)
 
 		if err != nil {
-			return nil, err
+			return nil, errors.WithStack(err)
 		}
 
 		event.PublishedAt = &publishedAt
@@ -114,7 +114,7 @@ func (e *event) toEvent() (*model.Event, error) {
 		startedAt, err := time.ParseInLocation(time.RFC3339, e.StartedAt, model.JST)
 
 		if err != nil {
-			return nil, err
+			return nil, errors.WithStack(err)
 		}
 
 		event.StartedAt = &startedAt
@@ -124,7 +124,7 @@ func (e *event) toEvent() (*model.Event, error) {
 		endedAt, err := time.ParseInLocation(time.RFC3339, e.EndedAt, model.JST)
 
 		if err != nil {
-			return nil, err
+			return nil, errors.WithStack(err)
 		}
 
 		event.EndedAt = &endedAt
