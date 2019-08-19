@@ -2,11 +2,11 @@ package api
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"net/http"
 	"regexp"
-	"runtime/debug"
 	"strconv"
 )
 
@@ -35,11 +35,11 @@ func errorStatusCode(err error) int {
 func renderError(w http.ResponseWriter, err error) {
 	statusCode := errorStatusCode(err)
 
-	log.Error(err)
-
-	if statusCode/100 == 5 {
-		// Send to Stackdriver Error Reporting
-		log.Error(string(debug.Stack()))
+	if statusCode/100 == 5 || log.IsLevelEnabled(logrus.DebugLevel) {
+		// Send to Stackdriver Error Reporting when 5xx error or debug logging is enabled
+		logger.WithErrorLocation(log, err).Error(err)
+	} else {
+		log.Error(err)
 	}
 
 	w.WriteHeader(statusCode)
