@@ -32,6 +32,11 @@ jobs:
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
 
+      - run:
+          name: Wait starting memcached
+          # dockerize is already installed in circleci/golang
+          command: dockerize -wait tcp://localhost:11211 -timeout 1m
+
       - codeclimate/with-cc-test-reporter:
           steps:
             - run: make test
