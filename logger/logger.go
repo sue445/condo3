@@ -13,7 +13,7 @@ import (
 
 // NewLogger returns a new Logger instance
 func NewLogger() *logrus.Logger {
-	return newLogger(os.Stderr)
+	return newLogger(os.Stdout)
 }
 
 func newLogger(out io.Writer) *logrus.Logger {
