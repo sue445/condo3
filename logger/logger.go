@@ -74,11 +74,5 @@ func WithErrorLocation(logger *logrus.Logger, err error) *logrus.Entry {
 
 // SendError send error to Stackdriver Error Reporting
 func SendError(logger *logrus.Logger, err error) {
-	errorWithStack, ok := err.(stackTracer)
-
-	if !ok {
-		errorWithStack = errors.WithStack(err).(stackTracer)
-	}
-
-	logger.Errorf("%+v\n\n%s", errorWithStack, string(debug.Stack()))
+	logger.Errorf("%+v\n\n%s", err, string(debug.Stack()))
 }
