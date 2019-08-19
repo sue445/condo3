@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	"github.com/pkg/errors"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
 	kmspb "google.golang.org/genproto/googleapis/cloud/kms/v1"
@@ -57,17 +58,17 @@ func (k *Kms) decrypt(base64Value string) (string, error) {
 
 	creds, err := google.FindDefaultCredentials(ctx, cloudkmsScope)
 	if err != nil {
-		return "", err
+		return "", errors.WithStack(err)
 	}
 
 	client, err := cloudkms.NewKeyManagementClient(ctx, option.WithCredentials(creds))
 	if err != nil {
-		return "", err
+		return "", errors.WithStack(err)
 	}
 
 	ciphertext, err := base64.StdEncoding.DecodeString(base64Value)
 	if err != nil {
-		return "", err
+		return "", errors.WithStack(err)
 	}
 
 	if k.KeyringKeyName == "" {
@@ -82,7 +83,7 @@ func (k *Kms) decrypt(base64Value string) (string, error) {
 	// Call the API.
 	resp, err := client.Decrypt(ctx, req)
 	if err != nil {
-		return "", err
+		return "", errors.WithStack(err)
 	}
 	return string(resp.Plaintext), nil
 }

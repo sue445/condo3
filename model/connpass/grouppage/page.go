@@ -1,8 +1,8 @@
 package grouppage
 
 import (
-	"errors"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
@@ -60,7 +60,7 @@ func fetchGroupPage(groupName string) (*Page, error) {
 	resp, err := http.Get(url)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	defer resp.Body.Close()

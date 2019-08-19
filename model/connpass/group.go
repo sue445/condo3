@@ -2,6 +2,7 @@ package connpass
 
 import (
 	"github.com/hkurokawa/go-connpass"
+	"github.com/pkg/errors"
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/condo3/model/connpass/eventpage"
 	"github.com/sue445/condo3/model/connpass/grouppage"
@@ -79,7 +80,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 	result, err := query.Search()
 
 	if err != nil {
-		return []model.Event{}, err
+		return []model.Event{}, errors.WithStack(err)
 	}
 
 	events := []model.Event{}
@@ -102,7 +103,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 			startedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.Start, model.JST)
 
 			if err != nil {
-				return []model.Event{}, err
+				return []model.Event{}, errors.WithStack(err)
 			}
 
 			ev.StartedAt = &startedAt
@@ -112,7 +113,7 @@ func getEvents(seriesID int, currentTime time.Time) ([]model.Event, error) {
 			endedAt, err := time.ParseInLocation(time.RFC3339, resultEvent.End, model.JST)
 
 			if err != nil {
-				return []model.Event{}, err
+				return []model.Event{}, errors.WithStack(err)
 			}
 
 			ev.EndedAt = &endedAt

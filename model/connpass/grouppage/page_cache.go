@@ -3,6 +3,7 @@ package grouppage
 import (
 	"encoding/json"
 	"github.com/memcachier/mc"
+	"github.com/pkg/errors"
 	"github.com/sue445/condo3/model"
 	"time"
 )
@@ -33,14 +34,14 @@ func (c *pageCache) get(key string) (*Page, error) {
 		if err == mc.ErrNotFound {
 			return nil, nil
 		}
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	var page Page
 	err = json.Unmarshal([]byte(value), &page)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	return &page, nil
@@ -51,14 +52,14 @@ func (c *pageCache) set(key string, page *Page) error {
 	bytes, err := json.Marshal(page)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	expiration := time.Hour * 24 // 1 day
 	_, err = c.memcached.Set(keyPrefix+key, string(bytes), 0, uint32(expiration.Seconds()), 0)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil
