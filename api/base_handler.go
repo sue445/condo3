@@ -11,8 +11,7 @@ import (
 )
 
 var (
-	log      = logger.NewLogger()
-	errorLog = logger.NewErrorLogger()
+	log = logger.NewLogger()
 )
 
 // Handler manages API handler
@@ -36,11 +35,11 @@ func errorStatusCode(err error) int {
 func renderError(w http.ResponseWriter, err error) {
 	statusCode := errorStatusCode(err)
 
-	errorLog.Error(err)
+	log.Error(err)
 
 	if statusCode/100 == 5 {
 		// Send to Stackdriver Error Reporting
-		errorLog.Error(string(debug.Stack()))
+		log.Error(string(debug.Stack()))
 	}
 
 	w.WriteHeader(statusCode)

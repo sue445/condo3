@@ -12,11 +12,6 @@ func NewLogger() *logrus.Logger {
 	return newLogger(os.Stdout)
 }
 
-// NewErrorLogger returns a new Logger instance for error logging
-func NewErrorLogger() *logrus.Logger {
-	return newLogger(os.Stderr)
-}
-
 func newLogger(out io.Writer) *logrus.Logger {
 	log := logrus.New()
 
