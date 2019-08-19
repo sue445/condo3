@@ -6,6 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"io"
 	"os"
+	"runtime/debug"
 	"strconv"
 	"strings"
 	"time"
@@ -69,4 +70,15 @@ func WithErrorLocation(logger *logrus.Logger, err error) *logrus.Entry {
 			"function": fmt.Sprintf("%n", frame),
 		},
 	})
+}
+
+// SendError send error to Stackdriver Error Reporting
+func SendError(logger *logrus.Logger, err error) {
+	errorWithStack, ok := err.(stackTracer)
+
+	if !ok {
+		errorWithStack = errors.WithStack(err).(stackTracer)
+	}
+
+	logger.Errorf("%+v\n\n%s", errorWithStack, string(debug.Stack()))
 }
