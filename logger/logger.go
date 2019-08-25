@@ -4,6 +4,7 @@ import (
 	"contrib.go.opencensus.io/exporter/stackdriver/propagation"
 	"encoding/binary"
 	"encoding/hex"
+	"fmt"
 	"github.com/gelraen/appengine-formatter"
 	"github.com/sirupsen/logrus"
 	"io"
@@ -62,8 +63,11 @@ func WithRequest(logger *logrus.Logger, r *http.Request) *logrus.Entry {
 		return logger.WithFields(logrus.Fields{})
 	}
 
+	trace := hex.EncodeToString(sc.TraceID[:])
+	spanID := strconv.FormatUint(binary.BigEndian.Uint64(sc.SpanID[:]), 10)
+
 	return logger.WithFields(logrus.Fields{
-		"logging.googleapis.com/trace":  hex.EncodeToString(sc.TraceID[:]),
-		"logging.googleapis.com/spanId": strconv.FormatUint(binary.BigEndian.Uint64(sc.SpanID[:]), 10),
+		"logging.googleapis.com/trace":  fmt.Sprintf("projects/%s/traces/%s", os.Getenv("GOOGLE_CLOUD_PROJECT"), trace),
+		"logging.googleapis.com/spanId": spanID,
 	})
 }
