@@ -11,27 +11,26 @@ import (
 	"strconv"
 )
 
-var (
-	log = logger.NewLogger()
-)
-
 // Handler manages API handler
 type Handler struct {
 	DoorkeeperAccessToken string
 	MemcachedConfig       *model.MemcachedConfig
+	log                   *logrus.Entry
 }
 
-func performAPI(w http.ResponseWriter, r *http.Request, getGroup func(string) (*model.Group, error)) {
+func (h *Handler) performAPI(w http.ResponseWriter, r *http.Request, getGroup func(string) (*model.Group, error)) {
+	h.log = logger.NewRequestLogger(r)
+
 	vars := mux.Vars(r)
 
 	group, err := getGroup(vars["group"])
 
 	if err != nil {
-		renderError(w, err)
+		h.renderError(w, err)
 		return
 	}
 
-	renderGroup(w, group, vars["format"])
+	h.renderGroup(w, group, vars["format"])
 }
 
 func errorStatusCode(err error) int {
@@ -46,21 +45,21 @@ func errorStatusCode(err error) int {
 	return statusCode
 }
 
-func renderError(w http.ResponseWriter, err error) {
+func (h *Handler) renderError(w http.ResponseWriter, err error) {
 	statusCode := errorStatusCode(err)
 
-	if statusCode/100 == 5 || log.IsLevelEnabled(logrus.DebugLevel) {
+	if statusCode/100 == 5 || h.log.Logger.IsLevelEnabled(logrus.DebugLevel) {
 		// Send to Stackdriver Error Reporting when 5xx error or debug logging is enabled
-		logger.SendError(log, err)
+		logger.SendError(h.log, err)
 	} else {
-		log.Error(err)
+		h.log.Error(err)
 	}
 
 	w.WriteHeader(statusCode)
 	fmt.Fprint(w, err)
 }
 
-func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
+func (h *Handler) renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 	switch format {
 	case "ics":
 		setContentType(w, "text/calendar; charset=utf-8")
@@ -69,7 +68,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		atom, err := group.ToAtom()
 
 		if err != nil {
-			renderError(w, err)
+			h.renderError(w, err)
 			return
 		}
 
@@ -77,7 +76,7 @@ func renderGroup(w http.ResponseWriter, group *model.Group, format string) {
 		writeAPIResponse(w, atom)
 	default:
 		message := fmt.Sprintf("Unknown format: %s", format)
-		log.Warn(message)
+		h.log.Warn(message)
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprint(w, message)
 	}

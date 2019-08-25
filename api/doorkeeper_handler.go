@@ -9,7 +9,7 @@ import (
 
 // DoorkeeperHandler returns handler of /api/doorkeeper
 func (h *Handler) DoorkeeperHandler(w http.ResponseWriter, r *http.Request) {
-	performAPI(w, r, func(groupName string) (*model.Group, error) {
+	h.performAPI(w, r, func(groupName string) (*model.Group, error) {
 		return doorkeeper.GetGroup(h.DoorkeeperAccessToken, groupName, time.Now())
 	})
 }

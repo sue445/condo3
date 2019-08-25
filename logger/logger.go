@@ -46,7 +46,7 @@ func newLogger(out io.Writer) *logrus.Logger {
 }
 
 // SendError send error to Stackdriver Error Reporting
-func SendError(logger *logrus.Logger, err error) {
+func SendError(logger logrus.FieldLogger, err error) {
 	logger.Errorf("%v\n\n%s\n\n%+v", err, string(debug.Stack()), err)
 }
 
