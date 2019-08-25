@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"runtime/debug"
+	"strconv"
 )
 
 // NewLogger returns a new Logger instance
@@ -63,6 +64,6 @@ func WithRequest(logger *logrus.Logger, r *http.Request) *logrus.Entry {
 
 	return logger.WithFields(logrus.Fields{
 		"logging.googleapis.com/trace":  hex.EncodeToString(sc.TraceID[:]),
-		"logging.googleapis.com/spanId": binary.BigEndian.Uint64(sc.SpanID[:]),
+		"logging.googleapis.com/spanId": strconv.FormatUint(binary.BigEndian.Uint64(sc.SpanID[:]), 10),
 	})
 }
