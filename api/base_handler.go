@@ -31,6 +31,7 @@ func (h *Handler) performAPI(w http.ResponseWriter, r *http.Request, getGroup fu
 	}
 
 	h.renderGroup(w, group, vars["format"])
+	h.log.Debugf("group=%+v", group)
 }
 
 func errorStatusCode(err error) int {
