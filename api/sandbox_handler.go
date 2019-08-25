@@ -8,7 +8,7 @@ import (
 
 // SandboxHandler returns handler of /api/sandbox
 func (h *Handler) SandboxHandler(w http.ResponseWriter, r *http.Request) {
-	performAPI(w, r, func(groupName string) (*model.Group, error) {
+	h.performAPI(w, r, func(groupName string) (*model.Group, error) {
 		return sandbox.GetGroup(groupName)
 	})
 }
