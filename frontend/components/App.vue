@@ -70,6 +70,9 @@
                 Copy
               </a>
             </div>
+            <div class="control">
+              <i class="fa fa-2x fa-spinner fa-spin"></i>
+            </div>
           </div>
         </div>
       </div>
