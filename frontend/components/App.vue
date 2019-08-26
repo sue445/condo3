@@ -71,7 +71,9 @@
               </a>
             </div>
             <div class="control">
-              <i class="fa fa-2x fa-spinner fa-spin"></i>
+              <i v-if="loadingStatus == 'loading'" class="fa fa-2x fa-spinner fa-spin"></i>
+              <i v-else-if="loadingStatus == 'success'" class="fa fa-2x fa-thumbs-up"></i>
+              <i v-else-if="loadingStatus == 'error'" class="fa fa-2x fa-exclamation-triangle"></i>
             </div>
           </div>
         </div>
@@ -91,17 +93,42 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
+  import { Vue, Component, Watch } from 'vue-property-decorator'
+  import axios from 'axios';
+  import lodash from 'lodash';
 
   @Component
   export default class App extends Vue {
     site = "connpass";
     format = "atom";
     groupName = "gocon";
+    loadingStatus = "";
+    debouncedCheckFeed = lodash.debounce(this.checkFeed, 500);
 
     get feedUrl() {
       return window.location.protocol + "//" + window.location.host + "/api/" + this.site + "/" + this.groupName.trim() + "." + this.format
+    }
+
+    @Watch("feedUrl")
+    onFeedUrlChanged(newFeedUrl: string, oldFeedUrl: string) {
+      if (newFeedUrl == oldFeedUrl) {
+        return
+      }
+      this.loadingStatus = "loading";
+      this.debouncedCheckFeed();
+    }
+
+    async checkFeed() {
+      try {
+        const res = await axios.head(this.feedUrl);
+        if(res.status == 200){
+          this.loadingStatus = "success";
+        } else {
+          this.loadingStatus = "error";
+        }
+      } catch (error) {
+        this.loadingStatus = "error";
+      }
     }
   }
 </script>
