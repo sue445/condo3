@@ -59,7 +59,9 @@ func WithRequest(logger *logrus.Logger, r *http.Request) *logrus.Entry {
 	sc, ok := format.SpanContextFromRequest(r)
 
 	if !ok {
-		logger.Warn("FAILED: SpanContextFromRequest")
+		if os.Getenv("GOOGLE_CLOUD_PROJECT") != "" {
+			logger.Warn("FAILED: SpanContextFromRequest")
+		}
 		return logger.WithFields(logrus.Fields{})
 	}
 
