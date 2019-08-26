@@ -49,8 +49,8 @@ func errorStatusCode(err error) int {
 func (h *Handler) renderError(w http.ResponseWriter, err error) {
 	statusCode := errorStatusCode(err)
 
-	if statusCode/100 == 5 || h.log.Logger.IsLevelEnabled(logrus.DebugLevel) {
-		// Send to Stackdriver Error Reporting when 5xx error or debug logging is enabled
+	if statusCode/100 == 5 {
+		// Send to Stackdriver Error Reporting when 5xx error
 		logger.SendError(h.log, err)
 	} else {
 		h.log.Error(err)
