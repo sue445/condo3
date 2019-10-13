@@ -18,7 +18,7 @@ require (
 	github.com/sue445/go-doorkeeper v0.1.4
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
-	golang.org/x/tools v0.0.0-20190628153133-6cdbf07be9d0
+	golang.org/x/tools v0.0.0-20191010171213-8abd42400456
 	google.golang.org/api v0.11.0
-	google.golang.org/genproto v0.0.0-20190801165951-fa694d86fc64
+	google.golang.org/genproto v0.0.0-20191009194640-548a555dbc03
 )
