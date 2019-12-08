@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "build:watch": "webpack --watch"
+    "build:watch": "webpack --watch",
+    "preinstall": "npx npm-force-resolutions"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
+    "npm-force-resolutions": "^0.0.3",
     "sass-loader": "^7.3.1",
     "style-loader": "^1.0.1",
     "ts-loader": "^6.2.1",
@@ -38,5 +40,8 @@
     "bulma": "^0.8.0",
     "clipboard": "^2.0.4",
     "vue": "^2.6.10"
+  },
+  "resolutions": {
+    "serialize-javascript": ">= 2.1.1"
   }
 }
