@@ -32,14 +32,14 @@
     "typescript": "^3.7.3",
     "vue-class-component": "^7.1.0",
     "vue-loader": "^15.7.2",
-    "vue-template-compiler": "^2.6.10",
+    "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "bulma": "^0.8.0",
     "clipboard": "^2.0.4",
-    "vue": "^2.6.10"
+    "vue": "^2.6.11"
   },
   "resolutions": {
     "serialize-javascript": ">= 2.1.1"
