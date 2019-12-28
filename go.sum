@@ -119,6 +119,8 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/sue445/go-doorkeeper v0.1.4 h1:wRSwDY+n8jIxPtra/8091MiSJvPGriV834Ok6gDfzkg=
 github.com/sue445/go-doorkeeper v0.1.4/go.mod h1:5EwSwbAWvaI9wE3u5uN2ZFcdK3ZCsU5VZDnd915PIa8=
+github.com/sue445/go-doorkeeper v0.1.5 h1:WFRm/RJRF0dafm9DNpR5j/O8BGQ/JKOc4gkRVCGQKKI=
+github.com/sue445/go-doorkeeper v0.1.5/go.mod h1:Sp/LUug5qTaTOa1GHuhDnUSgeWcrWASy1X5j2EM4kaI=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0 h1:C9hSCOW830chIVkdja34wa6Ky+IzWllkUinR+BtRZd4=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
