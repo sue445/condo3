@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.12
 
 require (
-	cloud.google.com/go v0.50.0
+	cloud.google.com/go v0.51.0
 	contrib.go.opencensus.io/exporter/stackdriver v0.12.8
 	github.com/gelraen/appengine-formatter v0.0.0-20190418120016-b1b55c48bb21
 	github.com/gorilla/mux v1.7.3
