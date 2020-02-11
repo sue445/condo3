@@ -8,13 +8,13 @@ import (
 
 // Event represents event data
 type Event struct {
-	Title       string
-	URL         string
-	Address     string
-	UpdatedAt   *time.Time
-	PublishedAt *time.Time
-	StartedAt   *time.Time
-	EndedAt     *time.Time
+	Title       string     `json:"title"`
+	URL         string     `json:"url"`
+	Address     string     `json:"address"`
+	UpdatedAt   *time.Time `json:"updated_at"`
+	PublishedAt *time.Time `json:"published_at"`
+	StartedAt   *time.Time `json:"started_at"`
+	EndedAt     *time.Time `json:"ended_at"`
 }
 
 func (e *Event) atomDescription() string {

@@ -75,6 +75,16 @@ func (h *Handler) renderGroup(w http.ResponseWriter, group *model.Group, format 
 
 		setContentType(w, "application/atom+xml; charset=utf-8")
 		writeAPIResponse(w, atom)
+	case "json":
+		json, err := group.ToJSON()
+
+		if err != nil {
+			h.renderError(w, err)
+			return
+		}
+
+		setContentType(w, "text/json; charset=utf-8")
+		writeAPIResponse(w, json)
 	default:
 		message := fmt.Sprintf("Unknown format: %s", format)
 		h.log.Warn(message)

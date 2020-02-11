@@ -1,6 +1,7 @@
 package model
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"github.com/lestrrat-go/ical"
 	"github.com/pkg/errors"
@@ -15,10 +16,10 @@ const (
 
 // Group represents group info
 type Group struct {
-	Title     string
-	URL       string
-	UpdatedAt *time.Time
-	Events    []Event
+	Title     string     `json:"title"`
+	URL       string     `json:"url"`
+	UpdatedAt *time.Time `json:"updated_at"`
+	Events    []Event    `json:"events"`
 }
 
 // ToIcal return ical formatted group
@@ -96,6 +97,17 @@ func (g *Group) ToAtom() (string, error) {
 	}
 
 	return xml.Header + string(data), nil
+}
+
+// ToJSON return json formatted group
+func (g *Group) ToJSON() (string, error) {
+	bytes, err := json.Marshal(g)
+
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 // MaxEventsUpdatedAt returns max UpdatedAt in Events

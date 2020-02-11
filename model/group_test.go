@@ -213,6 +213,79 @@ func TestGroup_ToAtom(t *testing.T) {
 	}
 }
 
+func TestGroup_ToJSON(t *testing.T) {
+	goconJSON := `{"title":"Go Conference - connpass","url":"https://gocon.connpass.com/","updated_at":"2019-07-25T22:24:00+09:00","events":[{"title":"Go 1.13 Release Party in Tokyo","url":"https://gocon.connpass.com/event/139024/","address":"東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)","updated_at":"2019-07-25T22:24:00+09:00","published_at":"2019-07-10T12:01:10+09:00","started_at":"2019-08-23T19:30:00+09:00","ended_at":"2019-08-23T22:00:00+09:00"}]}`
+
+	tokyorubyistJSON := `{"title":"Tokyo Rubyist Meetup | Doorkeeper","url":"https://trbmeetup.doorkeeper.jp/","updated_at":"2018-05-11T00:07:44.27Z","events":[{"title":"900K records per second with Ruby, Java, and JRuby","url":"https://trbmeetup.doorkeeper.jp/events/28319","address":"東京都渋谷区神泉町8-16 渋谷ファーストプレイス8F","updated_at":"2018-05-11T00:07:44.27Z","published_at":"2015-07-13T23:48:29.463Z","started_at":"2015-08-13T10:00:00Z","ended_at":"2015-08-13T13:00:00Z"}]}`
+
+	type fields struct {
+		Title     string
+		URL       string
+		UpdatedAt *time.Time
+		Events    []Event
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   string
+	}{
+		{
+			name: "generate gocon json",
+			fields: fields{
+				Title:     "Go Conference - connpass",
+				URL:       "https://gocon.connpass.com/",
+				UpdatedAt: tp(time.Date(2019, 7, 25, 22, 24, 0, 0, JST)),
+				Events: []Event{
+					{
+						Title:       "Go 1.13 Release Party in Tokyo",
+						URL:         "https://gocon.connpass.com/event/139024/",
+						Address:     "東京都港区六本木6-10-1 (六本木ヒルズ森タワー18F)",
+						UpdatedAt:   tp(time.Date(2019, 7, 25, 22, 24, 0, 0, JST)),
+						PublishedAt: tp(time.Date(2019, 7, 10, 12, 01, 10, 0, JST)),
+						StartedAt:   tp(time.Date(2019, 8, 23, 19, 30, 0, 0, JST)),
+						EndedAt:     tp(time.Date(2019, 8, 23, 22, 0, 0, 0, JST)),
+					},
+				},
+			},
+			want: goconJSON,
+		},
+		{
+			name: "doorkeeper json",
+			fields: fields{
+				Title:     "Tokyo Rubyist Meetup | Doorkeeper",
+				URL:       "https://trbmeetup.doorkeeper.jp/",
+				UpdatedAt: tp(time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC)),
+				Events: []Event{
+					{
+						Title:       "900K records per second with Ruby, Java, and JRuby",
+						URL:         "https://trbmeetup.doorkeeper.jp/events/28319",
+						Address:     "東京都渋谷区神泉町8-16 渋谷ファーストプレイス8F",
+						PublishedAt: tp(time.Date(2015, 7, 13, 23, 48, 29, 463000000, time.UTC)),
+						UpdatedAt:   tp(time.Date(2018, 5, 11, 0, 7, 44, 270000000, time.UTC)),
+						StartedAt:   tp(time.Date(2015, 8, 13, 10, 0, 0, 0, time.UTC)),
+						EndedAt:     tp(time.Date(2015, 8, 13, 13, 0, 0, 0, time.UTC)),
+					},
+				},
+			},
+			want: tokyorubyistJSON,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			g := &Group{
+				Title:     tt.fields.Title,
+				URL:       tt.fields.URL,
+				Events:    tt.fields.Events,
+				UpdatedAt: tt.fields.UpdatedAt,
+			}
+			got, err := g.ToJSON()
+
+			assert.NoError(t, err)
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}
+
 func Test_maxTime(t *testing.T) {
 	type args struct {
 		times []time.Time
