@@ -33,8 +33,8 @@ func GetGroup(accessToken string, groupName string, currentTime time.Time) (*mod
 	})
 
 	eg.Go(func() error {
-		since := currentTime.AddDate(-1, 0, 0)
-		until := currentTime.AddDate(1, 0, 0)
+		since := currentTime.AddDate(0, -6, 0)
+		until := currentTime.AddDate(0, 6, 0)
 		params := doorkeeper.GetEventsParams{
 			Sort:  doorkeeper.SortByPublishedAt(),
 			Since: &since,
