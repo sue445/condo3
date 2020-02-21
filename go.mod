@@ -14,7 +14,7 @@ require (
 	github.com/memcachier/mc v2.0.1+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.4.2
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.5.1
 	github.com/sue445/go-doorkeeper v0.1.5
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
