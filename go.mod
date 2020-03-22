@@ -17,8 +17,8 @@ require (
 	github.com/stretchr/testify v1.5.1
 	github.com/sue445/go-doorkeeper v0.1.5
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
-	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
-	golang.org/x/tools v0.0.0-20200304193943-95d2e580d8eb
+	golang.org/x/sync v0.0.0-20200317015054-43a5402ce75a
+	golang.org/x/tools v0.0.0-20200317043434-63da46f3035e
 	google.golang.org/api v0.20.0
-	google.golang.org/genproto v0.0.0-20200305110556-506484158171
+	google.golang.org/genproto v0.0.0-20200317114155-1f3552e48f24
 )
