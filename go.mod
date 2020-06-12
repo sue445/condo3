@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.13
 
 require (
-	cloud.google.com/go v0.57.0
+	cloud.google.com/go v0.58.0
 	contrib.go.opencensus.io/exporter/stackdriver v0.13.1
 	github.com/gelraen/appengine-formatter v0.0.0-20190418120016-b1b55c48bb21
 	github.com/gorilla/mux v1.7.4
@@ -18,7 +18,7 @@ require (
 	github.com/sue445/go-doorkeeper v0.1.5
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/sync v0.0.0-20200317015054-43a5402ce75a
-	golang.org/x/tools v0.0.0-20200501065659-ab2804fb9c9d
+	golang.org/x/tools v0.0.0-20200606014950-c42cb6316fb6
 	google.golang.org/api v0.26.0
-	google.golang.org/genproto v0.0.0-20200430143042-b979b6f78d84
+	google.golang.org/genproto v0.0.0-20200608115520-7c474a2e3482
 )
