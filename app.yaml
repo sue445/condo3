@@ -25,19 +25,19 @@ env_variables:
   KMS_MEMCACHED_USERNAME: "CiQAT3DMmA1l96ra49zvBOxwTrZxZnqCJl3w0MZtgxkoEYo7saUSMgBmE7EA2GxK8i8oDwffxIvB2oDqiYRejPzbIDigD53lYwom0clobFk35kPEsVixh74f"
   KMS_MEMCACHED_PASSWORD: "CiQAT3DMmGoXOc2PsmBigNN2h9bjR5+4SiOsND55w+bmYzTNxNgSSgBmE7EAP6TdJrIdS8HXbGSVlfzyed7PwKbzBCSkWXj4xmK7n9q8zrEEg3PY7JHEkIlfuYyY0bNxgnAtr/PwgNT7aOdxv3wsACpq"
 
-instance_class: F1
-automatic_scaling:
-  min_instances: 0
-  max_instances: 1
-  min_idle_instances: 0
-  max_idle_instances: 0
-  max_concurrent_requests: 80
-  target_cpu_utilization: 0.95
-  target_throughput_utilization: 0.95
-  min_pending_latency: 15000ms
-  max_pending_latency: 15000ms
+# instance_class: F1
+# automatic_scaling:
+#   min_instances: 0
+#   max_instances: 1
+#   min_idle_instances: 0
+#   max_idle_instances: 0
+#   max_concurrent_requests: 80
+#   target_cpu_utilization: 0.95
+#   target_throughput_utilization: 0.95
+#   min_pending_latency: 15000ms
+#   max_pending_latency: 15000ms
 
-# instance_class: B1
-# manual_scaling:
-#   instances: 1
+instance_class: B1
+manual_scaling:
+  instances: 1
 
