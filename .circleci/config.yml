@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   codeclimate: sue445/codeclimate@volatile
   go-module:   timakin/go-module@0.3.0
+  slack:       circleci/slack@volatile
 
 executors:
   golang:
@@ -42,6 +43,8 @@ jobs:
             - run: make test
             - run: make testrace
 
+      - slack/status
+
   lint:
     executor: golang
 
@@ -52,6 +55,7 @@ jobs:
       - run: make lint
       - run: make vet
       - run: "! gofmt -d . | grep '^'"
+      - slack/status
 
   webpack:
     executor: golang
@@ -65,6 +69,7 @@ jobs:
           paths:
             - public/js/*
             - public/css/*
+      - slack/status
 
   deploy:
     docker:
@@ -79,6 +84,7 @@ jobs:
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
       - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
+      - slack/status
 
 workflows:
   build-and-deploy:
