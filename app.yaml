@@ -19,6 +19,7 @@ env_variables:
   LOG_LEVEL: "debug"
   KMS_KEYRING_KEY_NAME: "projects/condo3/locations/global/keyRings/condo3/cryptoKeys/app"
   MEMCACHED_SERVER: "memcached-17716.c1.asia-northeast1-1.gce.cloud.redislabs.com:17716"
+  SENTRY_ENVIRONMENT: "production"
 
   # encoded by BASE64
   KMS_DOORKEEPER_ACCESS_TOKEN: "CiQAT3DMmLlQwLNqtLr5ulPeMF8gRguotG1yqz3pJ3Sv0UDaelwSPgBmE7EAhRtSyMzg2wxT0kzwkZi5hhjzOPTnCXqEcvFYtJ1x5a3Yn1alWBJs+B+tcRAjxbuQ8FMvHbKh47mc"
