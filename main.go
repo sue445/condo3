@@ -7,6 +7,7 @@ import (
 	"github.com/sue445/condo3/api"
 	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
+	"github.com/sue445/gcp-kmsenv"
 	"html/template"
 	"net/http"
 	"os"
@@ -21,7 +22,10 @@ var (
 
 func main() {
 	// Load variables
-	kms := &Kms{KeyringKeyName: os.Getenv("KMS_KEYRING_KEY_NAME")}
+	kms, err := kmsenv.NewKmsEnv(os.Getenv("KMS_KEYRING_KEY_NAME"))
+	if err != nil {
+		panic(err)
+	}
 
 	doorkeeperAccessToken, err := kms.GetFromEnvOrKms("DOORKEEPER_ACCESS_TOKEN", true)
 	if err != nil {
