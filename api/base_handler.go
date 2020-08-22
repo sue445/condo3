@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	"github.com/sue445/condo3/logger"
@@ -52,6 +53,9 @@ func (h *Handler) renderError(w http.ResponseWriter, err error) {
 	if statusCode/100 == 5 {
 		// Send to Stackdriver Error Reporting when 5xx error
 		logger.SendError(h.log, err)
+
+		// Send to Sentry when 5xx error
+		sentry.CaptureException(err)
 	} else {
 		h.log.Error(err)
 	}

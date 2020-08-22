@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/api"
 	"github.com/sue445/condo3/logger"
@@ -10,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 var (
@@ -40,6 +42,22 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	sentryDsn, err := kms.GetFromEnvOrKms("SENTRY_DSN", false)
+	if err != nil {
+		panic(err)
+	}
+
+	err = sentry.Init(sentry.ClientOptions{
+		Dsn: sentryDsn,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	// Flush buffered events before the program terminates.
+	// Set the timeout to the maximum duration the program can afford to wait.
+	defer sentry.Flush(2 * time.Second)
 
 	handler := api.Handler{
 		DoorkeeperAccessToken: doorkeeperAccessToken,
@@ -89,6 +107,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	vars := map[string]string{}
 
 	if err := indexTmpl.Execute(w, vars); err != nil {
+		sentry.CaptureException(err)
 		log.Errorf("Error executing template: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
