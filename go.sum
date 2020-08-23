@@ -280,8 +280,6 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/sue445/gcp-kmsenv v0.1.0 h1:89Da8+QCNqepG0ouSeEsF1h8Uep3NOMgr8DiMUNwoRQ=
-github.com/sue445/gcp-kmsenv v0.1.0/go.mod h1:lbmNAzg8P06fwH34IvVjlZ12o/haP7AWEYtabZiIe+E=
 github.com/sue445/gcp-kmsenv v0.1.1 h1:jqABJtRHdvUKt6357wCg18LxWZtYLx60VUWDZjYU3pk=
 github.com/sue445/gcp-kmsenv v0.1.1/go.mod h1:lbmNAzg8P06fwH34IvVjlZ12o/haP7AWEYtabZiIe+E=
 github.com/sue445/go-doorkeeper v0.1.5 h1:WFRm/RJRF0dafm9DNpR5j/O8BGQ/JKOc4gkRVCGQKKI=
