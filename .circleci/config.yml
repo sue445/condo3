@@ -42,7 +42,9 @@ jobs:
             - run: make test
             - run: make testrace
 
-      - slack/status
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   lint:
     executor: golang
@@ -54,7 +56,9 @@ jobs:
       - run: make lint
       - run: make vet
       - run: "! gofmt -d . | grep '^'"
-      - slack/status
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   webpack:
     executor: golang
@@ -68,7 +72,9 @@ jobs:
           paths:
             - public/js/*
             - public/css/*
-      - slack/status
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   deploy:
     docker:
@@ -83,7 +89,10 @@ jobs:
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
       - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
-      - slack/status
+      - run: apk --update --no-cache add jq curl
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
 workflows:
   build-and-deploy:
