@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   codeclimate: sue445/codeclimate@volatile
   go-module:   timakin/go-module@0.3.0
-  slack:       circleci/slack@volatile
+  slack:       circleci/slack@3
 
 executors:
   golang:
