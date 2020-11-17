@@ -42,7 +42,7 @@ jobs:
             - run: make test
             - run: make testrace
 
-      - slack/status
+      - slack/notify-on-failure
 
   lint:
     executor: golang
@@ -54,7 +54,7 @@ jobs:
       - run: make lint
       - run: make vet
       - run: "! gofmt -d . | grep '^'"
-      - slack/status
+      - slack/notify-on-failure
 
   webpack:
     executor: golang
@@ -68,7 +68,7 @@ jobs:
           paths:
             - public/js/*
             - public/css/*
-      - slack/status
+      - slack/notify-on-failure
 
   deploy:
     docker:
