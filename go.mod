@@ -5,7 +5,7 @@ go 1.13
 require (
 	contrib.go.opencensus.io/exporter/stackdriver v0.13.4
 	github.com/gelraen/appengine-formatter v0.0.0-20190418120016-b1b55c48bb21
-	github.com/getsentry/sentry-go v0.7.0
+	github.com/getsentry/sentry-go v0.8.0
 	github.com/gorilla/mux v1.8.0
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
 	github.com/jarcoal/httpmock v1.0.6
