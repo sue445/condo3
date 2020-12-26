@@ -5,10 +5,10 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/api"
-	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/gcp-kmsenv"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -17,7 +17,6 @@ import (
 
 var (
 	indexTmpl = readTemplate("index.html")
-	log       = logger.NewLogger()
 )
 
 func main() {
@@ -89,10 +88,8 @@ func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
-		log.Infof("Defaulting to port %s", port)
 	}
 
-	log.Infof("Listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
@@ -112,7 +109,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err := indexTmpl.Execute(w, vars); err != nil {
 		sentry.CaptureException(err)
-		log.Errorf("Error executing template: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
 }

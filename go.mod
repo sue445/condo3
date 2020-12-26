@@ -3,8 +3,6 @@ module github.com/sue445/condo3
 go 1.13
 
 require (
-	contrib.go.opencensus.io/exporter/stackdriver v0.13.4
-	github.com/gelraen/appengine-formatter v0.0.0-20190418120016-b1b55c48bb21
 	github.com/getsentry/sentry-go v0.9.0
 	github.com/gorilla/mux v1.8.0
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
@@ -13,7 +11,6 @@ require (
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/memcachier/mc v2.0.1+incompatible
 	github.com/pkg/errors v0.9.1
-	github.com/sirupsen/logrus v1.7.0
 	github.com/stretchr/testify v1.6.1
 	github.com/sue445/gcp-kmsenv v0.1.1
 	github.com/sue445/go-doorkeeper v0.1.5
