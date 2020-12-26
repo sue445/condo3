@@ -2,16 +2,12 @@ package eventpage
 
 import (
 	"errors"
-	"github.com/sue445/condo3/logger"
+	"github.com/getsentry/sentry-go"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strings"
-)
-
-var (
-	log = logger.NewLogger()
 )
 
 // Page represents connpass group page
@@ -27,7 +23,13 @@ func FetchEventPageWithCache(memcachedConfig *model.MemcachedConfig, url string)
 	cached, err := cache.get(url)
 
 	if err != nil {
-		log.Warnf("cache.get is failed: url=%s, err=%+v", url, err)
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelWarning)
+			scope.SetExtras(map[string]interface{}{
+				"url": url,
+			})
+			sentry.CaptureException(err)
+		})
 	}
 
 	if cached != nil {
@@ -43,7 +45,13 @@ func FetchEventPageWithCache(memcachedConfig *model.MemcachedConfig, url string)
 	err = cache.set(url, page)
 
 	if err != nil {
-		log.Warnf("cache.set is failed: url=%s, err=%+v", url, err)
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelWarning)
+			scope.SetExtras(map[string]interface{}{
+				"url": url,
+			})
+			sentry.CaptureException(err)
+		})
 	}
 
 	return page, nil

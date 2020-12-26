@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
-	"github.com/sirupsen/logrus"
-	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"net/http"
 	"regexp"
@@ -16,12 +14,9 @@ import (
 type Handler struct {
 	DoorkeeperAccessToken string
 	MemcachedConfig       *model.MemcachedConfig
-	log                   *logrus.Entry
 }
 
 func (h *Handler) performAPI(w http.ResponseWriter, r *http.Request, getGroup func(string) (*model.Group, error)) {
-	h.log = logger.NewRequestLogger(r)
-
 	vars := mux.Vars(r)
 
 	group, err := getGroup(vars["group"])
@@ -32,7 +27,6 @@ func (h *Handler) performAPI(w http.ResponseWriter, r *http.Request, getGroup fu
 	}
 
 	h.renderGroup(w, group, vars["format"])
-	h.log.Debugf("group=%+v", group)
 }
 
 func errorStatusCode(err error) int {
@@ -51,14 +45,16 @@ func (h *Handler) renderError(w http.ResponseWriter, err error) {
 	statusCode := errorStatusCode(err)
 
 	if statusCode/100 == 5 {
-		// Send to Stackdriver Error Reporting when 5xx error
-		logger.SendError(h.log, err)
-
-		// Send to Sentry when 5xx error
-		sentry.CaptureException(err)
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelError)
+		})
 	} else {
-		h.log.Error(err)
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelWarning)
+		})
 	}
+
+	sentry.CaptureException(err)
 
 	w.WriteHeader(statusCode)
 	fmt.Fprint(w, err)
@@ -91,7 +87,6 @@ func (h *Handler) renderGroup(w http.ResponseWriter, group *model.Group, format 
 		writeAPIResponse(w, json)
 	default:
 		message := fmt.Sprintf("Unknown format: %s", format)
-		h.log.Warn(message)
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprint(w, message)
 	}

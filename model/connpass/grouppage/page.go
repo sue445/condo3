@@ -2,18 +2,14 @@ package grouppage
 
 import (
 	"fmt"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
-	"github.com/sue445/condo3/logger"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
-)
-
-var (
-	log = logger.NewLogger()
 )
 
 // Page represents connpass group page
@@ -31,7 +27,13 @@ func FetchGroupPageWithCache(memcachedConfig *model.MemcachedConfig, groupName s
 	cached, err := cache.get(groupName)
 
 	if err != nil {
-		log.Warnf("cache.get is failed: groupName=%s, err=%+v", groupName, err)
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelWarning)
+			scope.SetExtras(map[string]interface{}{
+				"groupName": groupName,
+			})
+			sentry.CaptureException(err)
+		})
 	}
 
 	if cached != nil {
@@ -47,7 +49,13 @@ func FetchGroupPageWithCache(memcachedConfig *model.MemcachedConfig, groupName s
 	err = cache.set(groupName, page)
 
 	if err != nil {
-		log.Warnf("cache.set is failed: groupName=%s, err=%+v", groupName, err)
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelWarning)
+			scope.SetExtras(map[string]interface{}{
+				"groupName": groupName,
+			})
+			sentry.CaptureException(err)
+		})
 	}
 
 	return page, nil
