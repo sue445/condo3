@@ -40,6 +40,8 @@ npm run build
 make && ./bin/condo3
 ```
 
+open http://localhost:8080/
+
 ### Encrypt credentials with KMS
 ```bash
 vi credential.txt
