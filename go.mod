@@ -6,7 +6,7 @@ require (
 	github.com/getsentry/sentry-go v0.9.0
 	github.com/gorilla/mux v1.8.0
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
-	github.com/jarcoal/httpmock v1.0.6
+	github.com/jarcoal/httpmock v1.0.7
 	github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37 // indirect
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/memcachier/mc v2.0.1+incompatible
