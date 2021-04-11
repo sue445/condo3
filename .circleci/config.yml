@@ -8,7 +8,7 @@ orbs:
 executors:
   golang:
     docker:
-      - image: circleci/golang:1.13-node
+      - image: circleci/golang:1.15-node
       - image: memcached:1.5-alpine
     working_directory: /go/src/github.com/sue445/condo3
     environment:
