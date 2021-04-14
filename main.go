@@ -95,6 +95,9 @@ func main() {
 
 // indexHandler uses a template to create an index.html.
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	span := sentry.StartSpan(r.Context(), "/")
+	defer span.Finish()
+
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
