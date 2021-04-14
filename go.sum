@@ -240,8 +240,8 @@ github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5Cc
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/sue445/gcp-kmsenv v0.1.1 h1:jqABJtRHdvUKt6357wCg18LxWZtYLx60VUWDZjYU3pk=
 github.com/sue445/gcp-kmsenv v0.1.1/go.mod h1:lbmNAzg8P06fwH34IvVjlZ12o/haP7AWEYtabZiIe+E=
-github.com/sue445/go-doorkeeper v0.1.6 h1:C3BN98NJAHux/xcjVKJf7DJm5GdJuQSKHYvDEGY8K+E=
-github.com/sue445/go-doorkeeper v0.1.6/go.mod h1:CCnYVDotwnYvDzwsWFMgZ7J2H5T8Q7Hiv6rLcN6F2ic=
+github.com/sue445/go-doorkeeper v0.1.7 h1:2dcujzwamS8mswO99C8DBiUwjVMxlb7zbXaINfhG+/A=
+github.com/sue445/go-doorkeeper v0.1.7/go.mod h1:j20vQ77vFs2Nn22cG8uUilQOVQwCZzAGoVJe7JC+D9I=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=
 github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVMw=
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=

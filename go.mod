@@ -13,7 +13,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.7.0
 	github.com/sue445/gcp-kmsenv v0.1.1
-	github.com/sue445/go-doorkeeper v0.1.6
+	github.com/sue445/go-doorkeeper v0.1.7
 	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
 	golang.org/x/tools v0.0.0-20200817023811-d00afeaade8f
 )
