@@ -53,7 +53,7 @@ func main() {
 
 	err = sentry.Init(sentry.ClientOptions{
 		Dsn:              sentryDsn,
-		TracesSampleRate: 0.5,
+		TracesSampleRate: 0.01,
 	})
 	if err != nil {
 		panic(err)
