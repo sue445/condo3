@@ -19,7 +19,7 @@
   "homepage": "https://github.com/sue445/condo3",
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
-    "@types/node": "^15.0.1",
+    "@types/node": "^15.0.2",
     "css-loader": "^5.2.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "mini-css-extract-plugin": "^1.6.0",
