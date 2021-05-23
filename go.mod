@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.15
 
 require (
-	github.com/getsentry/sentry-go v0.10.0
+	github.com/getsentry/sentry-go v0.11.0
 	github.com/gorilla/mux v1.8.0
 	github.com/hkurokawa/go-connpass v0.0.0-20190802134642-e429fd3fdb17
 	github.com/jarcoal/httpmock v1.0.8
