@@ -73,16 +73,23 @@ func fetchGroupPage(groupName string) (*Page, error) {
 
 	defer resp.Body.Close()
 
-	if resp.StatusCode < 200 || resp.StatusCode >= 400 {
-		return nil, errors.New(resp.Status)
-	}
-
 	byteArray, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
 
 	body := string(byteArray)
+
+	if resp.StatusCode < 200 || resp.StatusCode >= 400 {
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetExtras(map[string]interface{}{
+				"ResponseBody": body,
+			})
+			scope.SetTag("StatusCode", strconv.Itoa(resp.StatusCode))
+		})
+
+		return nil, errors.New(resp.Status)
+	}
 
 	seriesID, err := getSeriesID(body)
 
