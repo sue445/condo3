@@ -5,7 +5,6 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
 	"github.com/sue445/condo3/api"
-	"github.com/sue445/condo3/model"
 	"github.com/sue445/gcp-kmsenv"
 	"html/template"
 	"log"
@@ -31,21 +30,6 @@ func main() {
 		panic(err)
 	}
 
-	memcachedServer, err := kms.GetFromEnvOrKms("MEMCACHED_SERVER", true)
-	if err != nil {
-		panic(err)
-	}
-
-	memcachedUsername, err := kms.GetFromEnvOrKms("MEMCACHED_USERNAME", false)
-	if err != nil {
-		panic(err)
-	}
-
-	memcachedPassword, err := kms.GetFromEnvOrKms("MEMCACHED_PASSWORD", false)
-	if err != nil {
-		panic(err)
-	}
-
 	sentryDsn, err := kms.GetFromEnvOrKms("SENTRY_DSN", false)
 	if err != nil {
 		panic(err)
@@ -65,11 +49,6 @@ func main() {
 
 	handler := api.Handler{
 		DoorkeeperAccessToken: doorkeeperAccessToken,
-		MemcachedConfig: &model.MemcachedConfig{
-			Server:   memcachedServer,
-			Username: memcachedUsername,
-			Password: memcachedPassword,
-		},
 	}
 
 	r := mux.NewRouter()

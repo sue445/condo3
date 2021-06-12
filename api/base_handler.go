@@ -13,7 +13,6 @@ import (
 // Handler manages API handler
 type Handler struct {
 	DoorkeeperAccessToken string
-	MemcachedConfig       *model.MemcachedConfig
 }
 
 func (h *Handler) performAPI(w http.ResponseWriter, r *http.Request, getGroup func(string) (*model.Group, error)) {
