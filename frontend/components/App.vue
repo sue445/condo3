@@ -1,26 +1,5 @@
 <template>
   <section>
-    <div class="container">
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">サイト</label>
-        </div>
-        <div class="field-body">
-          <div class="field is-grouped is-narrow">
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="site" value="connpass" v-model="site" checked>
-                connpass
-              </label>
-              <label class="radio">
-                <input type="radio" name="site" value="doorkeeper" v-model="site">
-                Doorkeeper
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="field is-horizontal">
         <div class="field-label">
           <label class="label">フォーマット</label>
@@ -50,7 +29,7 @@
             <div class="control">
               <input class="input" type="text" v-model="groupName">
             </div>
-            <p class="help">グループ名はconnpassだとグループページのURLの https://<b>XXXXX</b>.connpass.com/ の太字の部分、DoorkeeperだとグループページのURLの https://<b>XXXXX</b>.doorkeeper.jp/ の太字の部分を入力してください</p>
+            <p class="help">グループ名はDoorkeeperのグループページのURLの https://<b>XXXXX</b>.doorkeeper.jp/ の太字の部分を入力してください</p>
           </div>
         </div>
       </div>
@@ -93,9 +72,9 @@
 
   @Component
   export default class App extends Vue {
-    site = "connpass";
+    site = "doorkeeper";
     format = "atom";
-    groupName = "gocon";
+    groupName = "trbmeetup";
 
     get feedUrl() {
       return window.location.protocol + "//" + window.location.host + "/api/" + this.site + "/" + this.groupName.trim() + "." + this.format
