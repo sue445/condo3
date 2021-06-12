@@ -73,7 +73,6 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.HandleFunc("/api/connpass/{group}.{format}", handler.ConnpassHandler)
 	r.HandleFunc("/api/doorkeeper/{group}.{format}", handler.DoorkeeperHandler)
 	r.HandleFunc("/api/sandbox/{group}.{format}", handler.SandboxHandler)
 	r.HandleFunc("/", indexHandler)
