@@ -1,5 +1,5 @@
 # condo3
-Feed generator for [connpass](https://connpass.com/) and [Doorkeeper](https://www.doorkeeper.jp/) group
+Feed generator for [Doorkeeper](https://www.doorkeeper.jp/) group
 
 https://condo3.appspot.com/
 
@@ -10,12 +10,11 @@ https://condo3.appspot.com/
 [![GoDoc](https://godoc.org/github.com/sue445/condo3?status.svg)](https://godoc.org/github.com/sue445/condo3)
 
 ## Available APIs
-* `https://condo3.appspot.com/api/connpass/{group}.{format}`
 * `https://condo3.appspot.com/api/doorkeeper/{group}.{format}`
 
 ### Note
 * `format` supports either `ics` or `atom`
-  * e.g. https://condo3.appspot.com/api/connpass/gocon.ics
+  * e.g. https://condo3.appspot.com/api/doorkeeper/trbmeetup.ics
 
 ## Develop
 ### Setup
