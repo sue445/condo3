@@ -10,7 +10,6 @@ executors:
     docker:
       - image: cimg/go:1.15-node
       - image: memcached:1.5-alpine
-    working_directory: /go/src/github.com/sue445/condo3
     environment:
       TZ: Asia/Tokyo
       MEMCACHED_SERVER: "127.0.0.1:11211"
@@ -27,7 +26,7 @@ jobs:
     steps:
       - &attach_workspace
         attach_workspace:
-          at: /go/src/github.com/sue445/condo3
+          at: .
       - &restore_cache
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
@@ -64,7 +63,7 @@ jobs:
       - run: npm ci
       - run: NODE_ENV=production npm run build
       - persist_to_workspace:
-          root: /go/src/github.com/sue445/condo3
+          root: .
           paths:
             - public/js/*
             - public/css/*
