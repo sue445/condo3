@@ -1,16 +1,14 @@
 version: 2.1
 
 orbs:
-  codeclimate: sue445/codeclimate@volatile
   go-module:   timakin/go-module@0.3.0
   slack:       circleci/slack@3
 
 executors:
   golang:
     docker:
-      - image: circleci/golang:1.15-node
+      - image: cimg/go:1.15-node
       - image: memcached:1.5-alpine
-    working_directory: /go/src/github.com/sue445/condo3
     environment:
       TZ: Asia/Tokyo
       MEMCACHED_SERVER: "127.0.0.1:11211"
@@ -20,14 +18,10 @@ jobs:
   test:
     executor: golang
 
-    environment:
-      CC_TEST_REPORTER_ID: 62f4b81c3edd3cc6a6c2e2218dbdbf24e724f5c9244df2b3358e4405ff45727b
-      TEST_ARGS: "-coverprofile c.out"
-
     steps:
       - &attach_workspace
         attach_workspace:
-          at: /go/src/github.com/sue445/condo3
+          at: .
       - &restore_cache
         restore_cache:
           key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
@@ -37,10 +31,8 @@ jobs:
           # dockerize is already installed in circleci/golang
           command: dockerize -wait tcp://localhost:11211 -timeout 1m
 
-      - codeclimate/with-cc-test-reporter:
-          steps:
-            - run: make test
-            - run: make testrace
+      - run: make test
+      - run: make testrace
 
       - slack/notify-on-failure
 
@@ -64,7 +56,7 @@ jobs:
       - run: npm ci
       - run: NODE_ENV=production npm run build
       - persist_to_workspace:
-          root: /go/src/github.com/sue445/condo3
+          root: .
           paths:
             - public/js/*
             - public/css/*
