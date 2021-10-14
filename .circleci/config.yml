@@ -14,25 +14,44 @@ executors:
       MEMCACHED_SERVER: "127.0.0.1:11211"
       GO111MODULE: "on"
 
+commands:
+  with_cache:
+    parameters:
+      steps:
+        type: steps
+      cache_version:
+        type: string
+        default: "v2"
+
+    steps:
+      - restore_cache:
+          keys:
+            - << parameters.cache_version >>-go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
+            - << parameters.cache_version >>-go-mod-cache-{{ .Branch }}-
+            - << parameters.cache_version >>-go-mod-cache-
+
+      - steps: << parameters.steps >>
+
+      - save_cache:
+          key: << parameters.cache_version >>-go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"
+
 jobs:
   test:
     executor: golang
 
     steps:
-      - &attach_workspace
-        attach_workspace:
-          at: .
-      - &restore_cache
-        restore_cache:
-          key: go-mod-cache-{{ .Branch }}-{{ checksum "go.sum" }}
-
+      - checkout
       - run:
           name: Wait starting memcached
           # dockerize is already installed in circleci/golang
           command: dockerize -wait tcp://localhost:11211 -timeout 1m
 
-      - run: make test
-      - run: make testrace
+      - with_cache:
+          steps:
+            - run: make test
+            - run: make testrace
 
       - slack/notify-on-failure
 
@@ -40,12 +59,13 @@ jobs:
     executor: golang
 
     steps:
-      - *attach_workspace
-      - *restore_cache
-      - run: go get -u golang.org/x/lint/golint
-      - run: make lint
-      - run: make vet
-      - run: "! gofmt -d . | grep '^'"
+      - checkout
+      - with_cache:
+          steps:
+            - run: go get -u golang.org/x/lint/golint
+            - run: make lint
+            - run: make vet
+            - run: "! gofmt -d . | grep '^'"
       - slack/notify-on-failure
 
   webpack:
@@ -66,11 +86,10 @@ jobs:
     docker:
       - image: google/cloud-sdk:alpine
 
-    working_directory: /go/src/github.com/sue445/condo3
-
     steps:
       - checkout
-      - *attach_workspace
+      - attach_workspace:
+          at: .
       - run: gcloud --version
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
@@ -80,18 +99,8 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - go-module/download:
-          executor: golang
-          persist-to-workspace: true
-
-      - test:
-          requires:
-            - go-module/download
-
-      - lint:
-          requires:
-            - go-module/download
-
+      - test
+      - lint
       - webpack
 
       - deploy:
@@ -102,4 +111,4 @@ workflows:
           context: gcp_condo3
           filters:
             branches:
-              only: master
+              only: feature/fix_ci
