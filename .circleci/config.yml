@@ -1,7 +1,6 @@
 version: 2.1
 
 orbs:
-  codeclimate: sue445/codeclimate@volatile
   go-module:   timakin/go-module@0.3.0
   slack:       circleci/slack@3
 
@@ -19,10 +18,6 @@ jobs:
   test:
     executor: golang
 
-    environment:
-      CC_TEST_REPORTER_ID: 62f4b81c3edd3cc6a6c2e2218dbdbf24e724f5c9244df2b3358e4405ff45727b
-      TEST_ARGS: "-coverprofile c.out"
-
     steps:
       - &attach_workspace
         attach_workspace:
@@ -36,10 +31,8 @@ jobs:
           # dockerize is already installed in circleci/golang
           command: dockerize -wait tcp://localhost:11211 -timeout 1m
 
-      - codeclimate/with-cc-test-reporter:
-          steps:
-            - run: make test
-            - run: make testrace
+      - run: make test
+      - run: make testrace
 
       - slack/notify-on-failure
 
