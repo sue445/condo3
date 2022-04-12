@@ -37,6 +37,6 @@
   "dependencies": {
     "bulma": "^0.9.3",
     "clipboard": "^2.0.10",
-    "vue": "^2.6.14"
+    "vue": "^3.2.32"
   }
 }
