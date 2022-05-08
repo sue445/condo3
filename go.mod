@@ -5,7 +5,7 @@ go 1.15
 require (
 	github.com/getsentry/sentry-go v0.13.0
 	github.com/gorilla/mux v1.8.0
-	github.com/jarcoal/httpmock v1.1.0
+	github.com/jarcoal/httpmock v1.2.0
 	github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37 // indirect
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/pkg/errors v0.9.1
