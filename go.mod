@@ -1,6 +1,6 @@
 module github.com/sue445/condo3
 
-go 1.15
+go 1.16
 
 require (
 	github.com/getsentry/sentry-go v0.13.0

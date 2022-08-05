@@ -7,7 +7,7 @@ orbs:
 executors:
   golang:
     docker:
-      - image: cimg/go:1.15-node
+      - image: cimg/go:1.16-node
       - image: memcached:1.5-alpine
     environment:
       TZ: Asia/Tokyo
@@ -62,7 +62,7 @@ jobs:
       - checkout
       - with_cache:
           steps:
-            - run: go get -u golang.org/x/lint/golint
+            - run: go install golang.org/x/lint/golint@latest
             - run: make lint
             - run: make vet
             - run: "! gofmt -d . | grep '^'"
