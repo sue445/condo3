@@ -111,4 +111,4 @@ workflows:
           context: gcp_condo3
           filters:
             branches:
-              only: feature/fix_ci
+              only: master
