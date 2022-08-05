@@ -62,7 +62,7 @@ jobs:
       - checkout
       - with_cache:
           steps:
-            - run: go get -u golang.org/x/lint/golint
+            - run: go install golang.org/x/lint/golint@latest
             - run: make lint
             - run: make vet
             - run: "! gofmt -d . | grep '^'"
