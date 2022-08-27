@@ -8,10 +8,8 @@ executors:
   golang:
     docker:
       - image: cimg/go:1.16-node
-      - image: memcached:1.5-alpine
     environment:
       TZ: Asia/Tokyo
-      MEMCACHED_SERVER: "127.0.0.1:11211"
       GO111MODULE: "on"
 
 commands:
@@ -43,10 +41,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Wait starting memcached
-          # dockerize is already installed in circleci/golang
-          command: dockerize -wait tcp://localhost:11211 -timeout 1m
 
       - with_cache:
           steps:
