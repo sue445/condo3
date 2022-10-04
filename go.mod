@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.16
 
 require (
-	github.com/getsentry/sentry-go v0.13.0
+	github.com/getsentry/sentry-go v0.14.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37 // indirect
@@ -12,6 +12,6 @@ require (
 	github.com/stretchr/testify v1.8.0
 	github.com/sue445/gcp-kmsenv v0.1.1
 	github.com/sue445/go-doorkeeper v0.1.7
-	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
-	golang.org/x/tools v0.0.0-20200817023811-d00afeaade8f
+	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f
+	golang.org/x/tools v0.1.5
 )
