@@ -7,7 +7,7 @@ orbs:
 executors:
   golang:
     docker:
-      - image: cimg/go:1.16-node
+      - image: cimg/go:1.19-node
     environment:
       TZ: Asia/Tokyo
       GO111MODULE: "on"
