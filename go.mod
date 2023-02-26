@@ -8,7 +8,7 @@ require (
 	github.com/jarcoal/httpmock v1.3.0
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/pkg/errors v0.9.1
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	github.com/sue445/gcp-kmsenv v0.1.1
 	github.com/sue445/go-doorkeeper v0.1.7
 	golang.org/x/sync v0.1.0
