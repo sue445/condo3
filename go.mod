@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.19
 
 require (
-	github.com/getsentry/sentry-go v0.18.0
+	github.com/getsentry/sentry-go v0.19.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jarcoal/httpmock v1.3.0
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
