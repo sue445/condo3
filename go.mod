@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.20
 
 require (
-	github.com/getsentry/sentry-go v0.19.0
+	github.com/getsentry/sentry-go v0.20.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jarcoal/httpmock v1.3.0
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
@@ -33,6 +33,6 @@ require (
 	google.golang.org/appengine v1.6.6 // indirect
 	google.golang.org/genproto v0.0.0-20200815001618-f69a88009b70 // indirect
 	google.golang.org/grpc v1.31.0 // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
+	google.golang.org/protobuf v1.29.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
