@@ -12,7 +12,7 @@ require (
 	github.com/sue445/gcp-kmsenv v0.1.1
 	github.com/sue445/go-doorkeeper v0.1.8
 	golang.org/x/sync v0.2.0
-	golang.org/x/tools v0.8.0
+	golang.org/x/tools v0.9.1
 )
 
 require (
@@ -25,9 +25,9 @@ require (
 	github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	go.opencensus.io v0.22.4 // indirect
-	golang.org/x/net v0.9.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/api v0.30.0 // indirect
 	google.golang.org/appengine v1.6.6 // indirect
