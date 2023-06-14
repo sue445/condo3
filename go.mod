@@ -11,7 +11,7 @@ require (
 	github.com/stretchr/testify v1.8.4
 	github.com/sue445/gcp-kmsenv v0.1.1
 	github.com/sue445/go-doorkeeper v0.1.8
-	golang.org/x/sync v0.2.0
+	golang.org/x/sync v0.3.0
 	golang.org/x/tools v0.9.3
 )
 
