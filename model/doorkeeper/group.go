@@ -2,7 +2,7 @@ package doorkeeper
 
 import (
 	"fmt"
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 	"github.com/sue445/condo3/model"
 	"github.com/sue445/go-doorkeeper"
 	"golang.org/x/sync/errgroup"
