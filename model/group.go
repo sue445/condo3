@@ -3,8 +3,8 @@ package model
 import (
 	"encoding/json"
 	"encoding/xml"
+	"github.com/cockroachdb/errors"
 	"github.com/lestrrat-go/ical"
-	"github.com/pkg/errors"
 	"golang.org/x/tools/blog/atom"
 	"sort"
 	"time"

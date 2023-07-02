@@ -3,7 +3,7 @@ package sandbox
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 	"github.com/sue445/condo3/model"
 	"io/ioutil"
 	"net/http"
