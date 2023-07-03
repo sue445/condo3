@@ -10,7 +10,7 @@ require (
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/stretchr/testify v1.8.4
 	github.com/sue445/gcp-kmsenv v0.2.0
-	github.com/sue445/go-doorkeeper v0.1.8
+	github.com/sue445/go-doorkeeper v0.1.9
 	golang.org/x/sync v0.3.0
 	golang.org/x/tools v0.10.0
 )
