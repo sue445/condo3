@@ -96,7 +96,6 @@ github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37/go.mod h1:v
 github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc h1:zgGcK/81Kx0fo8D1YiSnxiQzvrAsudqpzmII6T5cCKY=
 github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc/go.mod h1:6PzTh0CIruhZzlOHdDGWQeZUDpklJMbTXDvmU7WQdyw=
 github.com/maxatome/go-testdeep v1.12.0 h1:Ql7Go8Tg0C1D/uMMX59LAoYK7LffeJQ6X2T04nTH68g=
-github.com/maxatome/go-testdeep v1.12.0/go.mod h1:lPZc/HAcJMP92l7yI6TRz1aZN5URwUBUAfUNvrclaNM=
 github.com/pingcap/errors v0.11.4 h1:lFuQV/oaUMGcD2tqt+01ROSmJs75VG1ToEOkZIZ4nE4=
 github.com/pkg/diff v0.0.0-20210226163009-20ebb0f2a09e/go.mod h1:pJLUxLENpZxwdsKMEsNbx1VGcRFpLqf3715MtcvvzbA=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
@@ -116,13 +115,12 @@ github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
-github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/sue445/gcp-kmsenv v0.2.0 h1:JcKS60byKzsQF28ocCsleJRqoS1CsnD1ZluBnnlqgE8=
 github.com/sue445/gcp-kmsenv v0.2.0/go.mod h1:b5pQogfDiSCqlYj7/m/xupP3JLJ9ss0LcJmtN+Pg5yI=
-github.com/sue445/go-doorkeeper v0.1.8 h1:sI3Aj8tH1ur1rpO7738ZEL7mO/ySE1QxjKyLH4BMuLc=
-github.com/sue445/go-doorkeeper v0.1.8/go.mod h1:FNNKMJq524GYXGDxYZB2r5QM/5TcYmhmQ4/NXXVoF14=
+github.com/sue445/go-doorkeeper v0.1.9 h1:ugLZ2Ch5qRog4A3T0huzo8Jcm0Wio2f6BS2WpYz7V6s=
+github.com/sue445/go-doorkeeper v0.1.9/go.mod h1:rtq1k789YxBoFGzTScE1n862gYUpz38KwyK0W7eI3aQ=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
