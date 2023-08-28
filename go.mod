@@ -3,7 +3,7 @@ module github.com/sue445/condo3
 go 1.20
 
 require (
-	github.com/cockroachdb/errors v1.11.0
+	github.com/cockroachdb/errors v1.11.1
 	github.com/getsentry/sentry-go v0.23.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jarcoal/httpmock v1.3.1
