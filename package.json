@@ -29,7 +29,7 @@
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
     "vue-class-component": "^7.2.6",
-    "vue-loader": "^15.9.8",
+    "vue-loader": "^17.3.0",
     "vue-template-compiler": "^2.7.13",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
