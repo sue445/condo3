@@ -44,10 +44,10 @@
             <input class="input" type="text" :value="feedUrl" id="feedUrl" readonly>
           </div>
           <div class="control">
-            <a class="button is-info" data-clipboard-target="#feedUrl">
+            <button class="button is-info" @click="copyToClipboard">
               <i class="far fa-clipboard"></i>
               Copy
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -65,18 +65,26 @@
   </section>
 </template>
 
-<script lang="ts">
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
-
-  @Component
-  export default class App extends Vue {
-    site = "doorkeeper";
-    format = "atom";
-    groupName = "trbmeetup";
-
-    get feedUrl() {
-      return window.location.protocol + "//" + window.location.host + "/api/" + this.site + "/" + this.groupName.trim() + "." + this.format
-    }
-  }
+<script>
+export default {
+  data() {
+    return {
+      site: "doorkeeper",
+      format: "atom",
+      groupName: "trbmeetup",
+    };
+  },
+  computed: {
+    feedUrl() {
+      return window.location.protocol + "//" + window.location.host + "/api/" + this.site + "/" + this.groupName.trim() + "." + this.format;
+    },
+  },
+  methods: {
+    copyToClipboard() {
+      const feedUrlInput = document.getElementById('feedUrl');
+      feedUrlInput.select();
+      document.execCommand('copy');
+    },
+  },
+};
 </script>

@@ -1,13 +1,10 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import ClipboardJS from 'clipboard';
 import App from './components/App.vue';
+import './scss/mystyles.scss';
 
-require('./scss/mystyles.scss');
-
-let v = new Vue({
-  el: "#app",
-  components: { App },
-  template: "<app></app>"
-});
+const app = createApp(App);
+app.mount('#app');
+app.component('App', App);
 
 new ClipboardJS('.button');
