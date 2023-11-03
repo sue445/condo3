@@ -1,5 +1,6 @@
 <template>
   <section>
+    <div class="container">
       <div class="field is-horizontal">
         <div class="field-label">
           <label class="label">フォーマット</label>
