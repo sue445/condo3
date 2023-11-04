@@ -31,3 +31,8 @@ updates:
     open-pull-requests-limit: 99
     assignees:
       - sue445
+    groups:
+      vue-dependencies:
+        patterns:
+          - "vue"
+          - "@vue/*"
