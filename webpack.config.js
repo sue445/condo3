@@ -1,6 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
@@ -22,6 +22,11 @@ module.exports = {
             // other preprocessors should work out of the box, no loader config like this necessary.
             'scss': 'vue-style-loader!css-loader!sass-loader',
             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+          },
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
           }
           // other vue-loader options go here
         }
@@ -69,7 +74,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.runtime.esm-bundler.js',
+      'vue': '@vue/compat',
     }
   },
   devServer: {
