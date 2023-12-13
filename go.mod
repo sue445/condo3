@@ -14,7 +14,7 @@ require (
 	github.com/sue445/gcp-kmsenv v0.2.1
 	github.com/sue445/go-doorkeeper v0.1.9
 	golang.org/x/sync v0.5.0
-	golang.org/x/tools v0.16.0
+	golang.org/x/tools v0.16.1
 )
 
 require (
