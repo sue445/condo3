@@ -70,7 +70,6 @@ module.exports = {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.runtime.esm-bundler.js',
-      'vue': '@vue/compat',
     }
   },
   devServer: {
