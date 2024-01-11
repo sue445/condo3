@@ -13,7 +13,7 @@ import (
 // DoorkeeperHandler returns handler of /api/doorkeeper
 func (h *Handler) DoorkeeperHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	span := sentry.StartSpan(r.Context(), "/api/doorkeeper/{group}.{format}", sentry.TransactionName(fmt.Sprintf("/api/doorkeeper/%s.%s", vars["group"], vars["format"])))
+	span := sentry.StartSpan(r.Context(), "/api/doorkeeper/{group}.{format}", sentry.WithTransactionName(fmt.Sprintf("/api/doorkeeper/%s.%s", vars["group"], vars["format"])))
 	defer span.Finish()
 
 	h.performAPI(w, r, func(groupName string) (*model.Group, error) {
