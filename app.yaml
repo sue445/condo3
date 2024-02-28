@@ -1,4 +1,4 @@
-runtime: go121
+runtime: go122
 
 handlers:
   # Otherwise, find file in static directory
