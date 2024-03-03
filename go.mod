@@ -10,7 +10,7 @@ require (
 	github.com/gorilla/mux v1.8.1
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	github.com/sue445/gcp-kmsenv v0.2.1
 	github.com/sue445/go-doorkeeper v0.1.9
 	golang.org/x/sync v0.6.0
