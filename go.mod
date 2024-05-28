@@ -5,7 +5,7 @@ go 1.22
 toolchain go1.22.0
 
 require (
-	github.com/cockroachdb/errors v1.11.2
+	github.com/cockroachdb/errors v1.11.3
 	github.com/getsentry/sentry-go v0.28.0
 	github.com/gorilla/mux v1.8.1
 	github.com/jarcoal/httpmock v1.3.1
