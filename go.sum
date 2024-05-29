@@ -106,8 +106,8 @@ github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsT
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/sue445/gcp-kmsenv v0.2.1 h1:UYtrS+aKKDafjN7sgqiEbCEkO0DgcM74oicv/VZzUv8=
 github.com/sue445/gcp-kmsenv v0.2.1/go.mod h1:lQvZ20lBZi8lLQ6UXswbkz84UxuAtj67QbqehLDW2U0=
-github.com/sue445/go-doorkeeper v0.1.9 h1:ugLZ2Ch5qRog4A3T0huzo8Jcm0Wio2f6BS2WpYz7V6s=
-github.com/sue445/go-doorkeeper v0.1.9/go.mod h1:rtq1k789YxBoFGzTScE1n862gYUpz38KwyK0W7eI3aQ=
+github.com/sue445/go-doorkeeper v0.1.10 h1:547W59ERy0iOxx5LybNmYKjjQg3/zpoVp2TahXe4cbg=
+github.com/sue445/go-doorkeeper v0.1.10/go.mod h1:7Y8FfjdDZ2a3dp+xawID0SPVMBh7xj7+b6L/vntNH7k=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
