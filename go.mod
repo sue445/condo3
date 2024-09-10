@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/cockroachdb/errors v1.11.3
-	github.com/getsentry/sentry-go v0.28.1
+	github.com/getsentry/sentry-go v0.29.0
 	github.com/gorilla/mux v1.8.1
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
