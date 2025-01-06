@@ -14,7 +14,7 @@ require (
 	github.com/sue445/gcp-kmsenv v0.2.3
 	github.com/sue445/go-doorkeeper v0.1.11
 	golang.org/x/sync v0.10.0
-	golang.org/x/tools v0.28.0
+	golang.org/x/tools v0.29.0
 )
 
 require (
@@ -48,10 +48,10 @@ require (
 	go.opentelemetry.io/otel v1.24.0 // indirect
 	go.opentelemetry.io/otel/metric v1.24.0 // indirect
 	go.opentelemetry.io/otel/trace v1.24.0 // indirect
-	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/crypto v0.32.0 // indirect
+	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/oauth2 v0.22.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.6.0 // indirect
 	google.golang.org/api v0.193.0 // indirect
