@@ -112,4 +112,4 @@ workflows:
           context: gcp_condo3
           filters:
             branches:
-              only: go_1.23
+              only: master
