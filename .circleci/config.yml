@@ -7,7 +7,7 @@ orbs:
 executors:
   golang:
     docker:
-      - image: cimg/go:1.22-node
+      - image: cimg/go:1.23-node
     environment:
       TZ: Asia/Tokyo
       GO111MODULE: "on"
@@ -80,6 +80,9 @@ jobs:
     docker:
       - image: google/cloud-sdk:alpine
 
+    environment:
+      CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+
     steps:
       - checkout
       - attach_workspace:
@@ -87,7 +90,11 @@ jobs:
       - run: gcloud --version
       - run: echo $BASE64_SERVICE_ACCOUNT_KEY | base64 -d > /tmp/service_account_key.json
       - run: gcloud auth activate-service-account --key-file /tmp/service_account_key.json
-      - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
+
+      # - run: gcloud --project $APPENGINE_PROJECT_ID app deploy
+      - run: gcloud components install beta
+      - run: gcloud beta --project $APPENGINE_PROJECT_ID app deploy
+
       - slack/status
 
 workflows:
