@@ -11,8 +11,7 @@ import (
 )
 
 func TestSandboxHandler(t *testing.T) {
-	httpmock.Activate()
-	defer httpmock.DeactivateAndReset()
+	httpmock.Activate(t)
 
 	httpmock.RegisterResponder("GET", "https://sue445.github.io/condo3-sandbox/data/test1.json",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../model/sandbox/testdata/test1.json")))

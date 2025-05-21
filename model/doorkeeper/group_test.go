@@ -16,8 +16,7 @@ func tp(t time.Time) *time.Time {
 }
 
 func TestGetGroup(t *testing.T) {
-	httpmock.Activate()
-	defer httpmock.DeactivateAndReset()
+	httpmock.Activate(t)
 
 	httpmock.RegisterResponder("GET", "https://api.doorkeeper.jp/groups/trbmeetup/events?since=2014-12-01&sort=published_at&until=2015-12-01",
 		func(req *http.Request) (*http.Response, error) {

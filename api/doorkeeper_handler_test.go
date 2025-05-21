@@ -12,8 +12,7 @@ import (
 )
 
 func TestDoorkeeperHandler(t *testing.T) {
-	httpmock.Activate()
-	defer httpmock.DeactivateAndReset()
+	httpmock.Activate(t)
 
 	httpmock.RegisterResponder("GET", `=~^https://api\.doorkeeper\.jp/groups/trbmeetup/events`,
 		func(req *http.Request) (*http.Response, error) {
