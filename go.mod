@@ -6,7 +6,7 @@ require (
 	github.com/cockroachdb/errors v1.12.0
 	github.com/getsentry/sentry-go v0.35.1
 	github.com/gorilla/mux v1.8.1
-	github.com/jarcoal/httpmock v1.4.0
+	github.com/jarcoal/httpmock v1.4.1
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/stretchr/testify v1.10.0
 	github.com/sue445/gcp-kmsenv v0.2.6
