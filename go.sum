@@ -89,8 +89,8 @@ github.com/stretchr/testify v1.11.1 h1:7s2iGBzp5EwR7/aIZr8ao5+dra3wiQyKjjFuvgVKu
 github.com/stretchr/testify v1.11.1/go.mod h1:wZwfW3scLgRK+23gO65QZefKpKQRnfz6sD981Nm4B6U=
 github.com/sue445/gcp-kmsenv v0.2.9 h1:qOgSFMydeCJFheUx5rIKNBL5a/Azru/HqlY/Bd0zYDo=
 github.com/sue445/gcp-kmsenv v0.2.9/go.mod h1:AGBxBZQIdiKz3NeGWStlf2Nzu7PNNT5P07xDUS/ZseY=
-github.com/sue445/go-doorkeeper v0.1.12 h1:k/HSlut+W9hjBLImHOaU8FmxiydpWcjlRslDS+XF0kk=
-github.com/sue445/go-doorkeeper v0.1.12/go.mod h1:RewgvR/VQG5a4VCXti6kgQbUbUtxaf1fuBPcvKD8fYA=
+github.com/sue445/go-doorkeeper v0.1.13 h1:nWZXG85KA9ApgJq9a2+XMUtGSAFxYnX2kslXSMF9LTM=
+github.com/sue445/go-doorkeeper v0.1.13/go.mod h1:bmZiSo0hu8q5StWwf4jXMEhhaxWjDRAmAJRL2d+f2+w=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
