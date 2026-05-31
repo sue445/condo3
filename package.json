@@ -27,7 +27,7 @@
     "sass-loader": "^17.0.0",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.7",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "vue-class-component": "^7.2.6",
     "vue-loader": "^17.4.2",
     "webpack": "^5.107.1",
