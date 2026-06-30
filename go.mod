@@ -1,6 +1,6 @@
 module github.com/sue445/condo3
 
-go 1.25.11
+go 1.25.0
 
 require (
 	github.com/cockroachdb/errors v1.14.0
