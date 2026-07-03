@@ -5,7 +5,6 @@ https://condo3.appspot.com/
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/sue445/condo3/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sue445/condo3/tree/master)
 [![Maintainability](https://qlty.sh/gh/sue445/projects/condo3/maintainability.svg)](https://qlty.sh/gh/sue445/projects/condo3)
-[![Go Report Card](https://goreportcard.com/badge/github.com/sue445/condo3)](https://goreportcard.com/report/github.com/sue445/condo3)
 [![GoDoc](https://godoc.org/github.com/sue445/condo3?status.svg)](https://godoc.org/github.com/sue445/condo3)
 
 ## Available APIs
