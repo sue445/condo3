@@ -30,7 +30,7 @@
     "typescript": "^5.9.3",
     "vue-class-component": "^7.2.6",
     "vue-loader": "^17.4.2",
-    "webpack": "^5.108.3",
+    "webpack": "^5.108.4",
     "webpack-cli": "^7.2.1"
   },
   "dependencies": {
