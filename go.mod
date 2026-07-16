@@ -1,6 +1,6 @@
 module github.com/sue445/condo3
 
-go 1.25.11
+go 1.25.12
 
 require (
 	github.com/cockroachdb/errors v1.14.0
@@ -9,7 +9,7 @@ require (
 	github.com/jarcoal/httpmock v1.4.1
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
 	github.com/stretchr/testify v1.11.1
-	github.com/sue445/gcp-kmsenv v0.2.10
+	github.com/sue445/gcp-kmsenv v0.2.11
 	github.com/sue445/go-doorkeeper v0.1.13
 	golang.org/x/sync v0.22.0
 	golang.org/x/tools v0.47.0
@@ -52,10 +52,10 @@ require (
 	golang.org/x/sys v0.46.0 // indirect
 	golang.org/x/text v0.38.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
-	google.golang.org/api v0.281.0 // indirect
+	google.golang.org/api v0.286.0 // indirect
 	google.golang.org/genproto v0.0.0-20260319201613-d00831a3d3e7 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20260401024825-9d38bb4040a9 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260523011958-0a33c5d7ca68 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260610212136-7ab31c22f7ad // indirect
 	google.golang.org/grpc v1.81.1 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
