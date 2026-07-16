@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import ClipboardJS from 'clipboard';
 import App from './components/App.vue';
-import './scss/mystyles.scss';
+import 'bulma/css/bulma.css';
 
 const app = createApp(App);
 app.mount('#app');
