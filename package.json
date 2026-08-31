@@ -20,7 +20,7 @@
   "homepage": "https://github.com/sue445/condo3",
   "devDependencies": {
     "@types/clipboard": "^2.0.10",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.3.0",
     "css-loader": "^7.1.4",
     "esbuild": "^0.28.2",
     "esbuild-loader": "^4.5.0",
