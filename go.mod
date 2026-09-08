@@ -1,6 +1,6 @@
 module github.com/sue445/condo3
 
-go 1.26
+go 1.26.0
 
 require (
 	github.com/cockroachdb/errors v1.14.0
@@ -11,7 +11,7 @@ require (
 	github.com/stretchr/testify v1.12.1
 	github.com/sue445/gcp-kmsenv v0.2.14
 	github.com/sue445/go-doorkeeper v0.1.13
-	golang.org/x/sync v0.22.0
+	golang.org/x/sync v0.23.0
 	golang.org/x/tools v0.49.0
 )
 
