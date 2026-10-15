@@ -4,7 +4,7 @@ go 1.27
 
 require (
 	github.com/cockroachdb/errors v1.14.0
-	github.com/getsentry/sentry-go v0.49.0
+	github.com/getsentry/sentry-go v0.50.0
 	github.com/gorilla/mux v1.8.1
 	github.com/jarcoal/httpmock v1.4.2
 	github.com/lestrrat-go/ical v0.0.0-20190317233631-91af071bafbc
