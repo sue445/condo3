@@ -33,7 +33,7 @@
     "vue-class-component": "^7.2.6",
     "vue-loader": "^17.4.2",
     "webpack": "^5.112.2",
-    "webpack-cli": "^7.2.3"
+    "webpack-cli": "^7.3.1"
   },
   "dependencies": {
     "bulma": "^1.0.4",
